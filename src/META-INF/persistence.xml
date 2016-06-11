@@ -1,0 +1,39 @@
+<persistence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+	version="2.0" xmlns="http://java.sun.com/xml/ns/persistence">
+
+	<persistence-unit name="SpringData" transaction-type="RESOURCE_LOCAL">
+		<class>pe.gob.pnp.emergencias.model.Civil</class>
+		<class>pe.gob.pnp.emergencias.model.Comisaria</class>
+		<class>pe.gob.pnp.emergencias.model.Departamento</class>
+		<class>pe.gob.pnp.emergencias.model.Distrito</class>
+		<class>pe.gob.pnp.emergencias.model.Emergencia</class>
+		<class>pe.gob.pnp.emergencias.model.EquipoEmergencia</class>
+		<class>pe.gob.pnp.emergencias.model.Estado</class>
+		<class>pe.gob.pnp.emergencias.model.EstadoParte</class>
+		<class>pe.gob.pnp.emergencias.model.GradoRecurso</class>
+		<class>pe.gob.pnp.emergencias.model.Llamada</class>
+		<class>pe.gob.pnp.emergencias.model.NivelEmergencia</class>
+		<class>pe.gob.pnp.emergencias.model.Operador</class>
+		<class>pe.gob.pnp.emergencias.model.Parte</class>
+		<class>pe.gob.pnp.emergencias.model.Persona</class>
+		<class>pe.gob.pnp.emergencias.model.Provincia</class>
+		<class>pe.gob.pnp.emergencias.model.Recurso</class>
+		<class>pe.gob.pnp.emergencias.model.Rol</class>
+		<class>pe.gob.pnp.emergencias.model.Sector</class>
+		<class>pe.gob.pnp.emergencias.model.TipoEmergencia</class>
+		<class>pe.gob.pnp.emergencias.model.TipoPersonal</class>
+		<class>pe.gob.pnp.emergencias.model.TipoTerminal</class>
+		<class>pe.gob.pnp.emergencias.model.Turno</class>
+		<class>pe.gob.pnp.emergencias.model.Usuario</class>
+
+		<properties>
+			<property name="javax.persistence.jdbc.url" value="jdbc:sqlserver://localhost:1433/BD_EMERGENCIA" />
+			<property name="javax.persistence.jdbc.user" value="sa" />
+			<property name="javax.persistence.jdbc.driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
+			<property name="javax.persistence.jdbc.password" value="sql" />
+			<property name="eclipselink.logging.level" value="OFF" />
+		</properties>
+
+	</persistence-unit>
+</persistence>
