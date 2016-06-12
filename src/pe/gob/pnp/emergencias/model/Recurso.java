@@ -50,6 +50,9 @@ public class Recurso {
 	@Temporal(value = TemporalType.DATE)
 	private Date fechaMoficacion;
 
+	public Recurso() {
+	}
+
 	public Long getRecId() {
 		return recId;
 	}
