@@ -29,7 +29,7 @@
 		<class>pe.gob.pnp.emergencias.model.Usuario</class>
 
 		<properties>
-			<property name="javax.persistence.jdbc.url" value="jdbc:sqlserver://ANTONYDEV;databaseName=BD_EMERGENCIA" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:sqlserver://MACRI;databaseName=BD_EMERGENCIA" />
 			<property name="javax.persistence.jdbc.user" value="sa" />
 			<property name="javax.persistence.jdbc.driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
 			<property name="javax.persistence.jdbc.password" value="sql" />

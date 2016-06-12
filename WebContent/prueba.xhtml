@@ -1,0 +1,18 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:dataTable value="#{gradoRecursoManagedBena.gradoRecursos}" var="e" border="1">
+	<h:column>
+		<f:facet name="header">Id</f:facet>
+				#{e.greId}
+			</h:column>
+	<h:column>
+		<f:facet name="header">Nombre</f:facet>
+				#{e.greDescripcion}
+			</h:column>
+</h:dataTable>
+
+
+</html>
