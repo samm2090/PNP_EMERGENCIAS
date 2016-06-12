@@ -31,6 +31,9 @@ public class Usuario implements Serializable {
 	@JoinColumn(name = "ROL_ID")
 	private Rol rol;
 
+	@Column(name = "USU_NOMBRE")
+	private String usuNombre;
+
 	@Column(name = "USU_CLAVE")
 	private String usuClave;
 
@@ -64,6 +67,14 @@ public class Usuario implements Serializable {
 		this.rol = rol;
 	}
 
+	public String getUsuNombre() {
+		return usuNombre;
+	}
+
+	public void setUsuNombre(String usuNombre) {
+		this.usuNombre = usuNombre;
+	}
+
 	public String getUsuClave() {
 		return usuClave;
 	}
@@ -95,7 +106,7 @@ public class Usuario implements Serializable {
 	public void setFechaModificacion(Date fechaModificacion) {
 		this.fechaModificacion = fechaModificacion;
 	}
-	
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
