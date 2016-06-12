@@ -2,6 +2,7 @@ package pe.gob.pnp.emergencias.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.util.List;
 
 
 /**
@@ -15,7 +16,6 @@ public class Rol implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="ROL_ID")
 	private int rolId;
 
@@ -24,6 +24,10 @@ public class Rol implements Serializable {
 
 	@Column(name="ROL_DESCRIPCION")
 	private String rolDescripcion;
+
+	//bi-directional many-to-one association to Usuario
+	@OneToMany(mappedBy="rol", fetch=FetchType.EAGER)
+	private List<Usuario> usuarios;
 
 	public Rol() {
 	}
@@ -50,6 +54,28 @@ public class Rol implements Serializable {
 
 	public void setRolDescripcion(String rolDescripcion) {
 		this.rolDescripcion = rolDescripcion;
+	}
+
+	public List<Usuario> getUsuarios() {
+		return this.usuarios;
+	}
+
+	public void setUsuarios(List<Usuario> usuarios) {
+		this.usuarios = usuarios;
+	}
+
+	public Usuario addUsuario(Usuario usuario) {
+		getUsuarios().add(usuario);
+		usuario.setRol(this);
+
+		return usuario;
+	}
+
+	public Usuario removeUsuario(Usuario usuario) {
+		getUsuarios().remove(usuario);
+		usuario.setRol(null);
+
+		return usuario;
 	}
 
 }

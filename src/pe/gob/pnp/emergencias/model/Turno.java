@@ -15,7 +15,6 @@ public class Turno implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="TUR_ID")
 	private int turId;
 
@@ -26,10 +25,10 @@ public class Turno implements Serializable {
 	private Object turDescripcion;
 
 	@Column(name="TUR_HORA_FINAL")
-	private long turHoraFinal;
+	private String turHoraFinal;
 
 	@Column(name="TUR_HORA_INICIAL")
-	private long turHoraInicial;
+	private String turHoraInicial;
 
 	@Column(name="TUR_RANGO")
 	private Object turRango;
@@ -61,19 +60,19 @@ public class Turno implements Serializable {
 		this.turDescripcion = turDescripcion;
 	}
 
-	public long getTurHoraFinal() {
+	public String getTurHoraFinal() {
 		return this.turHoraFinal;
 	}
 
-	public void setTurHoraFinal(long turHoraFinal) {
+	public void setTurHoraFinal(String turHoraFinal) {
 		this.turHoraFinal = turHoraFinal;
 	}
 
-	public long getTurHoraInicial() {
+	public String getTurHoraInicial() {
 		return this.turHoraInicial;
 	}
 
-	public void setTurHoraInicial(long turHoraInicial) {
+	public void setTurHoraInicial(String turHoraInicial) {
 		this.turHoraInicial = turHoraInicial;
 	}
 

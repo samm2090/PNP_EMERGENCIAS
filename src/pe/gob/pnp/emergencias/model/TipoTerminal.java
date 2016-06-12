@@ -15,7 +15,6 @@ public class TipoTerminal implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="TTE_ID")
 	private int tteId;
 

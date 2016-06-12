@@ -2,6 +2,7 @@ package pe.gob.pnp.emergencias.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.util.List;
 
 
 /**
@@ -15,12 +16,15 @@ public class EstadoParte implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="EPA_ID")
 	private int epaId;
 
 	@Column(name="EPA_DESCRIPCION")
 	private Object epaDescripcion;
+
+	//bi-directional many-to-one association to Parte
+	@OneToMany(mappedBy="estadoParte", fetch=FetchType.EAGER)
+	private List<Parte> partes;
 
 	public EstadoParte() {
 	}
@@ -39,6 +43,28 @@ public class EstadoParte implements Serializable {
 
 	public void setEpaDescripcion(Object epaDescripcion) {
 		this.epaDescripcion = epaDescripcion;
+	}
+
+	public List<Parte> getPartes() {
+		return this.partes;
+	}
+
+	public void setPartes(List<Parte> partes) {
+		this.partes = partes;
+	}
+
+	public Parte addParte(Parte parte) {
+		getPartes().add(parte);
+		parte.setEstadoParte(this);
+
+		return parte;
+	}
+
+	public Parte removeParte(Parte parte) {
+		getPartes().remove(parte);
+		parte.setEstadoParte(null);
+
+		return parte;
 	}
 
 }

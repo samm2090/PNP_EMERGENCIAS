@@ -2,6 +2,7 @@ package pe.gob.pnp.emergencias.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.util.List;
 
 
 /**
@@ -15,12 +16,15 @@ public class Departamento implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="DEP_ID")
 	private int depId;
 
 	@Column(name="DEP_DESCRIPCION")
 	private Object depDescripcion;
+
+	//bi-directional many-to-one association to Provincia
+	@OneToMany(mappedBy="departamento", fetch=FetchType.EAGER)
+	private List<Provincia> provincias;
 
 	public Departamento() {
 	}
@@ -39,6 +43,28 @@ public class Departamento implements Serializable {
 
 	public void setDepDescripcion(Object depDescripcion) {
 		this.depDescripcion = depDescripcion;
+	}
+
+	public List<Provincia> getProvincias() {
+		return this.provincias;
+	}
+
+	public void setProvincias(List<Provincia> provincias) {
+		this.provincias = provincias;
+	}
+
+	public Provincia addProvincia(Provincia provincia) {
+		getProvincias().add(provincia);
+		provincia.setDepartamento(this);
+
+		return provincia;
+	}
+
+	public Provincia removeProvincia(Provincia provincia) {
+		getProvincias().remove(provincia);
+		provincia.setDepartamento(null);
+
+		return provincia;
 	}
 
 }

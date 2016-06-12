@@ -16,32 +16,31 @@ public class Civil implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="CIV_ID", unique=true, nullable=false)
+	@Column(name="CIV_ID")
 	private int civId;
 
-	@Column(name="CIV_APELLIDO_MATERNO", nullable=false)
+	@Column(name="CIV_APELLIDO_MATERNO")
 	private Object civApellidoMaterno;
 
-	@Column(name="CIV_APELLIDO_PATERNO", nullable=false)
+	@Column(name="CIV_APELLIDO_PATERNO")
 	private Object civApellidoPaterno;
 
-	@Column(name="CIV_DIRECCION", nullable=false)
-	private Object civDireccion;
+	@Column(name="CIV_DOCUMENTO")
+	private Object civDocumento;
 
-	@Column(name="CIV_NOMBRE", nullable=false)
+	@Column(name="CIV_NOMBRE")
 	private Object civNombre;
 
-	@Column(name="CIV_TELEFONO", nullable=false)
+	@Column(name="CIV_TELEFONO")
 	private Object civTelefono;
 
-	@Column(name="ESTADO_REGISTRO", nullable=false)
+	@Column(name="ESTADO_REGISTRO")
 	private boolean estadoRegistro;
 
-	@Column(name="FECHA_MODIFICACION", nullable=false)
+	@Column(name="FECHA_MODIFICACION")
 	private Timestamp fechaModificacion;
 
-	@Column(name="FECHA_REGISTRO", nullable=false)
+	@Column(name="FECHA_REGISTRO")
 	private Timestamp fechaRegistro;
 
 	public Civil() {
@@ -71,12 +70,12 @@ public class Civil implements Serializable {
 		this.civApellidoPaterno = civApellidoPaterno;
 	}
 
-	public Object getCivDireccion() {
-		return this.civDireccion;
+	public Object getCivDocumento() {
+		return this.civDocumento;
 	}
 
-	public void setCivDireccion(Object civDireccion) {
-		this.civDireccion = civDireccion;
+	public void setCivDocumento(Object civDocumento) {
+		this.civDocumento = civDocumento;
 	}
 
 	public Object getCivNombre() {

@@ -15,10 +15,9 @@
 		<class>pe.gob.pnp.emergencias.model.Llamada</class>
 		<class>pe.gob.pnp.emergencias.model.NivelEmergencia</class>
 		<class>pe.gob.pnp.emergencias.model.Operador</class>
-		<class>pe.gob.pnp.emergencias.model.Parte</class>
 		<class>pe.gob.pnp.emergencias.model.Persona</class>
 		<class>pe.gob.pnp.emergencias.model.Provincia</class>
-		<class>pe.gob.pnp.emergencias.model.Recurso</class>
+		<class>pe.gob.pnp.emergencias.model.RecursoEstado</class>
 		<class>pe.gob.pnp.emergencias.model.Rol</class>
 		<class>pe.gob.pnp.emergencias.model.Sector</class>
 		<class>pe.gob.pnp.emergencias.model.TipoEmergencia</class>
