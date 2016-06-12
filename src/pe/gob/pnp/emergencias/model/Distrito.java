@@ -35,6 +35,8 @@ public class Distrito implements Serializable {
 	@OneToMany(mappedBy="distrito", fetch=FetchType.EAGER)
 	private List<Sector> sectors;
 
+	// one to many emergencia
+	
 	public Distrito() {
 	}
 

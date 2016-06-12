@@ -1,6 +1,8 @@
 package pe.gob.pnp.emergencias.model;
 
 import java.io.Serializable;
+import java.util.List;
+
 import javax.persistence.*;
 
 
@@ -21,7 +23,19 @@ public class TipoEmergencia implements Serializable {
 	@Column(name="TEM_DESCRIPCION")
 	private Object temDescripcion;
 
+	// one to many emergencia
+	@OneToMany(mappedBy="tipoEmergencia", fetch=FetchType.EAGER)
+	private List<Emergencia> emergencias;
+	
 	public TipoEmergencia() {
+	}
+
+	public List<Emergencia> getEmergencias() {
+		return emergencias;
+	}
+
+	public void setEmergencias(List<Emergencia> emergencias) {
+		this.emergencias = emergencias;
 	}
 
 	public int getTemId() {

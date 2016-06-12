@@ -4,40 +4,50 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.util.List;
 
-
 /**
  * The persistent class for the COMISARIA database table.
  * 
  */
 @Entity
-@Table(name="COMISARIA")
-@NamedQuery(name="Comisaria.findAll", query="SELECT c FROM Comisaria c")
+@Table(name = "COMISARIA")
+@NamedQuery(name = "Comisaria.findAll", query = "SELECT c FROM Comisaria c")
 public class Comisaria implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="COM_ID")
+	@Column(name = "COM_ID")
 	private int comId;
 
-	@Column(name="COM_DIRECCION")
+	@Column(name = "COM_DIRECCION")
 	private Object comDireccion;
 
-	@Column(name="COM_NOMBRE")
+	@Column(name = "COM_NOMBRE")
 	private Object comNombre;
 
-	@Column(name="ESTADO_REGISTRO")
+	@Column(name = "ESTADO_REGISTRO")
 	private boolean estadoRegistro;
 
-	//bi-directional many-to-one association to Distrito
+	// bi-directional many-to-one association to Distrito
 	@ManyToOne
-	@JoinColumn(name="DIS_ID")
+	@JoinColumn(name = "DIS_ID")
 	private Distrito distrito;
 
-	//bi-directional many-to-one association to Sector
-	@OneToMany(mappedBy="comisaria", fetch=FetchType.EAGER)
+	// bi-directional many-to-one association to Sector
+	@OneToMany(mappedBy = "comisaria", fetch = FetchType.EAGER)
 	private List<Sector> sectors;
 
+	@OneToMany(mappedBy = "comisaria", fetch = FetchType.EAGER)
+	private List<Recurso> recursos;
+
 	public Comisaria() {
+	}
+
+	public List<Recurso> getRecursos() {
+		return recursos;
+	}
+
+	public void setRecursos(List<Recurso> recursos) {
+		this.recursos = recursos;
 	}
 
 	public int getComId() {

@@ -1,39 +1,51 @@
 package pe.gob.pnp.emergencias.model;
 
 import java.io.Serializable;
-import javax.persistence.*;
+import java.util.List;
 
+import javax.persistence.*;
 
 /**
  * The persistent class for the TURNO database table.
  * 
  */
 @Entity
-@Table(name="TURNO")
-@NamedQuery(name="Turno.findAll", query="SELECT t FROM Turno t")
+@Table(name = "TURNO")
+@NamedQuery(name = "Turno.findAll", query = "SELECT t FROM Turno t")
 public class Turno implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="TUR_ID")
+	@Column(name = "TUR_ID")
 	private int turId;
 
-	@Column(name="ESTADO_REGISTRO")
+	@Column(name = "ESTADO_REGISTRO")
 	private boolean estadoRegistro;
 
-	@Column(name="TUR_DESCRIPCION")
+	@Column(name = "TUR_DESCRIPCION")
 	private Object turDescripcion;
 
-	@Column(name="TUR_HORA_FINAL")
+	@Column(name = "TUR_HORA_FINAL")
 	private String turHoraFinal;
 
-	@Column(name="TUR_HORA_INICIAL")
+	@Column(name = "TUR_HORA_INICIAL")
 	private String turHoraInicial;
 
-	@Column(name="TUR_RANGO")
+	@Column(name = "TUR_RANGO")
 	private Object turRango;
 
+	@OneToMany(mappedBy = "turno", fetch = FetchType.EAGER)
+	private List<Recurso> recursos;
+
 	public Turno() {
+	}
+
+	public List<Recurso> getRecursos() {
+		return recursos;
+	}
+
+	public void setRecursos(List<Recurso> recursos) {
+		this.recursos = recursos;
 	}
 
 	public int getTurId() {
