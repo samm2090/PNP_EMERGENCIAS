@@ -8,7 +8,6 @@
 		<class>pe.gob.pnp.emergencias.model.Departamento</class>
 		<class>pe.gob.pnp.emergencias.model.Distrito</class>
 		<class>pe.gob.pnp.emergencias.model.Emergencia</class>
-		<class>pe.gob.pnp.emergencias.model.EquipoEmergencia</class>
 		<class>pe.gob.pnp.emergencias.model.Estado</class>
 		<class>pe.gob.pnp.emergencias.model.EstadoParte</class>
 		<class>pe.gob.pnp.emergencias.model.GradoRecurso</class>

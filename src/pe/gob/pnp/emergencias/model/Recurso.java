@@ -1,14 +1,18 @@
 package pe.gob.pnp.emergencias.model;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -50,7 +54,18 @@ public class Recurso {
 	@Temporal(value = TemporalType.DATE)
 	private Date fechaMoficacion;
 
+	@ManyToMany(mappedBy = "recursos")
+	private List<Emergencia> emergencias;
+
 	public Recurso() {
+	}
+
+	public List<Emergencia> getEmergencias() {
+		return emergencias;
+	}
+
+	public void setEmergencias(List<Emergencia> emergencias) {
+		this.emergencias = emergencias;
 	}
 
 	public Long getRecId() {
