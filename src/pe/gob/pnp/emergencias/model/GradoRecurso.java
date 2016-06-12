@@ -30,6 +30,8 @@ public class GradoRecurso implements Serializable {
 
 	public GradoRecurso() {
 	}
+	
+	
 
 	public Long getGreId() {
 		return greId;

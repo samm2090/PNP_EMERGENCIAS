@@ -1,14 +1,20 @@
 package pe.gob.pnp.emergencias.model;
 
 import java.util.Date;
+import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -27,7 +33,7 @@ public class Emergencia {
 	@JoinColumn(name = "NEM_ID")
 	private NivelEmergencia nivelEmergencia;
 
-	@OneToOne(cascade=CascadeType.PERSIST)
+	@OneToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "LLA_ID")
 	private Llamada llamada;
 
@@ -35,7 +41,7 @@ public class Emergencia {
 	@JoinColumn(name = "TEM_ID")
 	private TipoEmergencia tipoEmergencia;
 
-	@OneToOne(cascade=CascadeType.PERSIST)
+	@OneToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "PAR_ID")
 	private Parte parte;
 
@@ -59,8 +65,21 @@ public class Emergencia {
 	@Column(name = "EME_HORA_FIN")
 	private String emeHoraFin;
 
-	public Emergencia(){}
-	
+	@ManyToMany
+	@JoinTable(name = "Equipo_Emergencia", joinColumns = @JoinColumn(name = "EME_ID", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "REC_ID", referencedColumnName = "ID"))
+	private List<Recurso> recursos;
+
+	public Emergencia() {
+	}
+
+	public List<Recurso> getRecursos() {
+		return recursos;
+	}
+
+	public void setRecursos(List<Recurso> recursos) {
+		this.recursos = recursos;
+	}
+
 	public Long getEmeId() {
 		return emeId;
 	}

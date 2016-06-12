@@ -25,7 +25,7 @@
 		class="org.springframework.orm.jpa.vendor.EclipseLinkJpaVendorAdapter">
 		<property name="databasePlatform"
 			value="org.eclipse.persistence.platform.database.MySQLPlatform" />
-		<property name="generateDdl" value="true" />
+		<property name="generateDdl" value="false" />
 		<property name="showSql" value="true" />
 	</bean>
 
