@@ -3,44 +3,48 @@ package pe.gob.pnp.emergencias.model;
 import java.io.Serializable;
 import javax.persistence.*;
 import java.sql.Timestamp;
-
+import java.util.List;
 
 /**
  * The persistent class for the CIVIL database table.
  * 
  */
 @Entity
-@Table(name="CIVIL")
-@NamedQuery(name="Civil.findAll", query="SELECT c FROM Civil c")
+@Table(name = "CIVIL")
+@NamedQuery(name = "Civil.findAll", query = "SELECT c FROM Civil c")
 public class Civil implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="CIV_ID")
+	@Column(name = "CIV_ID")
 	private int civId;
 
-	@Column(name="CIV_APELLIDO_MATERNO")
+	// bi-directional many-to-one association to Comisaria
+	@OneToMany(mappedBy = "civil", fetch = FetchType.EAGER)
+	private List<Llamada> llamadas;
+
+	@Column(name = "CIV_APELLIDO_MATERNO")
 	private Object civApellidoMaterno;
 
-	@Column(name="CIV_APELLIDO_PATERNO")
+	@Column(name = "CIV_APELLIDO_PATERNO")
 	private Object civApellidoPaterno;
 
-	@Column(name="CIV_DOCUMENTO")
+	@Column(name = "CIV_DOCUMENTO")
 	private Object civDocumento;
 
-	@Column(name="CIV_NOMBRE")
+	@Column(name = "CIV_NOMBRE")
 	private Object civNombre;
 
-	@Column(name="CIV_TELEFONO")
+	@Column(name = "CIV_TELEFONO")
 	private Object civTelefono;
 
-	@Column(name="ESTADO_REGISTRO")
+	@Column(name = "ESTADO_REGISTRO")
 	private boolean estadoRegistro;
 
-	@Column(name="FECHA_MODIFICACION")
+	@Column(name = "FECHA_MODIFICACION")
 	private Timestamp fechaModificacion;
 
-	@Column(name="FECHA_REGISTRO")
+	@Column(name = "FECHA_REGISTRO")
 	private Timestamp fechaRegistro;
 
 	public Civil() {
@@ -117,5 +121,15 @@ public class Civil implements Serializable {
 	public void setFechaRegistro(Timestamp fechaRegistro) {
 		this.fechaRegistro = fechaRegistro;
 	}
+
+	public List<Llamada> getLlamadas() {
+		return llamadas;
+	}
+
+	public void setLlamadas(List<Llamada> llamadas) {
+		this.llamadas = llamadas;
+	}
+	
+	
 
 }
