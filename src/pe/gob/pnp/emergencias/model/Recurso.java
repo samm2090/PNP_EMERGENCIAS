@@ -49,4 +49,72 @@ public class Recurso {
 	@Temporal(value = TemporalType.DATE)
 	@Column(name = "FECHA_MODIFICACION")
 	private Date fechaMoficacion;
+	
+	public Recurso()
+	{}
+
+	public int getRecId() {
+		return recId;
+	}
+
+	public void setRecId(int recId) {
+		this.recId = recId;
+	}
+
+	public Persona getPersona() {
+		return persona;
+	}
+
+	public void setPersona(Persona persona) {
+		this.persona = persona;
+	}
+
+	public GradoRecurso getGradoRecurso() {
+		return gradoRecurso;
+	}
+
+	public void setGradoRecurso(GradoRecurso gradoRecurso) {
+		this.gradoRecurso = gradoRecurso;
+	}
+
+	public Turno getTurno() {
+		return turno;
+	}
+
+	public void setTurno(Turno turno) {
+		this.turno = turno;
+	}
+
+	public Comisaria getComisaria() {
+		return comisaria;
+	}
+
+	public void setComisaria(Comisaria comisaria) {
+		this.comisaria = comisaria;
+	}
+
+	public boolean isEstadoRegistro() {
+		return estadoRegistro;
+	}
+
+	public void setEstadoRegistro(boolean estadoRegistro) {
+		this.estadoRegistro = estadoRegistro;
+	}
+
+	public Date getFechaCreacion() {
+		return fechaCreacion;
+	}
+
+	public void setFechaCreacion(Date fechaCreacion) {
+		this.fechaCreacion = fechaCreacion;
+	}
+
+	public Date getFechaMoficacion() {
+		return fechaMoficacion;
+	}
+
+	public void setFechaMoficacion(Date fechaMoficacion) {
+		this.fechaMoficacion = fechaMoficacion;
+	}
+	
 }
