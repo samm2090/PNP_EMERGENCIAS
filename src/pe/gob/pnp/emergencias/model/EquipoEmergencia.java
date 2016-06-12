@@ -7,12 +7,12 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="EQUIPOEMERGENCIA")
+@Table(name="EQUIPO_EMERGENCIA")
 @NamedQuery(name="EquipoEmergencia", query="SELECT eem FROM EquipoEmergencia eem")
 public class EquipoEmergencia {
 	
 	@Id
-	@Column(name="EEM")
+	@Column(name="EEM_ID")
 	private int eemId;
 
 }

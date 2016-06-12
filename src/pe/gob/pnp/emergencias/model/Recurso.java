@@ -12,7 +12,7 @@ import javax.persistence.Table;
 public class Recurso {
 	
 	@Id
-	@Column(name="EME_ID")
-	private int emeId;
+	@Column(name="REC_ID")
+	private int recId;
 
 }
