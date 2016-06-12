@@ -17,7 +17,7 @@ public class TipoTerminal implements Serializable {
 
 	@Id
 	@Column(name = "TTE_ID")
-	private int tteId;
+	private Long tteId;
 
 	@Column(name = "ESTADO_REGISTRO")
 	private boolean estadoRegistro;
@@ -32,16 +32,16 @@ public class TipoTerminal implements Serializable {
 	public TipoTerminal() {
 	}
 
-	public int getTteId() {
-		return this.tteId;
+	public Long getTteId() {
+		return tteId;
 	}
 
-	public void setTteId(int tteId) {
+	public void setTteId(Long tteId) {
 		this.tteId = tteId;
 	}
 
-	public boolean getEstadoRegistro() {
-		return this.estadoRegistro;
+	public boolean isEstadoRegistro() {
+		return estadoRegistro;
 	}
 
 	public void setEstadoRegistro(boolean estadoRegistro) {
@@ -49,7 +49,7 @@ public class TipoTerminal implements Serializable {
 	}
 
 	public String getTteDescripcion() {
-		return this.tteDescripcion;
+		return tteDescripcion;
 	}
 
 	public void setTteDescripcion(String tteDescripcion) {
@@ -62,6 +62,10 @@ public class TipoTerminal implements Serializable {
 
 	public void setLlamadas(List<Llamada> llamadas) {
 		this.llamadas = llamadas;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 }

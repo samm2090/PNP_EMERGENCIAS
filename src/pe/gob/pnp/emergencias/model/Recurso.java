@@ -15,38 +15,103 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name="RECURSO")
-@NamedQuery(name="Recurso.findAll", query="SELECT r FROM Recurso r")
+@Table(name = "RECURSO")
+@NamedQuery(name = "Recurso.findAll", query = "SELECT r FROM Recurso r")
 public class Recurso {
-	
+
 	@Id
-	@Column(name="REC_ID")
-	private int recId;
-	
-	@OneToOne(cascade=CascadeType.PERSIST)
+	@Column(name = "REC_ID")
+	private Long recId;
+
+	@OneToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "PER_ID")
 	private Persona persona;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "GRE_ID")
 	private GradoRecurso gradoRecurso;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "TUR_ID")
 	private Turno turno;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "COM_ID")
 	private Comisaria comisaria;
-	
+
 	@Column(name = "ESTADO_REGISTRO")
 	private boolean estadoRegistro;
-	
-	@Temporal(value = TemporalType.DATE)
+
 	@Column(name = "FECHA_CREACION")
-	private Date fechaCreacion;
-	
 	@Temporal(value = TemporalType.DATE)
+	private Date fechaCreacion;
+
 	@Column(name = "FECHA_MODIFICACION")
+	@Temporal(value = TemporalType.DATE)
 	private Date fechaMoficacion;
+
+	public Long getRecId() {
+		return recId;
+	}
+
+	public void setRecId(Long recId) {
+		this.recId = recId;
+	}
+
+	public Persona getPersona() {
+		return persona;
+	}
+
+	public void setPersona(Persona persona) {
+		this.persona = persona;
+	}
+
+	public GradoRecurso getGradoRecurso() {
+		return gradoRecurso;
+	}
+
+	public void setGradoRecurso(GradoRecurso gradoRecurso) {
+		this.gradoRecurso = gradoRecurso;
+	}
+
+	public Turno getTurno() {
+		return turno;
+	}
+
+	public void setTurno(Turno turno) {
+		this.turno = turno;
+	}
+
+	public Comisaria getComisaria() {
+		return comisaria;
+	}
+
+	public void setComisaria(Comisaria comisaria) {
+		this.comisaria = comisaria;
+	}
+
+	public boolean isEstadoRegistro() {
+		return estadoRegistro;
+	}
+
+	public void setEstadoRegistro(boolean estadoRegistro) {
+		this.estadoRegistro = estadoRegistro;
+	}
+
+	public Date getFechaCreacion() {
+		return fechaCreacion;
+	}
+
+	public void setFechaCreacion(Date fechaCreacion) {
+		this.fechaCreacion = fechaCreacion;
+	}
+
+	public Date getFechaMoficacion() {
+		return fechaMoficacion;
+	}
+
+	public void setFechaMoficacion(Date fechaMoficacion) {
+		this.fechaMoficacion = fechaMoficacion;
+	}
+
 }

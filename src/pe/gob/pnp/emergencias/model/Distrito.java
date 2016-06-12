@@ -4,82 +4,67 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.util.List;
 
-
 /**
  * The persistent class for the DISTRITO database table.
  * 
  */
 @Entity
-@Table(name="DISTRITO")
-@NamedQuery(name="Distrito.findAll", query="SELECT d FROM Distrito d")
+@Table(name = "DISTRITO")
+@NamedQuery(name = "Distrito.findAll", query = "SELECT d FROM Distrito d")
 public class Distrito implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="DIS_ID")
-	private int disId;
+	@Column(name = "DIS_ID")
+	private Long disId;
 
-	@Column(name="DIS_DESCRIPCION")
-	private Object disDescripcion;
+	@Column(name = "DIS_DESCRIPCION")
+	private String disDescripcion;
 
-	//bi-directional many-to-one association to Comisaria
-	@OneToMany(mappedBy="distrito", fetch=FetchType.EAGER)
+	// bi-directional many-to-one association to Comisaria
+	@OneToMany(mappedBy = "distrito", fetch = FetchType.EAGER)
 	private List<Comisaria> comisarias;
 
-	//bi-directional many-to-one association to Provincia
+	// bi-directional many-to-one association to Provincia
 	@ManyToOne
-	@JoinColumn(name="PRO_ID")
+	@JoinColumn(name = "PRO_ID")
 	private Provincia provincia;
 
-	//bi-directional many-to-one association to Sector
-	@OneToMany(mappedBy="distrito", fetch=FetchType.EAGER)
+	// bi-directional many-to-one association to Sector
+	@OneToMany(mappedBy = "distrito", fetch = FetchType.EAGER)
 	private List<Sector> sectors;
 
 	// one to many emergencia
-	
+
 	public Distrito() {
 	}
 
-	public int getDisId() {
-		return this.disId;
+	public Long getDisId() {
+		return disId;
 	}
 
-	public void setDisId(int disId) {
+	public void setDisId(Long disId) {
 		this.disId = disId;
 	}
 
-	public Object getDisDescripcion() {
-		return this.disDescripcion;
+	public String getDisDescripcion() {
+		return disDescripcion;
 	}
 
-	public void setDisDescripcion(Object disDescripcion) {
+	public void setDisDescripcion(String disDescripcion) {
 		this.disDescripcion = disDescripcion;
 	}
 
 	public List<Comisaria> getComisarias() {
-		return this.comisarias;
+		return comisarias;
 	}
 
 	public void setComisarias(List<Comisaria> comisarias) {
 		this.comisarias = comisarias;
 	}
 
-	public Comisaria addComisaria(Comisaria comisaria) {
-		getComisarias().add(comisaria);
-		comisaria.setDistrito(this);
-
-		return comisaria;
-	}
-
-	public Comisaria removeComisaria(Comisaria comisaria) {
-		getComisarias().remove(comisaria);
-		comisaria.setDistrito(null);
-
-		return comisaria;
-	}
-
 	public Provincia getProvincia() {
-		return this.provincia;
+		return provincia;
 	}
 
 	public void setProvincia(Provincia provincia) {
@@ -87,25 +72,11 @@ public class Distrito implements Serializable {
 	}
 
 	public List<Sector> getSectors() {
-		return this.sectors;
+		return sectors;
 	}
 
 	public void setSectors(List<Sector> sectors) {
 		this.sectors = sectors;
-	}
-
-	public Sector addSector(Sector sector) {
-		getSectors().add(sector);
-		sector.setDistrito(this);
-
-		return sector;
-	}
-
-	public Sector removeSector(Sector sector) {
-		getSectors().remove(sector);
-		sector.setDistrito(null);
-
-		return sector;
 	}
 
 }

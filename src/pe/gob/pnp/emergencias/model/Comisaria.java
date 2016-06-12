@@ -16,13 +16,13 @@ public class Comisaria implements Serializable {
 
 	@Id
 	@Column(name = "COM_ID")
-	private int comId;
+	private Long comId;
 
 	@Column(name = "COM_DIRECCION")
-	private Object comDireccion;
+	private String comDireccion;
 
 	@Column(name = "COM_NOMBRE")
-	private Object comNombre;
+	private String comNombre;
 
 	@Column(name = "ESTADO_REGISTRO")
 	private boolean estadoRegistro;
@@ -42,40 +42,32 @@ public class Comisaria implements Serializable {
 	public Comisaria() {
 	}
 
-	public List<Recurso> getRecursos() {
-		return recursos;
+	public Long getComId() {
+		return comId;
 	}
 
-	public void setRecursos(List<Recurso> recursos) {
-		this.recursos = recursos;
-	}
-
-	public int getComId() {
-		return this.comId;
-	}
-
-	public void setComId(int comId) {
+	public void setComId(Long comId) {
 		this.comId = comId;
 	}
 
-	public Object getComDireccion() {
-		return this.comDireccion;
+	public String getComDireccion() {
+		return comDireccion;
 	}
 
-	public void setComDireccion(Object comDireccion) {
+	public void setComDireccion(String comDireccion) {
 		this.comDireccion = comDireccion;
 	}
 
-	public Object getComNombre() {
-		return this.comNombre;
+	public String getComNombre() {
+		return comNombre;
 	}
 
-	public void setComNombre(Object comNombre) {
+	public void setComNombre(String comNombre) {
 		this.comNombre = comNombre;
 	}
 
-	public boolean getEstadoRegistro() {
-		return this.estadoRegistro;
+	public boolean isEstadoRegistro() {
+		return estadoRegistro;
 	}
 
 	public void setEstadoRegistro(boolean estadoRegistro) {
@@ -83,7 +75,7 @@ public class Comisaria implements Serializable {
 	}
 
 	public Distrito getDistrito() {
-		return this.distrito;
+		return distrito;
 	}
 
 	public void setDistrito(Distrito distrito) {
@@ -91,25 +83,19 @@ public class Comisaria implements Serializable {
 	}
 
 	public List<Sector> getSectors() {
-		return this.sectors;
+		return sectors;
 	}
 
 	public void setSectors(List<Sector> sectors) {
 		this.sectors = sectors;
 	}
 
-	public Sector addSector(Sector sector) {
-		getSectors().add(sector);
-		sector.setComisaria(this);
-
-		return sector;
+	public List<Recurso> getRecursos() {
+		return recursos;
 	}
 
-	public Sector removeSector(Sector sector) {
-		getSectors().remove(sector);
-		sector.setComisaria(null);
-
-		return sector;
+	public void setRecursos(List<Recurso> recursos) {
+		this.recursos = recursos;
 	}
 
 }

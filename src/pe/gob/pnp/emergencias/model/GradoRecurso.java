@@ -17,10 +17,10 @@ public class GradoRecurso implements Serializable {
 
 	@Id
 	@Column(name = "GRE_ID")
-	private int greId;
+	private Long greId;
 
 	@Column(name = "GRE_DESCRIPCION")
-	private Object greDescripcion;
+	private String greDescripcion;
 
 	@Column(name = "GRE_JERARQUIA")
 	private int greJerarquia;
@@ -31,36 +31,36 @@ public class GradoRecurso implements Serializable {
 	public GradoRecurso() {
 	}
 
+	public Long getGreId() {
+		return greId;
+	}
+
+	public void setGreId(Long greId) {
+		this.greId = greId;
+	}
+
+	public String getGreDescripcion() {
+		return greDescripcion;
+	}
+
+	public void setGreDescripcion(String greDescripcion) {
+		this.greDescripcion = greDescripcion;
+	}
+
+	public int getGreJerarquia() {
+		return greJerarquia;
+	}
+
+	public void setGreJerarquia(int greJerarquia) {
+		this.greJerarquia = greJerarquia;
+	}
+
 	public List<Recurso> getRecursos() {
 		return recursos;
 	}
 
 	public void setRecursos(List<Recurso> recursos) {
 		this.recursos = recursos;
-	}
-
-	public int getGreId() {
-		return this.greId;
-	}
-
-	public void setGreId(int greId) {
-		this.greId = greId;
-	}
-
-	public Object getGreDescripcion() {
-		return this.greDescripcion;
-	}
-
-	public void setGreDescripcion(Object greDescripcion) {
-		this.greDescripcion = greDescripcion;
-	}
-
-	public int getGreJerarquia() {
-		return this.greJerarquia;
-	}
-
-	public void setGreJerarquia(int greJerarquia) {
-		this.greJerarquia = greJerarquia;
 	}
 
 }

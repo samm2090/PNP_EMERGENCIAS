@@ -5,29 +5,44 @@ import java.util.List;
 
 import javax.persistence.*;
 
-
 /**
  * The persistent class for the TIPO_EMERGENCIA database table.
  * 
  */
 @Entity
-@Table(name="TIPO_EMERGENCIA")
-@NamedQuery(name="TipoEmergencia.findAll", query="SELECT t FROM TipoEmergencia t")
+@Table(name = "TIPO_EMERGENCIA")
+@NamedQuery(name = "TipoEmergencia.findAll", query = "SELECT t FROM TipoEmergencia t")
 public class TipoEmergencia implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="TEM_ID")
-	private int temId;
+	@Column(name = "TEM_ID")
+	private Long temId;
 
-	@Column(name="TEM_DESCRIPCION")
-	private Object temDescripcion;
+	@Column(name = "TEM_DESCRIPCION")
+	private String temDescripcion;
 
 	// one to many emergencia
-	@OneToMany(mappedBy="tipoEmergencia", fetch=FetchType.EAGER)
+	@OneToMany(mappedBy = "tipoEmergencia", fetch = FetchType.EAGER)
 	private List<Emergencia> emergencias;
-	
+
 	public TipoEmergencia() {
+	}
+
+	public Long getTemId() {
+		return temId;
+	}
+
+	public void setTemId(Long temId) {
+		this.temId = temId;
+	}
+
+	public String getTemDescripcion() {
+		return temDescripcion;
+	}
+
+	public void setTemDescripcion(String temDescripcion) {
+		this.temDescripcion = temDescripcion;
 	}
 
 	public List<Emergencia> getEmergencias() {
@@ -38,20 +53,8 @@ public class TipoEmergencia implements Serializable {
 		this.emergencias = emergencias;
 	}
 
-	public int getTemId() {
-		return this.temId;
-	}
-
-	public void setTemId(int temId) {
-		this.temId = temId;
-	}
-
-	public Object getTemDescripcion() {
-		return this.temDescripcion;
-	}
-
-	public void setTemDescripcion(Object temDescripcion) {
-		this.temDescripcion = temDescripcion;
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 }

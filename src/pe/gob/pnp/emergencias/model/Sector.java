@@ -16,7 +16,7 @@ public class Sector implements Serializable {
 
 	@Id
 	@Column(name="SEC_ID")
-	private int secId;
+	private Long secId;
 
 	@Column(name="ESTADO_REGISTRO")
 	private boolean estadoRegistro;
@@ -40,16 +40,16 @@ public class Sector implements Serializable {
 	public Sector() {
 	}
 
-	public int getSecId() {
-		return this.secId;
+	public Long getSecId() {
+		return secId;
 	}
 
-	public void setSecId(int secId) {
+	public void setSecId(Long secId) {
 		this.secId = secId;
 	}
 
-	public boolean getEstadoRegistro() {
-		return this.estadoRegistro;
+	public boolean isEstadoRegistro() {
+		return estadoRegistro;
 	}
 
 	public void setEstadoRegistro(boolean estadoRegistro) {
@@ -57,7 +57,7 @@ public class Sector implements Serializable {
 	}
 
 	public byte[] getSecCordenadaX() {
-		return this.secCordenadaX;
+		return secCordenadaX;
 	}
 
 	public void setSecCordenadaX(byte[] secCordenadaX) {
@@ -65,7 +65,7 @@ public class Sector implements Serializable {
 	}
 
 	public byte[] getSecCordenadaY() {
-		return this.secCordenadaY;
+		return secCordenadaY;
 	}
 
 	public void setSecCordenadaY(byte[] secCordenadaY) {
@@ -73,7 +73,7 @@ public class Sector implements Serializable {
 	}
 
 	public Comisaria getComisaria() {
-		return this.comisaria;
+		return comisaria;
 	}
 
 	public void setComisaria(Comisaria comisaria) {
@@ -81,11 +81,13 @@ public class Sector implements Serializable {
 	}
 
 	public Distrito getDistrito() {
-		return this.distrito;
+		return distrito;
 	}
 
 	public void setDistrito(Distrito distrito) {
 		this.distrito = distrito;
 	}
+
+	
 
 }

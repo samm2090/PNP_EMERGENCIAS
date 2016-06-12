@@ -1,90 +1,102 @@
 package pe.gob.pnp.emergencias.model;
 
 import java.io.Serializable;
-import javax.persistence.*;
-import java.sql.Timestamp;
-
+import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  * The persistent class for the USUARIO database table.
  * 
  */
 @Entity
-@Table(name="USUARIO")
-@NamedQuery(name="Usuario.findAll", query="SELECT u FROM Usuario u")
+@Table(name = "USUARIO")
+@NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u")
 public class Usuario implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="USU_ID")
-	private int usuId;
+	@Column(name = "USU_ID")
+	private Long usuId;
 
-	@Column(name="ESTADO_REGISTRO")
+	// bi-directional many-to-one association to Rol
+	@ManyToOne
+	@JoinColumn(name = "ROL_ID")
+	private Rol rol;
+
+	@Column(name = "USU_CLAVE")
+	private String usuClave;
+
+	@Column(name = "ESTADO_REGISTRO")
 	private boolean estadoRegistro;
 
-	@Column(name="FECHA_CREACION")
-	private Timestamp fechaCreacion;
+	@Column(name = "FECHA_CREACION")
+	@Temporal(value = TemporalType.DATE)
+	private Date fechaCreacion;
 
-	@Column(name="FECHA_MODIFICACION")
-	private Timestamp fechaModificacion;
-
-	@Column(name="USU_CLAVE")
-	private int usuClave;
-
-	//bi-directional many-to-one association to Rol
-	@ManyToOne
-	@JoinColumn(name="ROL_ID")
-	private Rol rol;
+	@Column(name = "FECHA_MODIFICACION")
+	@Temporal(value = TemporalType.DATE)
+	private Date fechaModificacion;
 
 	public Usuario() {
 	}
 
-	public int getUsuId() {
-		return this.usuId;
+	public Long getUsuId() {
+		return usuId;
 	}
 
-	public void setUsuId(int usuId) {
+	public void setUsuId(Long usuId) {
 		this.usuId = usuId;
 	}
 
-	public boolean getEstadoRegistro() {
-		return this.estadoRegistro;
-	}
-
-	public void setEstadoRegistro(boolean estadoRegistro) {
-		this.estadoRegistro = estadoRegistro;
-	}
-
-	public Timestamp getFechaCreacion() {
-		return this.fechaCreacion;
-	}
-
-	public void setFechaCreacion(Timestamp fechaCreacion) {
-		this.fechaCreacion = fechaCreacion;
-	}
-
-	public Timestamp getFechaModificacion() {
-		return this.fechaModificacion;
-	}
-
-	public void setFechaModificacion(Timestamp fechaModificacion) {
-		this.fechaModificacion = fechaModificacion;
-	}
-
-	public int getUsuClave() {
-		return this.usuClave;
-	}
-
-	public void setUsuClave(int usuClave) {
-		this.usuClave = usuClave;
-	}
-
 	public Rol getRol() {
-		return this.rol;
+		return rol;
 	}
 
 	public void setRol(Rol rol) {
 		this.rol = rol;
 	}
 
+	public String getUsuClave() {
+		return usuClave;
+	}
+
+	public void setUsuClave(String usuClave) {
+		this.usuClave = usuClave;
+	}
+
+	public boolean isEstadoRegistro() {
+		return estadoRegistro;
+	}
+
+	public void setEstadoRegistro(boolean estadoRegistro) {
+		this.estadoRegistro = estadoRegistro;
+	}
+
+	public Date getFechaCreacion() {
+		return fechaCreacion;
+	}
+
+	public void setFechaCreacion(Date fechaCreacion) {
+		this.fechaCreacion = fechaCreacion;
+	}
+
+	public Date getFechaModificacion() {
+		return fechaModificacion;
+	}
+
+	public void setFechaModificacion(Date fechaModificacion) {
+		this.fechaModificacion = fechaModificacion;
+	}
+	
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 }

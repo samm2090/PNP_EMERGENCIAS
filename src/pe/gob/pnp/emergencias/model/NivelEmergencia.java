@@ -17,10 +17,10 @@ public class NivelEmergencia implements Serializable {
 
 	@Id
 	@Column(name = "NEM_ID")
-	private int nemId;
+	private Long nemId;
 
 	@Column(name = "NEM_DESCRIPCION")
-	private Object nemDescripcion;
+	private String nemDescripcion;
 
 	// one to many emergencia
 	@OneToMany(mappedBy = "nivelEmergencia", fetch = FetchType.EAGER)
@@ -29,28 +29,28 @@ public class NivelEmergencia implements Serializable {
 	public NivelEmergencia() {
 	}
 
+	public Long getNemId() {
+		return nemId;
+	}
+
+	public void setNemId(Long nemId) {
+		this.nemId = nemId;
+	}
+
+	public String getNemDescripcion() {
+		return nemDescripcion;
+	}
+
+	public void setNemDescripcion(String nemDescripcion) {
+		this.nemDescripcion = nemDescripcion;
+	}
+
 	public List<Emergencia> getEmergencias() {
 		return emergencias;
 	}
 
 	public void setEmergencias(List<Emergencia> emergencias) {
 		this.emergencias = emergencias;
-	}
-
-	public int getNemId() {
-		return this.nemId;
-	}
-
-	public void setNemId(int nemId) {
-		this.nemId = nemId;
-	}
-
-	public Object getNemDescripcion() {
-		return this.nemDescripcion;
-	}
-
-	public void setNemDescripcion(Object nemDescripcion) {
-		this.nemDescripcion = nemDescripcion;
 	}
 
 }

@@ -17,13 +17,13 @@ public class Turno implements Serializable {
 
 	@Id
 	@Column(name = "TUR_ID")
-	private int turId;
+	private Long turId;
 
 	@Column(name = "ESTADO_REGISTRO")
 	private boolean estadoRegistro;
 
 	@Column(name = "TUR_DESCRIPCION")
-	private Object turDescripcion;
+	private String turDescripcion;
 
 	@Column(name = "TUR_HORA_FINAL")
 	private String turHoraFinal;
@@ -32,12 +32,60 @@ public class Turno implements Serializable {
 	private String turHoraInicial;
 
 	@Column(name = "TUR_RANGO")
-	private Object turRango;
+	private String turRango;
 
 	@OneToMany(mappedBy = "turno", fetch = FetchType.EAGER)
 	private List<Recurso> recursos;
 
 	public Turno() {
+	}
+
+	public Long getTurId() {
+		return turId;
+	}
+
+	public void setTurId(Long turId) {
+		this.turId = turId;
+	}
+
+	public boolean isEstadoRegistro() {
+		return estadoRegistro;
+	}
+
+	public void setEstadoRegistro(boolean estadoRegistro) {
+		this.estadoRegistro = estadoRegistro;
+	}
+
+	public String getTurDescripcion() {
+		return turDescripcion;
+	}
+
+	public void setTurDescripcion(String turDescripcion) {
+		this.turDescripcion = turDescripcion;
+	}
+
+	public String getTurHoraFinal() {
+		return turHoraFinal;
+	}
+
+	public void setTurHoraFinal(String turHoraFinal) {
+		this.turHoraFinal = turHoraFinal;
+	}
+
+	public String getTurHoraInicial() {
+		return turHoraInicial;
+	}
+
+	public void setTurHoraInicial(String turHoraInicial) {
+		this.turHoraInicial = turHoraInicial;
+	}
+
+	public String getTurRango() {
+		return turRango;
+	}
+
+	public void setTurRango(String turRango) {
+		this.turRango = turRango;
 	}
 
 	public List<Recurso> getRecursos() {
@@ -47,53 +95,9 @@ public class Turno implements Serializable {
 	public void setRecursos(List<Recurso> recursos) {
 		this.recursos = recursos;
 	}
-
-	public int getTurId() {
-		return this.turId;
-	}
-
-	public void setTurId(int turId) {
-		this.turId = turId;
-	}
-
-	public boolean getEstadoRegistro() {
-		return this.estadoRegistro;
-	}
-
-	public void setEstadoRegistro(boolean estadoRegistro) {
-		this.estadoRegistro = estadoRegistro;
-	}
-
-	public Object getTurDescripcion() {
-		return this.turDescripcion;
-	}
-
-	public void setTurDescripcion(Object turDescripcion) {
-		this.turDescripcion = turDescripcion;
-	}
-
-	public String getTurHoraFinal() {
-		return this.turHoraFinal;
-	}
-
-	public void setTurHoraFinal(String turHoraFinal) {
-		this.turHoraFinal = turHoraFinal;
-	}
-
-	public String getTurHoraInicial() {
-		return this.turHoraInicial;
-	}
-
-	public void setTurHoraInicial(String turHoraInicial) {
-		this.turHoraInicial = turHoraInicial;
-	}
-
-	public Object getTurRango() {
-		return this.turRango;
-	}
-
-	public void setTurRango(Object turRango) {
-		this.turRango = turRango;
+	
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 }

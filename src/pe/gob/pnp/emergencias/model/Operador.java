@@ -22,7 +22,7 @@ public class Operador {
 
 	@Id
 	@Column(name = "OPE_ID")
-	private int opeId;
+	private Long opeId;
 
 	// bi-directional many-to-one association to Comisaria
 	@OneToMany(mappedBy = "operador", fetch = FetchType.EAGER)
@@ -50,11 +50,11 @@ public class Operador {
 	public Operador() {
 	}
 
-	public int getOpeId() {
+	public Long getOpeId() {
 		return opeId;
 	}
 
-	public void setOpeId(int opeId) {
+	public void setOpeId(Long opeId) {
 		this.opeId = opeId;
 	}
 

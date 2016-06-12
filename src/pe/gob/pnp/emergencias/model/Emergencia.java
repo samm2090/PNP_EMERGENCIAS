@@ -21,7 +21,7 @@ public class Emergencia {
 
 	@Id
 	@Column(name = "EME_ID")
-	private int emeId;
+	private Long emeId;
 
 	@ManyToOne
 	@JoinColumn(name = "NEM_ID")
@@ -61,11 +61,11 @@ public class Emergencia {
 
 	public Emergencia(){}
 	
-	public int getEmeId() {
+	public Long getEmeId() {
 		return emeId;
 	}
 
-	public void setEmeId(int emeId) {
+	public void setEmeId(Long emeId) {
 		this.emeId = emeId;
 	}
 

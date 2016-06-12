@@ -4,44 +4,43 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.util.List;
 
-
 /**
  * The persistent class for the ROL database table.
  * 
  */
 @Entity
-@Table(name="ROL")
-@NamedQuery(name="Rol.findAll", query="SELECT r FROM Rol r")
+@Table(name = "ROL")
+@NamedQuery(name = "Rol.findAll", query = "SELECT r FROM Rol r")
 public class Rol implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="ROL_ID")
-	private int rolId;
+	@Column(name = "ROL_ID")
+	private Long rolId;
 
-	@Column(name="ESTADO_REGISTRO")
+	@Column(name = "ESTADO_REGISTRO")
 	private boolean estadoRegistro;
 
-	@Column(name="ROL_DESCRIPCION")
+	@Column(name = "ROL_DESCRIPCION")
 	private String rolDescripcion;
 
-	//bi-directional many-to-one association to Usuario
-	@OneToMany(mappedBy="rol", fetch=FetchType.EAGER)
+	// bi-directional many-to-one association to Usuario
+	@OneToMany(mappedBy = "rol", fetch = FetchType.EAGER)
 	private List<Usuario> usuarios;
 
 	public Rol() {
 	}
 
-	public int getRolId() {
-		return this.rolId;
+	public Long getRolId() {
+		return rolId;
 	}
 
-	public void setRolId(int rolId) {
+	public void setRolId(Long rolId) {
 		this.rolId = rolId;
 	}
 
-	public boolean getEstadoRegistro() {
-		return this.estadoRegistro;
+	public boolean isEstadoRegistro() {
+		return estadoRegistro;
 	}
 
 	public void setEstadoRegistro(boolean estadoRegistro) {
@@ -49,7 +48,7 @@ public class Rol implements Serializable {
 	}
 
 	public String getRolDescripcion() {
-		return this.rolDescripcion;
+		return rolDescripcion;
 	}
 
 	public void setRolDescripcion(String rolDescripcion) {
@@ -57,25 +56,11 @@ public class Rol implements Serializable {
 	}
 
 	public List<Usuario> getUsuarios() {
-		return this.usuarios;
+		return usuarios;
 	}
 
 	public void setUsuarios(List<Usuario> usuarios) {
 		this.usuarios = usuarios;
-	}
-
-	public Usuario addUsuario(Usuario usuario) {
-		getUsuarios().add(usuario);
-		usuario.setRol(this);
-
-		return usuario;
-	}
-
-	public Usuario removeUsuario(Usuario usuario) {
-		getUsuarios().remove(usuario);
-		usuario.setRol(null);
-
-		return usuario;
 	}
 
 }

@@ -9,29 +9,30 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="EQUIPO_EMERGENCIA")
-@NamedQuery(name="EquipoEmergencia", query="SELECT eem FROM EquipoEmergencia eem")
+@Table(name = "EQUIPO_EMERGENCIA")
+@NamedQuery(name = "EquipoEmergencia", query = "SELECT eem FROM EquipoEmergencia eem")
 public class EquipoEmergencia {
-	
+
 	@Id
-	@Column(name="EEM_ID")
-	private int eemId;
+	@Column(name = "EEM_ID")
+	private Long eemId;
 
 	@ManyToOne
 	@JoinColumn(name = "REC_ID")
 	private Recurso recurso;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "EME_ID")
 	private Emergencia emergencia;
-	
-	public EquipoEmergencia(){}
-	
-	public int getEemId() {
+
+	public EquipoEmergencia() {
+	}
+
+	public Long getEemId() {
 		return eemId;
 	}
 
-	public void setEemId(int eemId) {
+	public void setEemId(Long eemId) {
 		this.eemId = eemId;
 	}
 
@@ -50,7 +51,5 @@ public class EquipoEmergencia {
 	public void setEmergencia(Emergencia emergencia) {
 		this.emergencia = emergencia;
 	}
-	
-	
 
 }

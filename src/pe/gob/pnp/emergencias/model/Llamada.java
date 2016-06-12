@@ -1,13 +1,16 @@
 package pe.gob.pnp.emergencias.model;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -19,7 +22,7 @@ public class Llamada {
 
 	@Id
 	@Column(name = "LLA_ID")
-	private int llaId;
+	private Long llaId;
 
 	@ManyToOne
 	@JoinColumn(name = "TTE_ID")
@@ -32,6 +35,10 @@ public class Llamada {
 	@ManyToOne
 	@JoinColumn(name = "OPE_ID")
 	private Operador operador;
+
+	// bi-directional many-to-one association to Comisaria
+	@OneToMany(mappedBy = "llamada", fetch = FetchType.EAGER)
+	private List<Emergencia> emergencias;
 
 	@Column(name = "LLA_OBSERVACION")
 	private String llaObservacion;
@@ -58,11 +65,11 @@ public class Llamada {
 	public Llamada() {
 	}
 
-	public int getLlaId() {
+	public Long getLlaId() {
 		return llaId;
 	}
 
-	public void setLlaId(int llaId) {
+	public void setLlaId(Long llaId) {
 		this.llaId = llaId;
 	}
 
@@ -88,6 +95,14 @@ public class Llamada {
 
 	public void setOperador(Operador operador) {
 		this.operador = operador;
+	}
+
+	public List<Emergencia> getEmergencias() {
+		return emergencias;
+	}
+
+	public void setEmergencias(List<Emergencia> emergencias) {
+		this.emergencias = emergencias;
 	}
 
 	public String getLlaObservacion() {
