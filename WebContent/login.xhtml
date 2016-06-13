@@ -1,0 +1,36 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/paginas/plantillas/plantilla-limpia.xhtml">
+
+	<ui:define name="head">
+		<title>Login</title>
+	</ui:define>
+
+	<ui:define name="body">
+		<div align="center">
+			<p:graphicImage value="resources/main/images/pnp/escudo_PNP.jpg"
+				height="150px" width="150px" />
+			<H1>PNP - EMERGENCIAS</H1>
+		</div>
+		<div align="center">
+			<h:form>
+				<p:panel header="Iniciar Sesión" style="width:400px">
+					<h:panelGrid columns="2" cellpadding="3">
+						<p:outputLabel for="usuario" value="Usuario:" />
+						<p:inputText id="usuario" value="a" required="true" />
+
+						<p:outputLabel for="clave" value="Contraseña:" />
+						<p:password id="clave" value="b" required="true" />
+					</h:panelGrid>
+					<div align="right">
+						<p:commandButton value="Ingresar" action="#{usuarioManagedBean.ingresar}"/>
+					</div>
+				</p:panel>
+			</h:form>
+		</div>
+	</ui:define>
+
+</ui:composition>
