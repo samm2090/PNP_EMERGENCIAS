@@ -27,32 +27,35 @@
 					<p:panel header="Datos del denunciante" style="width:400px">
 						<h:panelGrid columns="2" cellpadding="3" cellspacing="5">
 							<p:outputLabel for="telefono" value="Telefono:" />
-							<p:inputText id="telefono" value="#{llamadaManagedBean.llamada.}" disabled="true" />
+							<p:inputText id="telefono"
+								value="#{llamadaManagedBean.llamada.llaTelefono}"
+								disabled="true" />
 
 							<p:outputLabel for="documento" value="Número Documento:" />
-							<p:inputText id="documento" value="" placeholder="46339629" />
+							<p:inputText id="documento"
+								value="#{llamadaManagedBean.civil.civDocumento}"
+								placeholder="46339629" />
 
 							<p:outputLabel for="nombre" value="Nombre" />
-							<p:inputText id="nombre" value="" placeholder="Javier" />
+							<p:inputText id="nombre"
+								value="#{llamadaManagedBean.civil.civNombre}"
+								placeholder="Javier" />
 
 							<p:outputLabel for="apellidoPaterno" value="Apellido Paterno:" />
-							<p:inputText id="apellidoPaterno" value="" placeholder="Perez" />
+							<p:inputText id="apellidoPaterno"
+								value="#{llamadaManagedBean.civil.civApellidoPaterno}"
+								placeholder="Perez" />
 
 							<p:outputLabel for="apellidoMaterno" value="Apellido Materno:" />
-							<p:inputText id="apellidoMaterno" value="" placeholder="Suarez" />
-
+							<p:inputText id="apellidoMaterno"
+								value="#{llamadaManagedBean.civil.civApellidoMaterno}"
+								placeholder="Suarez" />
 						</h:panelGrid>
 						<div align="center">
-							<p:commandButton value="Generar Emergencia"
+							<p:commandButton ajax="false" value="Generar Emergencia"
 								action="#{llamadaManagedBean.registrarLlamada}" />
 						</div>
 					</p:panel>
-				</div>
-			</div>
-			<div class="ui-g">
-				<div class="ui-g-10" align="right">
-					<p:commandButton value="¡Falsa Alarma!"  
-								action="#{llamadaManagedBean.falsaAlarma}" />
 				</div>
 			</div>
 		</h:form>

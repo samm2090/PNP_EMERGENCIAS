@@ -4,17 +4,20 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
+import pe.gob.pnp.emergencias.service.NivelEmergenciaService;
+
 @ManagedBean
 @SessionScoped
 public class NivelEmergenciaManagedBean {
 	@ManagedProperty(value = "#{nivelEmergenciaManagedBean}")
-	private NivelEmergenciaManagedBean nivelEmergenciaManagedBean;
+	private NivelEmergenciaService nivelEmergenciaService;
 
-	public NivelEmergenciaManagedBean getNivelEmergenciaManagedBean() {
-		return nivelEmergenciaManagedBean;
+	public NivelEmergenciaService getNivelEmergenciaService() {
+		return nivelEmergenciaService;
 	}
 
-	public void setNivelEmergenciaManagedBean(NivelEmergenciaManagedBean nivelEmergenciaManagedBean) {
-		this.nivelEmergenciaManagedBean = nivelEmergenciaManagedBean;
+	public void setNivelEmergenciaService(NivelEmergenciaService nivelEmergenciaService) {
+		this.nivelEmergenciaService = nivelEmergenciaService;
 	}
+
 }

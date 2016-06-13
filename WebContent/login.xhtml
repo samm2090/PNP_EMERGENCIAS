@@ -26,7 +26,8 @@
 						<p:password id="clave" value="b" required="true" />
 					</h:panelGrid>
 					<div align="right">
-						<p:commandButton value="Ingresar" action="#{usuarioManagedBean.ingresar}"/>
+						<p:commandButton ajax="false" value="Ingresar"
+							action="#{usuarioManagedBean.ingresar}" />
 					</div>
 				</p:panel>
 			</h:form>

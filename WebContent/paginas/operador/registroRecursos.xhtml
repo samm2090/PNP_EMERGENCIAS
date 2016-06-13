@@ -11,7 +11,7 @@
 
 	<ui:define name="body">
 
-		<p:steps activeIndex="0" style="padding-left:20%">
+		<p:steps activeIndex="2" style="padding-left:20%">
 			<p:menuitem value="Llamada" />
 			<p:menuitem value="Emergencia" />
 			<p:menuitem value="Recursos" />
@@ -19,43 +19,21 @@
 
 		<h:form>
 			<div class="ui-g">
-				<div class="ui-g-5" align="right">
-
-					<p:commandButton value="Contestar Llamada" />
-				</div>
-				<div class="ui-g-7">
-					<p:panel header="Datos del denunciante" style="width:400px">
+				<div class="ui-g-4" align="right"></div>
+				<div class="ui-g-8">
+					<p:panel header="Recursos" style="width:400px">
 						<h:panelGrid columns="2" cellpadding="3" cellspacing="5">
-							<p:outputLabel for="telefono" value="Telefono:" />
-							<p:inputText id="telefono" value="a" disabled="true" />
-
-							<p:outputLabel for="documento" value="Número Documento:" />
-							<p:inputText id="documento" value="" placeholder="46339629" />
-
-							<p:outputLabel for="nombre" value="Nombre" />
-							<p:inputText id="nombre" value="" placeholder="Javier" />
-
-							<p:outputLabel for="apellidoPaterno" value="Apellido Paterno:" />
-							<p:inputText id="apellidoPaterno" value="" placeholder="Perez" />
-
-							<p:outputLabel for="apellidoMaterno" value="Apellido Materno:" />
-							<p:inputText id="apellidoMaterno" value="" placeholder="Suarez" />
-
+							<p:outputLabel for="recursos" value="Recursos Disponibles:" />
+							<p:pickList id="recursos" value="#{equipoEmergenciaManagedBean.recursos}"
+								var="r" itemLabel="#{r.recNombre} #{r.recApellidoPaterno}" itemValue="#{r.recId}" />
 						</h:panelGrid>
 						<div align="center">
-							<p:commandButton value="Generar Emergencia"
-								action="#{usuarioManagedBean.ingresar}" />
+							<p:commandButton value="Enviar Recursos"
+								action="#{equipoEmergenciaManagedBean.registrarEquipoEmergencia}" />
 						</div>
 					</p:panel>
 				</div>
 			</div>
-			<div class="ui-g">
-				<div class="ui-g-10" align="right">
-					<p:commandButton value="¡Falsa Alarma!"  
-								action="#{usuarioManagedBean.ingresar}" />
-				</div>
-			</div>
 		</h:form>
-
 	</ui:define>
 </ui:composition>

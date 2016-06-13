@@ -4,6 +4,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
+import pe.gob.pnp.emergencias.model.Civil;
 import pe.gob.pnp.emergencias.model.Llamada;
 import pe.gob.pnp.emergencias.service.CivilService;
 import pe.gob.pnp.emergencias.service.LlamadaService;
@@ -18,7 +19,8 @@ public class LlamadaManagedBean {
 	@ManagedProperty(value = "#{civilService}")
 	private CivilService civilService;
 	
-	Llamada llamada = new Llamada();
+	private Llamada llamada = new Llamada();
+	private Civil civil = new Civil();
 
 	public Llamada getLlamada() {
 		return llamada;
@@ -26,6 +28,23 @@ public class LlamadaManagedBean {
 
 	public void setLlamada(Llamada llamada) {
 		this.llamada = llamada;
+	}
+	
+
+	public CivilService getCivilService() {
+		return civilService;
+	}
+
+	public void setCivilService(CivilService civilService) {
+		this.civilService = civilService;
+	}
+
+	public Civil getCivil() {
+		return civil;
+	}
+
+	public void setCivil(Civil civil) {
+		this.civil = civil;
 	}
 
 	public LlamadaService getLlamadaService() {
@@ -38,8 +57,13 @@ public class LlamadaManagedBean {
 	
 	public String registrarLlamada(){
 		
-		llamadaService.getLlamadaRepository().save(llamada);
-		llamada = new Llamada();
+//		civilService.getCivilRepository().save(civil);
+//		
+//		llamada.setCivil(civil);
+//		llamadaService.getLlamadaRepository().save(llamada);
+//		
+//		civil = new Civil();
+//		llamada = new Llamada();
 		
 		return "paginas/operador/registroEmergencia";
 	}
