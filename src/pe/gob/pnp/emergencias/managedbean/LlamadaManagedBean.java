@@ -20,6 +20,7 @@ public class LlamadaManagedBean {
 	private CivilService civilService;
 	
 	private Llamada llamada = new Llamada();
+
 	private Civil civil = new Civil();
 
 	public Llamada getLlamada() {
@@ -65,7 +66,7 @@ public class LlamadaManagedBean {
 //		civil = new Civil();
 //		llamada = new Llamada();
 		
-		return "paginas/operador/registroEmergencia";
+		return "registroEmergencia";
 	}
 	
 	public String falsaAlarma(){

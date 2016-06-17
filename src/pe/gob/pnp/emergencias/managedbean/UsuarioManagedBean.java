@@ -23,7 +23,7 @@ public class UsuarioManagedBean {
 
 	public String ingresar() {
 
-		return "paginas/operador/registroLlamada";
+		return "operador/registroLlamada";
 
 	}
 

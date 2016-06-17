@@ -33,10 +33,10 @@ public class EmergenciaManagedBean {
 	@ManagedProperty(value = "#{nivelEmergenciaService}")
 	private NivelEmergenciaService nivelEmergenciaService;
 	
+	private Emergencia emergencia = new Emergencia();
 	private List<Distrito> distritos = new ArrayList<Distrito>();
 	private List<TipoEmergencia> tiposEmergencia = new ArrayList<TipoEmergencia>();
 	private List<NivelEmergencia> nivelesEmergencia = new ArrayList<NivelEmergencia>();
-	
 	
 	public TipoEmergenciaService getTipoEmergenciaService() {
 		return tipoEmergenciaService;
@@ -73,9 +73,6 @@ public class EmergenciaManagedBean {
 		this.nivelesEmergencia = nivelesEmergencia;
 	}
 
-
-	private Emergencia emergencia = new Emergencia();
-
 	public Emergencia getEmergencia() {
 		return emergencia;
 	}
@@ -110,6 +107,6 @@ public class EmergenciaManagedBean {
 	}
 	
 	public String registrarEmergencia(){
-		return "paginas/operador/registroRecursos";
+		return "registroRecursosEmergencia";
 	}
 }

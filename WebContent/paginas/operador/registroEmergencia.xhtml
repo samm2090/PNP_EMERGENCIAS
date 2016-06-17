@@ -18,60 +18,52 @@
 		</p:steps>
 
 		<h:form>
-			<div class="ui-g">
-				<div class="ui-g-4" align="right"></div>
-				<div class="ui-g-8">
-					<p:panel header="Emergencia" style="width:400px">
-						<h:panelGrid columns="2" cellpadding="3" cellspacing="5">
-							<p:outputLabel for="distrito" value="Distrito:" />
-							<p:selectOneMenu id="distrito"
-								value="emergenciaManagedBean.emergencia.distrito.disId">
+			<div align="center">
+				<p:panel header="Emergencia" style="width:600px">
+					<h:panelGrid columns="2" cellpadding="3" cellspacing="5">
+						<p:outputLabel for="distrito" value="Distrito:" />
+						<p:selectOneMenu id="distrito"
+							value="emergenciaManagedBean.emergencia.distrito.disId">
 
-								<f:selectItems value="#{emergenciaManagedBean.distritos}"
-									var="d" itemLabel="d.disId" itemValue="d.disDescripcion" />
+							<f:selectItems value="#{emergenciaManagedBean.distritos}" var="d"
+								itemLabel="#{d.disDescripcion}" itemValue="#{d.disId}" />
+						</p:selectOneMenu>
 
-							</p:selectOneMenu>
+						<p:outputLabel for="direccion" value="Número Documento:" />
+						<p:inputText id="direccion"
+							value="#{emergenciaManagedBean.emergencia.emeDir}"
+							placeholder="Av. Diez Canseco 114" />
 
-							<p:outputLabel for="direccion" value="Número Documento:" />
-							<p:inputText id="direccion"
-								value="#{emergenciaManagedBean.emergencia.emeDir}"
-								placeholder="Av. Diez Canseco 114" />
+						<p:outputLabel for="tipoEmergencia" value="Tipo Emergencia:" />
+						<p:selectOneMenu id="tipoEmergencia"
+							value="#{emergenciaManagedBean.emergencia.tipoEmergencia.temId}">
 
-							<p:outputLabel for="tipoEmergencia" value="Tipo Emergencia:" />
-							<p:selectOneMenu id="tipoEmergencia"
-								value="#{emergenciaManagedBean.emergencia.tipoEmergencia.temId}">
+							<f:selectItems value="#{emergenciaManagedBean.tiposEmergencia}"
+								var="te" itemLabel="#{te.temDescripcion}"
+								itemValue="#{te.temId}" />
+						</p:selectOneMenu>
 
-								<f:selectItems value="#{emergenciaManagedBean.tiposEmergencia}"
-									var="te" itemLabel="te.temID" itemValue="te.temDescripcion" />
-							</p:selectOneMenu>
+						<h:outputLabel for="nivelEmergencia" value="Nivel Emergencia:" />
+						<h:selectOneMenu id="nivelEmergencia"
+							value="#{emergenciaManagedBean.emergencia.nivelEmergencia.nemId}">
 
-							<p:outputLabel for="nivelEmergencia" value="Nivel Emergencia:" />
-							<p:selectOneMenu id="nivelEmergencia"
-								value="#{emergenciaManagedBean.emergencia.nivelEmergencia.nemId}">
+							<f:selectItems value="#{emergenciaManagedBean.nivelesEmergencia}"
+								var="x" itemLabel="#{x.nemDescripcion}"
+								itemValue="#{x.nemId}" />
+						</h:selectOneMenu>
 
-								<f:selectItems value="#{emergenciaManagedBean.distritos}"
-									var="ne" itemLabel="ne.nemId" itemValue="ne.nemDescripcion" />
-							</p:selectOneMenu>
+						<p:outputLabel for="observacion" value="Observación:" />
+						<p:inputTextarea id="observacion"
+							value="#{emergenciaManagedBean.emergencia.emeObservacion}"
+							rows="7" cols="30" />
 
-							<p:outputLabel for="obserbacion" value="Observación:" />
-							<p:inputTextarea id="obserbacion"
-								value="#{emergenciaManagedBean.emergencia.obserbacion}" rows="7" cols="40" />
-
-						</h:panelGrid>
-						<div align="center">
-							<p:commandButton value="Registrar Emergencia"
-								action="#{emergenciaManagedBean.registrarEmergencia}" />
-						</div>
-					</p:panel>
-				</div>
-			</div>
-			<div class="ui-g">
-				<div class="ui-g-10" align="right">
-					<p:commandButton value="¡Falsa Alarma!"
-						action="#{usuarioManagedBean.ingresar}" />
-				</div>
+					</h:panelGrid>
+					<div align="center">
+						<p:commandButton ajax="false" value="Registrar Emergencia"
+							action="#{emergenciaManagedBean.registrarEmergencia}" />
+					</div>
+				</p:panel>
 			</div>
 		</h:form>
-
 	</ui:define>
 </ui:composition>
