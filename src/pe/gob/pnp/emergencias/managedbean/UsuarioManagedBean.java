@@ -77,8 +77,9 @@ public class UsuarioManagedBean {
 		
 		Query q = manager.createNativeQuery("exec sp_test ?" ,GradoRecurso.class)
 				.setParameter(1, 1);
-		
+		//
 		List<GradoRecurso> lista = (List<GradoRecurso>) q.getResultList();
+		
 		return "paginas/operador/registroLlamada";
 	}
 
