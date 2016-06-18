@@ -25,7 +25,7 @@
 						<h:panelGrid columns="2" cellpadding="3" cellspacing="5">
 							<p:outputLabel for="recursos" value="Recursos Disponibles:" />
 							<p:pickList id="recursos" value="#{equipoEmergenciaManagedBean.recursos}"
-								var="r" itemLabel="#{r.recNombre} #{r.recApellidoPaterno}" itemValue="#{r.recId}" />
+								var="r" itemLabel="#{r.persona.perApellido} #{r.persona.perNombre}" itemValue="#{r.recId}" />
 						</h:panelGrid>
 						<div align="center">
 							<p:commandButton value="Enviar Recursos"

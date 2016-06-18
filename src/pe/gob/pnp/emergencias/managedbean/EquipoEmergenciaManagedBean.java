@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.faces.bean.ManagedProperty;
 
+import com.google.common.collect.Lists;
+
 import pe.gob.pnp.emergencias.model.EquipoEmergencia;
 import pe.gob.pnp.emergencias.model.Recurso;
 import pe.gob.pnp.emergencias.service.EquipoEmergenciaService;
@@ -31,6 +33,7 @@ public class EquipoEmergenciaManagedBean{
 	}
 
 	public List<Recurso> getRecursos() {
+		recursos=Lists.newArrayList(recursoService.getRecursoRepository().findAll());
 		return recursos;
 	}
 
@@ -56,7 +59,7 @@ public class EquipoEmergenciaManagedBean{
 	
 	public String registrarEquipoEmergencia(){
 		
-		return "paginas/operador/registroLlamada";
+		return "registroLlamada";
 	}
 	
 }

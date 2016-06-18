@@ -25,7 +25,7 @@ public class Emergencia {
 
 	@ManyToOne
 	@JoinColumn(name = "NEM_ID")
-	private NivelEmergencia nivelEmergencia;
+	private NivelEmergencia nivelEmergencia = new NivelEmergencia();
 
 	@OneToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "LLA_ID")
@@ -33,7 +33,7 @@ public class Emergencia {
 
 	@ManyToOne
 	@JoinColumn(name = "TEM_ID")
-	private TipoEmergencia tipoEmergencia;
+	private TipoEmergencia tipoEmergencia = new TipoEmergencia();
 
 	@OneToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "PAR_ID")
@@ -41,7 +41,7 @@ public class Emergencia {
 
 	@ManyToOne
 	@JoinColumn(name = "DIS_ID")
-	private Distrito distrito;
+	private Distrito distrito = new Distrito();
 
 	@Column(name = "EME_DIR")
 	private String emeDir;
