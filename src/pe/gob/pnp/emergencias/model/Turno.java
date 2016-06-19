@@ -11,7 +11,6 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "TURNO")
-@NamedQuery(name = "Turno.findAll", query = "SELECT t FROM Turno t")
 public class Turno implements Serializable {
 	private static final long serialVersionUID = 1L;
 

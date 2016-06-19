@@ -7,12 +7,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "EQUIPO_EMERGENCIA")
-@NamedQuery(name = "EquipoEmergencia.findAll", query = "SELECT e FROM EquipoEmergencia e")
 public class EquipoEmergencia {
 
 	@Id

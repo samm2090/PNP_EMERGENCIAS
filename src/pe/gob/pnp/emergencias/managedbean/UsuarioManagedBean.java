@@ -1,19 +1,13 @@
 package pe.gob.pnp.emergencias.managedbean;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.Query;
-import javax.persistence.StoredProcedureQuery;
 import javax.sql.DataSource;
 
-import pe.gob.pnp.emergencias.model.GradoRecurso;
 import pe.gob.pnp.emergencias.model.Usuario;
 import pe.gob.pnp.emergencias.service.UsuarioService;
 
@@ -38,15 +32,15 @@ public class UsuarioManagedBean {
 	}
 
 	public List<Usuario> getUsuarios() {
-		Iterable<Usuario> it = usuarioService.getUsuarioRepository().findAll();
-		Iterator<Usuario> iterator = it.iterator();
-		
-		usuarios.clear();
-		
-		while(iterator.hasNext()){
-			usuarios.add(iterator.next());
-		}
-		
+//		Iterable<Usuario> it = usuarioService.getUsuarioRepository().findAll();
+//		Iterator<Usuario> iterator = it.iterator();
+//		
+//		usuarios.clear();
+//		
+//		while(iterator.hasNext()){
+//			usuarios.add(iterator.next());
+//		}
+//		
 		return usuarios;
 	}
 
@@ -71,22 +65,17 @@ public class UsuarioManagedBean {
 	}
 
 	public String ingresar() {
-<<<<<<< HEAD
 			
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory("SpringData");
-		EntityManager manager = factory.createEntityManager();
+//		EntityManagerFactory factory = Persistence.createEntityManagerFactory("SpringData");
+//		EntityManager manager = factory.createEntityManager();
+//		
+//		Query q = manager.createNativeQuery("exec sp_test ?" ,GradoRecurso.class)
+//				.setParameter(1, 1);
+//		
+//		List<GradoRecurso> lista = (List<GradoRecurso>) q.getResultList();
 		
-		Query q = manager.createNativeQuery("exec sp_test ?" ,GradoRecurso.class)
-				.setParameter(1, 1);
-		//
-		List<GradoRecurso> lista = (List<GradoRecurso>) q.getResultList();
-		
-		return "paginas/operador/registroLlamada";
-=======
-
 		return "operador/registroLlamada";
 
->>>>>>> origin/master
 	}
 
 	public String cerrarSesion() {

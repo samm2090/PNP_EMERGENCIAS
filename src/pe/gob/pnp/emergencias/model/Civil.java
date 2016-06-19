@@ -16,10 +16,6 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-/**
- * The persistent class for the CIVIL database table.
- * 
- */
 @Entity
 @Table(name = "CIVIL")
 public class Civil implements Serializable {

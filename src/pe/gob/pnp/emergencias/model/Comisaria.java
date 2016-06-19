@@ -1,16 +1,21 @@
 package pe.gob.pnp.emergencias.model;
 
 import java.io.Serializable;
-import javax.persistence.*;
 import java.util.List;
 
-/**
- * The persistent class for the COMISARIA database table.
- * 
- */
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
 @Entity
 @Table(name = "COMISARIA")
-@NamedQuery(name = "Comisaria.findAll", query = "SELECT c FROM Comisaria c")
 public class Comisaria implements Serializable {
 	private static final long serialVersionUID = 1L;
 

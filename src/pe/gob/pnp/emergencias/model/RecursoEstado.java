@@ -2,6 +2,7 @@ package pe.gob.pnp.emergencias.model;
 
 import java.io.Serializable;
 import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,18 +10,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-/**
- * The persistent class for the RECURSO_ESTADO database table.
- * 
- */
 @Entity
 @Table(name = "RECURSO_ESTADO")
-@NamedQuery(name = "RecursoEstado.findAll", query = "SELECT r FROM RecursoEstado r")
 public class RecursoEstado implements Serializable {
 	private static final long serialVersionUID = 1L;
 

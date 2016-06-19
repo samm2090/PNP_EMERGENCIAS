@@ -4,13 +4,8 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 
-/**
- * The persistent class for the SECTOR database table.
- * 
- */
 @Entity
 @Table(name="SECTOR")
-@NamedQuery(name="Sector.findAll", query="SELECT s FROM Sector s")
 public class Sector implements Serializable {
 	private static final long serialVersionUID = 1L;
 

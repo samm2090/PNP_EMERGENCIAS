@@ -5,13 +5,8 @@ import java.util.List;
 
 import javax.persistence.*;
 
-/**
- * The persistent class for the TIPO_EMERGENCIA database table.
- * 
- */
 @Entity
 @Table(name = "TIPO_EMERGENCIA")
-@NamedQuery(name = "TipoEmergencia.findAll", query = "SELECT t FROM TipoEmergencia t")
 public class TipoEmergencia implements Serializable {
 	private static final long serialVersionUID = 1L;
 

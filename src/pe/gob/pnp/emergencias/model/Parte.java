@@ -10,18 +10,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-/**
- * The persistent class for the PARTE database table.
- * 
- */
 @Entity
 @Table(name = "PARTE")
-@NamedQuery(name = "Parte.findAll", query = "SELECT p FROM Parte p")
 public class Parte implements Serializable {
 	private static final long serialVersionUID = 1L;
 

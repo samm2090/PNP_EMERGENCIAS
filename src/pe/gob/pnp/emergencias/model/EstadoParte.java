@@ -4,13 +4,8 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.util.List;
 
-/**
- * The persistent class for the ESTADO_PARTE database table.
- * 
- */
 @Entity
 @Table(name = "ESTADO_PARTE")
-@NamedQuery(name = "EstadoParte.findAll", query = "SELECT e FROM EstadoParte e")
 public class EstadoParte implements Serializable {
 	private static final long serialVersionUID = 1L;
 

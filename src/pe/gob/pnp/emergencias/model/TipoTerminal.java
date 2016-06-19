@@ -5,13 +5,8 @@ import java.util.List;
 
 import javax.persistence.*;
 
-/**
- * The persistent class for the TIPO_TERMINAL database table.
- * 
- */
 @Entity
 @Table(name = "TIPO_TERMINAL")
-@NamedQuery(name = "TipoTerminal.findAll", query = "SELECT t FROM TipoTerminal t")
 public class TipoTerminal implements Serializable {
 	private static final long serialVersionUID = 1L;
 

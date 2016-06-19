@@ -4,13 +4,8 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.util.List;
 
-/**
- * The persistent class for the PROVINCIA database table.
- * 
- */
 @Entity
 @Table(name = "PROVINCIA")
-@NamedQuery(name = "Provincia.findAll", query = "SELECT p FROM Provincia p")
 public class Provincia implements Serializable {
 	private static final long serialVersionUID = 1L;
 
