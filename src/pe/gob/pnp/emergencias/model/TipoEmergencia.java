@@ -16,6 +16,7 @@ public class TipoEmergencia implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "TEM_ID")
 	private Long temId;
 
@@ -25,6 +26,10 @@ public class TipoEmergencia implements Serializable {
 	// one to many emergencia
 	@OneToMany(mappedBy = "tipoEmergencia", fetch = FetchType.EAGER)
 	private List<Emergencia> emergencias;
+
+	public TipoEmergencia(String temDescripcion) {
+		this.temDescripcion = temDescripcion;
+	}
 
 	public TipoEmergencia() {
 	}

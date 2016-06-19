@@ -2,8 +2,12 @@ package pe.gob.pnp.emergencias.model;
 
 import java.io.Serializable;
 import java.util.Date;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -23,11 +27,12 @@ public class Usuario implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "USU_ID")
 	private Long usuId;
 
 	// bi-directional many-to-one association to Rol
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "ROL_ID")
 	private Rol rol;
 
@@ -49,6 +54,13 @@ public class Usuario implements Serializable {
 	private Date fechaModificacion;
 
 	public Usuario() {
+	}
+
+	public Usuario(String usuNombre, String usuClave, boolean estadoRegistro) {
+		this.usuNombre = usuNombre;
+		this.usuClave = usuClave;
+		this.usuClave = usuClave;
+		this.estadoRegistro = estadoRegistro;
 	}
 
 	public Long getUsuId() {
@@ -110,4 +122,5 @@ public class Usuario implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+
 }

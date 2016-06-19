@@ -1,8 +1,17 @@
 package pe.gob.pnp.emergencias.model;
 
 import java.io.Serializable;
-import javax.persistence.*;
 import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  * The persistent class for the ROL database table.
@@ -15,6 +24,7 @@ public class Rol implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ROL_ID")
 	private Long rolId;
 
@@ -30,6 +40,15 @@ public class Rol implements Serializable {
 
 	public Rol() {
 	}
+	
+	
+	
+	public Rol(String rolDescripcion,boolean estadoRegistro) {
+		this.estadoRegistro = estadoRegistro;
+		this.rolDescripcion = rolDescripcion;
+	}
+
+
 
 	public Long getRolId() {
 		return rolId;
