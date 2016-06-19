@@ -1,8 +1,14 @@
 package pe.gob.pnp.emergencias.managedbean;
 
+import java.util.Date;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
 
 import pe.gob.pnp.emergencias.model.Civil;
 import pe.gob.pnp.emergencias.model.Llamada;
@@ -70,11 +76,11 @@ public class LlamadaManagedBean {
 //			e.printStackTrace();
 //		}
 //		tx.commit();
-//		civil.setFechaRegistro(new Date());
-//		
-//		civilService.getCivilRepository().save(civil);
-//		
-//		civil = new Civil();
+		civil.setFechaRegistro(new Date());
+		
+		civilService.getCivilRepository().save(civil);
+		
+		civil = new Civil();
 //	
 //		llamada.setCivil(civil);
 //		llamadaService.getLlamadaRepository().save(llamada);

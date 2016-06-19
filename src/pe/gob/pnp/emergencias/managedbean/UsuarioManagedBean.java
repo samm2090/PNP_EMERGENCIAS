@@ -6,6 +6,11 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
 import javax.sql.DataSource;
 
 import pe.gob.pnp.emergencias.model.Usuario;
@@ -68,12 +73,15 @@ public class UsuarioManagedBean {
 			
 //		EntityManagerFactory factory = Persistence.createEntityManagerFactory("SpringData");
 //		EntityManager manager = factory.createEntityManager();
+//		EntityTransaction tx = manager.getTransaction();
 //		
-//		Query q = manager.createNativeQuery("exec sp_test ?" ,GradoRecurso.class)
-//				.setParameter(1, 1);
+//		Query q = manager.createNativeQuery("insert into CIVIL(CIV_NOMBRE,CIV_DOCUMENTO) values (?,?);")
+//				.setParameter(1, "Prueba3").setParameter(2, "666666");
 //		
-//		List<GradoRecurso> lista = (List<GradoRecurso>) q.getResultList();
-		
+//		tx.begin();
+//		q.executeUpdate();
+//		tx.commit();
+//		
 		return "operador/registroLlamada";
 
 	}

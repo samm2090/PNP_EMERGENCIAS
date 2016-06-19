@@ -13,5 +13,6 @@ public interface DistritoRepository extends CrudRepository<Distrito, Long> {
 	
 	@Query("select dis from Distrito dis where dis.provincia.proId = ?1")
 	List<Distrito> distritosLima(Long codigo);
+	
 }
 

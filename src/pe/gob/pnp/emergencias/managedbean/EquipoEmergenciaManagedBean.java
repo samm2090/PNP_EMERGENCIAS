@@ -3,7 +3,9 @@ package pe.gob.pnp.emergencias.managedbean;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.SessionScoped;
 
 import com.google.common.collect.Lists;
 
@@ -12,6 +14,8 @@ import pe.gob.pnp.emergencias.model.Recurso;
 import pe.gob.pnp.emergencias.service.EquipoEmergenciaService;
 import pe.gob.pnp.emergencias.service.RecursoService;
 
+@ManagedBean
+@SessionScoped
 public class EquipoEmergenciaManagedBean{
 	
 	@ManagedProperty(value="#{equipoEmergenciaService}")
