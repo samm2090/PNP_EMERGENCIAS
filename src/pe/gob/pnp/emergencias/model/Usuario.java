@@ -25,7 +25,7 @@ public class Usuario implements Serializable {
 
 	@Id
 	@Column(name = "USU_ID")
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long usuId;
 
 	// bi-directional many-to-one association to Rol

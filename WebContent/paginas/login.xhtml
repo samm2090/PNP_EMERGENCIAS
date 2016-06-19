@@ -17,18 +17,29 @@
 		</div>
 		<div align="center">
 			<h:form>
+				<p:growl id="msgs" sticky="false" />
 				<p:panel header="Iniciar Sesión" style="width:400px">
-					<h:panelGrid columns="2" cellpadding="3">
-						<p:outputLabel for="usuario" value="Usuario:" />
-						<p:inputText id="usuario" value="a" required="true" />
 
-						<p:outputLabel for="clave" value="Contraseña:" />
-						<p:password id="clave" value="a" required="true" />
+					<h:panelGrid columns="2" cellpadding="3">
+						<p:outputLabel value="Usuario:" />
+						<p:inputText id="usuario"
+							value="#{usuarioManagedBean.userAutentic.usuNombre}"
+							required="true" />
+
+						<p:outputLabel value="Contraseña:" />
+						<p:password id="clave"
+							value="#{usuarioManagedBean.userAutentic.usuClave}"
+							required="true" />
 					</h:panelGrid>
+
 					<div align="right">
-						<p:commandButton ajax="false" value="Ingresar"
-							action="#{usuarioManagedBean.ingresar}" />
+						<f:facet name="footer">
+							<p:commandButton value="Entrar" update="msgs"
+								action="#{usuarioManagedBean.autenticar}" type="submit"
+								icon="ui-icon-check"></p:commandButton>
+						</f:facet>
 					</div>
+
 				</p:panel>
 			</h:form>
 		</div>
