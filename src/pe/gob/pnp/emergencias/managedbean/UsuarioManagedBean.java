@@ -71,8 +71,7 @@ public class UsuarioManagedBean {
 	}
 
 	public String ingresar() {
-<<<<<<< HEAD
-			
+
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("SpringData");
 		EntityManager manager = factory.createEntityManager();
 		
@@ -82,11 +81,7 @@ public class UsuarioManagedBean {
 		List<GradoRecurso> lista = (List<GradoRecurso>) q.getResultList();
 		
 		return "paginas/operador/registroLlamada";
-=======
 
-		return "operador/registroLlamada";
-
->>>>>>> origin/master
 	}
 
 	public String cerrarSesion() {
