@@ -15,6 +15,7 @@ public class TipoPersonal implements Serializable {
 
 	@Id
 	@Column(name = "TPE_ID")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long tpeId;
 
 	@Column(name = "TPE_DESCRIPCION")

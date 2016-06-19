@@ -17,6 +17,7 @@ public class TipoEmergencia implements Serializable {
 
 	@Id
 	@Column(name = "TEM_ID")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long temId;
 
 	@Column(name = "TEM_DESCRIPCION")

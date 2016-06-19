@@ -2,6 +2,7 @@
     <wb-module deploy-name="PNP_EMERGENCIAS">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/test"/>
         <property name="context-root" value="PNP_EMERGENCIAS"/>
         <property name="java-output-path" value="/PNP_EMERGENCIAS/build/classes"/>
     </wb-module>

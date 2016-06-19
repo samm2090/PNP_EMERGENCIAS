@@ -17,6 +17,7 @@ public class GradoRecurso implements Serializable {
 
 	@Id
 	@Column(name = "GRE_ID")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long greId;
 
 	@Column(name = "GRE_DESCRIPCION")

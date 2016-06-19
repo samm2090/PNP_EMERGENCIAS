@@ -29,27 +29,27 @@
 							<p:outputLabel for="telefono" value="Telefono:" />
 							<p:inputText id="telefono"
 								value="#{llamadaManagedBean.llamada.llaTelefono}"
-								disabled="true" />
+								/>
 
 							<p:outputLabel for="documento" value="Número Documento:" />
 							<p:inputText id="documento"
 								value="#{llamadaManagedBean.civil.civDocumento}"
-								placeholder="46339629" />
+								/>
 
 							<p:outputLabel for="nombre" value="Nombre" />
 							<p:inputText id="nombre"
 								value="#{llamadaManagedBean.civil.civNombre}"
-								placeholder="Javier" />
+							/>
 
 							<p:outputLabel for="apellidoPaterno" value="Apellido Paterno:" />
 							<p:inputText id="apellidoPaterno"
 								value="#{llamadaManagedBean.civil.civApellidoPaterno}"
-								placeholder="Perez" />
+								 />
 
 							<p:outputLabel for="apellidoMaterno" value="Apellido Materno:" />
 							<p:inputText id="apellidoMaterno"
 								value="#{llamadaManagedBean.civil.civApellidoMaterno}"
-								placeholder="Suarez" />
+								 />
 						</h:panelGrid>
 						<div align="center">
 							<p:commandButton ajax="false" value="Generar Emergencia"

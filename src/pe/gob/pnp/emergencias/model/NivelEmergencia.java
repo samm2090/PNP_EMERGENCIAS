@@ -17,6 +17,7 @@ public class NivelEmergencia implements Serializable {
 
 	@Id
 	@Column(name = "NEM_ID")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long nemId;
 
 	@Column(name = "NEM_DESCRIPCION")

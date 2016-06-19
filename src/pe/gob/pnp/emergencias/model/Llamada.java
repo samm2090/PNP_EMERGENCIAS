@@ -6,10 +6,11 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -17,11 +18,11 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "LLAMADA")
-@NamedQuery(name = "Llamada", query = "SELECT lla FROM Llamada lla")
 public class Llamada {
 
 	@Id
 	@Column(name = "LLA_ID")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long llaId;
 
 	@ManyToOne
@@ -30,7 +31,7 @@ public class Llamada {
 
 	@ManyToOne
 	@JoinColumn(name = "CIV_ID")
-	private Civil civil;
+	private Civil civil = new Civil();
 
 	@ManyToOne
 	@JoinColumn(name = "OPE_ID")

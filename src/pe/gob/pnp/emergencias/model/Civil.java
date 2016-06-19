@@ -1,13 +1,16 @@
 package pe.gob.pnp.emergencias.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -19,17 +22,17 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "CIVIL")
-@NamedQuery(name = "Civil.findAll", query = "SELECT c FROM Civil c")
 public class Civil implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "CIV_ID")
 	private Long civId;
 
-	// bi-directional many-to-one association to Comisaria
+	//bi-directional many-to-one association to Comisaria
 	@OneToMany(mappedBy = "civil", fetch = FetchType.EAGER)
-	private List<Llamada> llamadas;
+	private List<Llamada> llamadas = new ArrayList<Llamada>();
 
 	@Column(name = "CIV_APELLIDO_MATERNO")
 	private String civApellidoMaterno;

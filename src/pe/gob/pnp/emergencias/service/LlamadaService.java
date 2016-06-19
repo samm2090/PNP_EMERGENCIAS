@@ -8,6 +8,7 @@ import pe.gob.pnp.emergencias.repository.LlamadaRepository;
 
 @Component
 public class LlamadaService {
+
 	@Autowired
 	private LlamadaRepository llamadaRepository;
 

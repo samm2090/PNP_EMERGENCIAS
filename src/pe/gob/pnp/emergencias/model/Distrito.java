@@ -17,6 +17,7 @@ public class Distrito implements Serializable {
 
 	@Id
 	@Column(name = "DIS_ID")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long disId;
 
 	@Column(name = "DIS_DESCRIPCION")

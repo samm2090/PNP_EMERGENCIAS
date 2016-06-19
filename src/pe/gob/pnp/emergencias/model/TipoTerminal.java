@@ -17,6 +17,7 @@ public class TipoTerminal implements Serializable {
 
 	@Id
 	@Column(name = "TTE_ID")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long tteId;
 
 	@Column(name = "ESTADO_REGISTRO")

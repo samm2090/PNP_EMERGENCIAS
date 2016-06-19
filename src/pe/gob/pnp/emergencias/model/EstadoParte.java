@@ -16,6 +16,7 @@ public class EstadoParte implements Serializable {
 
 	@Id
 	@Column(name = "EPA_ID")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long epaId;
 
 	@Column(name = "EPA_DESCRIPCION")

@@ -16,6 +16,7 @@ public class Provincia implements Serializable {
 
 	@Id
 	@Column(name = "PRO_ID")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long proId;
 
 	@Column(name = "PRO_DESCRIPCION")

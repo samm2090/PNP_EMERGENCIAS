@@ -57,13 +57,27 @@ public class LlamadaManagedBean {
 	}
 	
 	public String registrarLlamada(){
+
 		
+//		EntityManagerFactory factory = Persistence.createEntityManagerFactory("SpringData");
+//		EntityManager manager = factory.createEntityManager();
+//		EntityTransaction tx = manager.getTransaction();
+//		tx.begin();
+//		try {
+//			civil.setFechaRegistro(new Date());
+//			manager.persist(civil);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		tx.commit();
+//		civil.setFechaRegistro(new Date());
+//		
 //		civilService.getCivilRepository().save(civil);
 //		
+//		civil = new Civil();
+//	
 //		llamada.setCivil(civil);
 //		llamadaService.getLlamadaRepository().save(llamada);
-//		
-//		civil = new Civil();
 //		llamada = new Llamada();
 		
 		return "registroEmergencia";

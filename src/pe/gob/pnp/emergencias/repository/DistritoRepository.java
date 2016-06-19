@@ -10,9 +10,8 @@ import pe.gob.pnp.emergencias.model.Distrito;
 
 @Repository
 public interface DistritoRepository extends CrudRepository<Distrito, Long> {
-
-	 @Query("select d from DISTRITO d where d.PRO_ID=")
-	 public List<Distrito> obtenerDistritosLima();
 	
-	
+	@Query("select dis from Distrito dis where dis.provincia.proId = ?1")
+	List<Distrito> distritosLima(Long codigo);
 }
+

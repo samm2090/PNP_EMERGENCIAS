@@ -90,7 +90,8 @@ public class EmergenciaManagedBean {
 	}
 
 	public List<Distrito> getDistritos() {
-		distritos = Lists.newArrayList(distritoService.getDistritoRepository().findAll());
+		
+		distritos = Lists.newArrayList(distritoService.getDistritoRepository().distritosLima(new Long(136)));
 		return distritos;
 	}
 	

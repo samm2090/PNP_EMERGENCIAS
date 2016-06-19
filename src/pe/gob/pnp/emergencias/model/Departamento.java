@@ -16,6 +16,7 @@ public class Departamento implements Serializable {
 
 	@Id
 	@Column(name = "DEP_ID")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long depId;
 
 	@Column(name = "DEP_DESCRIPCION")

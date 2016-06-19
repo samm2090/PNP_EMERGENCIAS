@@ -16,6 +16,7 @@ public class Sector implements Serializable {
 
 	@Id
 	@Column(name="SEC_ID")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long secId;
 
 	@Column(name="ESTADO_REGISTRO")

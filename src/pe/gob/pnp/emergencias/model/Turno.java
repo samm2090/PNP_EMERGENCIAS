@@ -17,6 +17,7 @@ public class Turno implements Serializable {
 
 	@Id
 	@Column(name = "TUR_ID")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long turId;
 
 	@Column(name = "ESTADO_REGISTRO")

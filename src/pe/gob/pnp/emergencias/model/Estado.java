@@ -16,6 +16,7 @@ public class Estado implements Serializable {
 
 	@Id
 	@Column(name = "EST_ID")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long estId;
 
 	@Column(name = "EST_DESCRIPCION")
