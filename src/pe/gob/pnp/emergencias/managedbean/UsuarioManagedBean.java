@@ -62,11 +62,11 @@ public class UsuarioManagedBean {
 		userAutentic = usuarioService.getUsuarioRepository().obtenerUsuarioLogged(userAutentic.getUsuNombre(),
 				userAutentic.getUsuClave());
 		if (userAutentic != null) {
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", userAutentic);
 			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Ingreso",
 					"Usuario autenticado correctamente");
 			FacesContext.getCurrentInstance().addMessage(null, message);
-			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", userAutentic);
-
+		
 			return "operador/registroLlamada?faces-redirect=true";
 		} else {
 			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error",
