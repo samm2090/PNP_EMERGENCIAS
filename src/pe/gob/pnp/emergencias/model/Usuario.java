@@ -31,7 +31,7 @@ public class Usuario implements Serializable {
 	// bi-directional many-to-one association to Rol
 	@ManyToOne
 	@JoinColumn(name = "ROL_ID")
-	private Rol rol;
+	private Rol rol = new Rol();
 
 	@Column(name = "USU_NOMBRE")
 	private String usuNombre;

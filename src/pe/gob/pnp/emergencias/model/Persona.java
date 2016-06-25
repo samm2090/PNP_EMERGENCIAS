@@ -3,6 +3,7 @@ package pe.gob.pnp.emergencias.model;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -22,12 +23,12 @@ public class Persona {
 
 	@Id
 	@Column(name = "PER_ID")
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long perId;
-
-	@ManyToOne
+	
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "USU_ID")
-	private Usuario usuId;
+	private Usuario usuId = new Usuario();
 
 	@ManyToOne
 	@JoinColumn(name = "TPE_ID")
