@@ -2,6 +2,8 @@ package pe.gob.pnp.emergencias.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -21,8 +23,8 @@ public class Rol implements Serializable {
 	private String rolDescripcion;
 
 	// bi-directional many-to-one association to Usuario
-	@OneToMany(mappedBy = "rol", fetch = FetchType.EAGER)
-	private List<Usuario> usuarios;
+	@OneToMany(mappedBy = "rol", cascade = CascadeType.PERSIST)
+	private List<Usuario> usuarios = new ArrayList<Usuario>();
 
 	public Rol() {
 	}
