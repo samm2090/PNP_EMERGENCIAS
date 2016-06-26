@@ -8,7 +8,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
-import pe.gob.pnp.emergencias.model.GradoRecurso;
 import pe.gob.pnp.emergencias.model.Rol;
 import pe.gob.pnp.emergencias.service.RolService;
 
