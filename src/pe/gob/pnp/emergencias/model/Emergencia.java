@@ -24,7 +24,7 @@ public class Emergencia {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long emeId;
 
-	@ManyToOne
+	@ManyToOne(cascade =CascadeType.PERSIST)
 	@JoinColumn(name = "NEM_ID")
 	private NivelEmergencia nivelEmergencia = new NivelEmergencia();
 
@@ -32,13 +32,9 @@ public class Emergencia {
 	@JoinColumn(name = "LLA_ID")
 	private Llamada llamada;
 
-	@ManyToOne
+	@ManyToOne(cascade =CascadeType.PERSIST)
 	@JoinColumn(name = "TEM_ID")
 	private TipoEmergencia tipoEmergencia = new TipoEmergencia();
-
-	@OneToOne(cascade = CascadeType.PERSIST)
-	@JoinColumn(name = "PAR_ID")
-	private Parte parte;
 
 	@ManyToOne
 	@JoinColumn(name = "DIS_ID")
@@ -93,14 +89,6 @@ public class Emergencia {
 
 	public void setTipoEmergencia(TipoEmergencia tipoEmergencia) {
 		this.tipoEmergencia = tipoEmergencia;
-	}
-
-	public Parte getParte() {
-		return parte;
-	}
-
-	public void setParte(Parte parte) {
-		this.parte = parte;
 	}
 
 	public Distrito getDistrito() {

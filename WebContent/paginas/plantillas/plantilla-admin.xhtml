@@ -1,0 +1,109 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<f:facet name="first">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="viewport"
+			content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<link rel="shortcut icon" type="image/png"
+			href="#{request.contextPath}/resources/main/images/favicon.png" />
+	</f:facet>
+
+	<title></title>
+	<h:outputStylesheet name="main/css/showcase.css" />
+	<h:outputStylesheet name="main/css/perfect-scrollbar.css" />
+	<h:outputStylesheet name="main/css/sh.css" />
+	<h:outputScript name="jquery/jquery.js" library="primefaces" />
+	<h:outputScript name="jquery/jquery-plugins.js" library="primefaces" />
+	<h:outputScript name="main/js/perfect-scrollbar.js" />
+	<h:outputScript name="main/js/showcase.js" />
+
+	<ui:insert name="head"/>
+
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push([ '_setAccount', 'UA-12200033-1' ]);
+		_gaq.push([ '_trackPageview' ]);
+
+		(function() {
+			var ga = document.createElement('script');
+			ga.type = 'text/javascript';
+			ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl'
+					: 'http://www')
+					+ '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0];
+			s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+
+	<style type="text/css">
+.ui-steps .ui-steps-item {
+	width: 270px;
+}
+
+.ui-state-highlight {
+	text-shadow: none !important;
+}
+
+.ui-steps.custom {
+	margin-bottom: 30px;
+}
+
+.ui-steps.custom .ui-steps-item .ui-menuitem-link {
+	height: 10px;
+	padding: 0 1em;
+}
+
+.ui-steps.custom .ui-steps-item .ui-steps-number {
+	background-color: #0081c2;
+	color: #FFFFFF;
+	display: inline-block;
+	width: 30px;
+	border-radius: 10px;
+	margin-top: -10px;
+	margin-bottom: 10px;
+}
+</style>
+</h:head>
+
+<h:body>
+
+	<div class="ui-g">
+	    <div class="ui-g-12 ui-md-2">
+	    	<div style="height: 100px;"></div>
+			<h:form >
+				<p:panelMenu style="width:100%;" class="ui-g-12 ui-md-2">
+					<p:submenu label="Mantenimientos">
+						<p:menuitem value="Operador" icon="ui-icon-bullet" action="#{operadorManagedBean.irPaginaOperador()}" >
+						</p:menuitem>
+						<p:menuitem value="Recurso" action="#{recursoManagedBean.irPaginaRecurso()}" icon="ui-icon-bullet">
+						</p:menuitem>
+					</p:submenu>
+					<p:submenu label="Menu 1">
+					</p:submenu>
+				</p:panelMenu>
+			</h:form>
+		</div>
+	    <div class="ui-g-12 ui-md-10 ui-g-nopad">
+	        <div class="ui-g-12">
+	            Bar
+	        </div>
+	        <div class="ui-g-12 ui-g-nopad" id="cuerpoAdmin">
+	            <ui:insert name="body" id="bodyAdmin"/>
+	        </div>
+	    </div>
+	    <div class="ui-g-12">
+	        Footer
+	    </div>
+	</div>   
+
+	
+
+</h:body>
+</html>

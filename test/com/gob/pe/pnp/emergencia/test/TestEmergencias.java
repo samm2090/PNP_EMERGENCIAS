@@ -37,8 +37,9 @@ public class TestEmergencias {
 			manager.persist(usuario1);
 
 			Rol rol1 = new Rol();
-			rol1.setRolDescripcion("ADMIN");
-			rol1.setEstadoRegistro(true);
+//			rol1.setRolDescripcion("ADMIN");
+//			rol1.setEstadoRegistro(true);
+			rol1.setRolId(new Long(1));
 			usuario1.setRol(rol1);
 
 			Usuario usuario2 = new Usuario();
@@ -47,35 +48,35 @@ public class TestEmergencias {
 			usuario2.setEstadoRegistro(true);
 			manager.persist(usuario2);
 
-			Rol rol2 = new Rol();
-			rol2.setRolDescripcion("POLICIA");
-			rol2.setEstadoRegistro(true);
-			usuario2.setRol(rol2);
+//			Rol rol2 = new Rol();
+//			rol2.setRolDescripcion("POLICIA");
+//			rol2.setEstadoRegistro(true);
+			usuario2.setRol(rol1);	
 
-			Usuario usuario3 = new Usuario();
-			usuario3.setUsuNombre("Sergio Muroy");
-			usuario3.setUsuClave("123456");
-			usuario3.setEstadoRegistro(true);
-			manager.persist(usuario3);
+//			Usuario usuario3 = new Usuario();
+//			usuario3.setUsuNombre("Sergio Muroy");
+//			usuario3.setUsuClave("123456");
+//			usuario3.setEstadoRegistro(true);
+//			manager.persist(usuario3);
 
-			Rol rol3 = new Rol();
-			rol3.setRolDescripcion("OPERADOR");
-			rol3.setEstadoRegistro(true);
-			usuario3.setRol(rol3);
+//			Rol rol3 = new Rol();
+//			rol3.setRolDescripcion("OPERADOR");
+//			rol3.setEstadoRegistro(true);
+//			usuario3.setRol(rol3);
 
 			assertNull(usuario1.getUsuId());
 			assertNull(rol1.getRolId());
 			assertNull(usuario2.getUsuId());
-			assertNull(rol2.getRolId());
-			assertNull(usuario3.getUsuId());
-			assertNull(rol3.getRolId());
+			assertNull(rol1.getRolId());
+//			assertNull(usuario3.getUsuId());
+//			assertNull(rol3.getRolId());
 
 			manager.flush();
 
 			assertNotNull(usuario1.getUsuNombre());
 			assertNotNull(usuario2.getUsuClave());
 			assertNotNull(rol1.getRolDescripcion());
-			assertTrue(rol2.getRolDescripcion() != "");
+			assertTrue(rol1.getRolDescripcion() != "");
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -116,7 +117,7 @@ public class TestEmergencias {
 			civil.setCivApellidoPaterno("Zambrano");
 			civil.setCivApellidoMaterno("Suarez");
 			civil.setCivTelefono("99999999");
-			civil.setCivDocumento("463dd");
+			civil.setCivDocumento("116661");
 			civil.setEstadoRegistro(true);
 			civil.setFechaRegistro(new Date());
 

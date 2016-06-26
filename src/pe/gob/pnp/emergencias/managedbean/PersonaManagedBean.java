@@ -3,17 +3,21 @@ package pe.gob.pnp.emergencias.managedbean;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 import com.google.common.collect.Lists;
 
 import pe.gob.pnp.emergencias.model.Persona;
+import pe.gob.pnp.emergencias.model.Recurso;
 import pe.gob.pnp.emergencias.model.Rol;
 import pe.gob.pnp.emergencias.model.TipoPersonal;
 import pe.gob.pnp.emergencias.model.Usuario;
@@ -26,25 +30,21 @@ import pe.gob.pnp.emergencias.service.UsuarioService;
 @SessionScoped
 public class PersonaManagedBean {
 
-	@ManagedProperty(value = "#{usuarioService}")
-	private UsuarioService usuarioService;
-
-	@ManagedProperty(value = "#{rolService}")
-	private RolService rolService;
-
 	@ManagedProperty(value = "#{personaService}")
 	private PersonaService personaService;
 
-	@ManagedProperty(value = "#{tipoPersonalService}")
-	private TipoPersonalService tipoPersonalService;
-
-	private List<Usuario> usuarios = new ArrayList<Usuario>();
-	private List<Rol> roles = new ArrayList<Rol>();
-	private List<TipoPersonal> tipoPersonales = new ArrayList<TipoPersonal>();
 	private List<Persona> personas = new ArrayList<Persona>();
 
-	private Usuario usuario = new Usuario();
 	private Persona persona = new Persona();
+	private Recurso recurso = new Recurso();
+
+	public Recurso getRecurso() {
+		return recurso;
+	}
+
+	public void setRecurso(Recurso recurso) {
+		this.recurso = recurso;
+	}
 
 	public PersonaService getPersonaService() {
 		return personaService;
@@ -54,70 +54,12 @@ public class PersonaManagedBean {
 		this.personaService = personaService;
 	}
 
-	public UsuarioService getUsuarioService() {
-		return usuarioService;
-	}
-
-	public void setUsuarioService(UsuarioService usuarioService) {
-		this.usuarioService = usuarioService;
-	}
-
-	public RolService getRolService() {
-		return rolService;
-	}
-
-	public void setRolService(RolService rolService) {
-		this.rolService = rolService;
-	}
-
-	public TipoPersonalService getTipoPersonalService() {
-		return tipoPersonalService;
-	}
-
-	public void setTipoPersonalService(TipoPersonalService tipoPersonalService) {
-		this.tipoPersonalService = tipoPersonalService;
-	}
-
-	public List<Usuario> getUsuarios() {
-		return usuarios;
-	}
-
-	public void setUsuarios(List<Usuario> usuarios) {
-		this.usuarios = usuarios;
-	}
-
-	public List<Rol> getRoles() {
-		roles = Lists.newArrayList(rolService.getRolRepository().findAll());
-		return roles;
-	}
-
-	public void setRoles(List<Rol> roles) {
-		this.roles = roles;
-	}
-
-	public List<TipoPersonal> getTipoPersonales() {
-		tipoPersonales = Lists.newArrayList(tipoPersonalService.getTipoPersonalRepository().findAll());
-		return tipoPersonales;
-	}
-
-	public void setTipoPersonales(List<TipoPersonal> tipoPersonales) {
-		this.tipoPersonales = tipoPersonales;
-	}
-
 	public List<Persona> getPersonas() {
 		return personas;
 	}
 
 	public void setPersonas(List<Persona> personas) {
 		this.personas = personas;
-	}
-
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
 	}
 
 	public Persona getPersona() {
@@ -135,17 +77,35 @@ public class PersonaManagedBean {
 
 		try {
 			tx.begin();
-			//usuario = manager.getReference(Usuario.class, usuario.getUsuId());
-			//persona.setUsuId(usuario);
-			manager.persist(usuario);
-			//manager.persist(persona);
+
+			Query q = manager.createNativeQuery("sp_registrarRecurso ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?")
+					.setParameter(1, persona.getPerNombre()).setParameter(2, persona.getPerApellidoPaterno())
+					.setParameter(3, persona.getPerApellidoMaterno()).setParameter(4, persona.getPerFechaNacimiento())
+					.setParameter(5, persona.getPerDni()).setParameter(6, persona.getPerDireccion())
+					.setParameter(7, persona.getPerCorreo()).setParameter(8, persona.getPerTelefono())
+					.setParameter(9, persona.getPerGenero()).setParameter(10, persona.getPerEstadoCivil())
+					.setParameter(11, persona.getPerDni()).setParameter(12, "123456")
+					.setParameter(13, persona.getUsuId().getRol().getRolId())
+					.setParameter(14, recurso.getGradoRecurso().getGreId())
+					.setParameter(15, recurso.getTurno().getTurId())
+					.setParameter(16, recurso.getComisaria().getComId());
+
+			int resultado = q.executeUpdate();
+			tx.commit();
+			
+			FacesContext context = FacesContext.getCurrentInstance();
+			context.addMessage(null, new FacesMessage("Success",
+					"Se guardó correctamente el empleado " + persona.getPerNombre()+" "+persona.getPerApellidoPaterno()));
+			
+			persona = new Persona();
+			recurso = new Recurso();
 
 		} catch (Exception e) {
+			tx.rollback();
 			e.printStackTrace();
 		}
-		tx.commit();
 
-		return null;
+		return "/paginas/administrador/mantenimientoRecurso";
 	}
 
 }

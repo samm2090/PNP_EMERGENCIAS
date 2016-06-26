@@ -36,7 +36,7 @@ public class Comisaria implements Serializable {
 	// bi-directional many-to-one association to Distrito
 	@ManyToOne
 	@JoinColumn(name = "DIS_ID")
-	private Distrito distrito;
+	private Distrito distrito=new Distrito();
 
 	// bi-directional many-to-one association to Sector
 	@OneToMany(mappedBy = "comisaria", fetch = FetchType.EAGER)

@@ -31,11 +31,11 @@ public class Operador {
 
 	@ManyToOne
 	@JoinColumn(name = "TUR_ID")
-	private Turno turno;
+	private Turno turno = new Turno();
 
 	@ManyToOne
 	@JoinColumn(name = "PER_ID")
-	private Persona persona;
+	private Persona persona = new Persona();
 
 	@Column(name = "ESTADO_REGISTRO")
 	private boolean estadoRegistro;

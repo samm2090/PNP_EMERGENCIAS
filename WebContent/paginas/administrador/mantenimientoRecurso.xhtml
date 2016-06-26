@@ -1,0 +1,265 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/paginas/plantillas/plantilla-admin.xhtml">
+
+	<ui:define name="head">
+		<title>Registro Recurso</title>
+	</ui:define>
+
+	<ui:define name="body" id="bodyRecurso">
+
+		<h:form id="formRecurso">
+			<p:panel header="Datos del Recurso" id="panelDatos" class="ui-g-12">
+				<p:growl id="msgUser" sticky="true" showDetail="true" />
+					<p:panelGrid>
+						<p:row>
+							<p:column>
+								<p:outputLabel value="Nombre: " />
+							</p:column>
+							<p:column>
+								<p:inputText id="txtNombre" value="#{recursoManagedBean.recurso.persona.perNombre}" />
+							</p:column>
+							<p:column>
+								<p:outputLabel  value="Grado Recurso:" />
+							</p:column>
+							<p:column>
+								<p:selectOneMenu id="cboGradoRecurso"
+								value="#{recursoManagedBean.recurso.gradoRecurso.greId}">
+
+								<f:selectItems value="#{gradoRecursoManagedBean.gradoRecursos}"
+									var="gre" itemLabel="#{gre.greDescripcion}"
+									itemValue="#{gre.greId}" />
+								</p:selectOneMenu>
+							</p:column>
+						</p:row>
+						
+						<p:row>
+							<p:column>
+								<p:outputLabel value="Apellido Paterno" />
+							</p:column>
+							<p:column>
+								<p:inputText id="txtApellidoPaterno" value="#{recursoManagedBean.recurso.persona.perApellidoPaterno}" />
+							</p:column>
+							<p:column>
+								<p:outputLabel  value="Turno: " />
+							</p:column>
+							<p:column>
+								<p:selectOneMenu id="cboTurno"
+								value="#{recursoManagedBean.recurso.turno.turId}">
+
+								<f:selectItems value="#{turnoManagedBean.turnos}"
+									var="turno" itemLabel="#{turno.turDescripcion}"
+									itemValue="#{turno.turId}" />
+								</p:selectOneMenu>
+							</p:column>
+						</p:row>
+						
+						<p:row>
+							<p:column>
+								<p:outputLabel value="Apellido Materno" />
+							</p:column>
+							<p:column>
+								<p:inputText id="txtApellidoMaterno" value="#{recursoManagedBean.recurso.persona.perApellidoMaterno}" />
+							</p:column>
+							<p:column>
+								<p:outputLabel  value="Comisaria:" />
+							</p:column>
+							<p:column>
+								<p:selectOneMenu id="cboComisaria"
+								value="#{recursoManagedBean.recurso.comisaria.comId}" >
+
+								<f:selectItems value="#{comisariaManagedBean.comisarias}"
+									var="comisaria" itemLabel= "#{comisaria.comNombre}"
+									itemValue="#{comisaria.comId}" />
+								</p:selectOneMenu>
+							</p:column>
+						</p:row>
+						
+						<p:row>
+							<p:column>
+								<p:outputLabel value="Fecha Nacimiento:" />
+							</p:column>
+							<p:column>
+								<p:calendar id="txtFechaNac" value="#{recursoManagedBean.recurso.persona.perFechaNacimiento}" 
+								locale="de" navigator="true" pattern="yyyy/MM/dd"/>
+							</p:column>
+							<p:column>
+								<p:outputLabel value="Rol:" />
+							</p:column>
+							<p:column>
+								<p:selectOneMenu id="cboRol"
+								value="#{recursoManagedBean.recurso.persona.usuId.rol.rolId}">
+
+								<f:selectItems value="#{rolManagedBean.roles}"
+									var="rol" itemLabel="#{rol.rolDescripcion}"
+									itemValue="#{rol.rolId}" />
+								</p:selectOneMenu>
+							</p:column>
+						</p:row>
+						
+						<p:row>
+							<p:column>
+								<p:outputLabel value="DNI" />
+							</p:column>
+							<p:column>
+								<p:inputText id="txtDNI" value="#{recursoManagedBean.recurso.persona.perDni}" />
+							</p:column>
+							<p:column>
+								
+							</p:column>
+							<p:column>
+								
+							</p:column>
+						</p:row>
+						
+						<p:row>
+							<p:column>
+								<p:outputLabel value="Direccion:" />
+							</p:column>
+							<p:column>
+								<p:inputText id="txtDireccion" value="#{recursoManagedBean.recurso.persona.perDireccion}" />
+							</p:column>
+							<p:column>
+								
+							</p:column>
+							<p:column>
+								
+							</p:column>
+						</p:row>
+						
+						<p:row>
+							<p:column>
+								<p:outputLabel value="Correo: " />
+							</p:column>
+							<p:column>
+								<p:inputText id="txtCorreo" value="#{recursoManagedBean.recurso.persona.perCorreo}" />
+							</p:column>
+							<p:column>
+								
+							</p:column>
+							<p:column>
+								
+							</p:column>
+						</p:row>
+						
+						<p:row>
+							<p:column>
+								<p:outputLabel value="Telefono:" />
+							</p:column>
+							<p:column>
+								<p:inputText id="txtTelefono" value="#{recursoManagedBean.recurso.persona.perTelefono}" />
+							</p:column>
+							<p:column>
+								
+							</p:column>
+							<p:column>
+								
+							</p:column>
+						</p:row>
+						
+						<p:row>
+							<p:column>
+								<p:outputLabel value="Genero:" />
+							</p:column>
+							<p:column>
+								<p:selectOneMenu id="cboGenero" value="#{recursoManagedBean.recurso.persona.perGenero}" style="width:125px">
+						            <f:selectItem itemLabel="Mujer" itemValue="F" />
+						            <f:selectItem itemLabel="Hombre" itemValue="M" />
+						        </p:selectOneMenu>
+							</p:column>
+							<p:column>
+								
+							</p:column>
+							<p:column>
+								
+							</p:column>
+						</p:row>
+						
+						<p:row>
+							<p:column>
+								<p:outputLabel value="Estado Civil:" />
+							</p:column>
+							<p:column>
+								<p:selectOneMenu id="cboEstadoCivil" value="#{recursoManagedBean.recurso.persona.perEstadoCivil}" style="width:125px">
+						            <f:selectItem itemLabel="Soltero" itemValue="Soltero" />
+						            <f:selectItem itemLabel="Casado" itemValue="Casado" />
+						            <f:selectItem itemLabel="Divorciado" itemValue="Divorciado" />
+						            <f:selectItem itemLabel="Viudo" itemValue="Viudo" />
+						        </p:selectOneMenu>
+							</p:column>
+							<p:column>
+								
+							</p:column>
+							<p:column>
+								
+							</p:column>
+						</p:row>
+						
+					</p:panelGrid>
+					<div align="right">
+						<p:commandButton value="Registrar"
+								action="#{recursoManagedBean.registrar()}" style="margin-top:10px;margin-bottom:20px"
+								icon="ui-icon-disk"/>
+						<p:commandButton value="Actualizar"
+								action="#{recursoManagedBean.guardarEditar()}" style="margin-top:10px;margin-bottom:20px"
+								icon="ui-icon-refresh" ajax="true" update="msgUser,panelDatos" />
+						
+						<p:commandButton value="Registrar"
+								action="#{recursoManagedBean.registrar()}" style="margin-top:10px;margin-bottom:20px"
+								icon="ui-icon-disk"/>
+						
+					</div>
+					
+					
+				<p:dataTable id="dtRecursos" var="recurso" value="#{recursoManagedBean.recursos}"
+									reflow="true" rows="10" paginator="true" resizableColumns="true" draggableColumns="true">
+									
+					<!-- <f:facet name="header">
+			            <p:outputPanel>
+			                <h:outputText value="Buscar:" />
+			                <p:inputText id="busqueda" onkeyup="PF('dtRecursos').filter()" style="width:150px" placeholder="Ingrese dato"/>
+			            </p:outputPanel>
+			        </f:facet> -->
+					<p:column headerText="Nombre">
+						<h:outputText value="#{recurso.persona.perNombre}"></h:outputText>
+					</p:column>
+					<p:column headerText="Apellido Paterno">
+						<h:outputText value="#{recurso.persona.perApellidoPaterno}"></h:outputText>
+					</p:column>
+					<p:column headerText="Nombre usuario">
+						<h:outputText value="#{recurso.persona.usuId.usuNombre}"></h:outputText>
+					</p:column>
+					<p:column headerText="Turno">
+						<h:outputText value="#{recurso.turno.turDescripcion}"></h:outputText>
+					</p:column>
+					<p:column headerText="Rol">
+						<h:outputText value="#{recurso.persona.usuId.rol.rolDescripcion}"></h:outputText>
+					</p:column>
+					<p:column headerText="Grado">
+						<h:outputText value="#{recurso.gradoRecurso.greDescripcion}"></h:outputText>
+					</p:column>
+					<p:column headerText="Comisaria">
+						<h:outputText value="#{recurso.comisaria.comNombre}"></h:outputText>
+					</p:column>
+					<p:column headerText=" ">
+						<p:commandButton
+								action="#{recursoManagedBean.editar}"
+								icon="ui-icon-pencil" title="Icon Only" ajax="false">
+							<f:param name="recursoID" value="#{recurso.recId}"></f:param>	
+						</p:commandButton>
+						<p:commandButton
+								action="#{recursoManagedBean.eliminar()}"
+								icon="ui-icon-trash" title="Icon Only" ajax="true" update="dtRecursos">
+							<f:param name="recursoID" value="#{recurso.recId}"></f:param>	
+						</p:commandButton>
+					</p:column>
+					
+				</p:dataTable>
+			</p:panel>
+
+		</h:form>
+	</ui:define>
+</ui:composition>

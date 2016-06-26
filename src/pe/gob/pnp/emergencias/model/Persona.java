@@ -32,7 +32,7 @@ public class Persona {
 
 	@ManyToOne
 	@JoinColumn(name = "TPE_ID")
-	private TipoPersonal tpeId;
+	private TipoPersonal tpeId =new TipoPersonal();
 
 	// bi-directional many-to-one association to Comisaria
 	@OneToMany(mappedBy = "persona", fetch = FetchType.EAGER)
@@ -41,6 +41,7 @@ public class Persona {
 	// bi-directional many-to-one association to Comisaria
 	@OneToMany(mappedBy = "persona", fetch = FetchType.EAGER)
 	private List<Recurso> recursos;
+	
 
 	@Column(name = "PER_NOMBRE")
 	private String perNombre;
