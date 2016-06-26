@@ -26,7 +26,7 @@ public class Recurso {
 
 	@OneToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "PER_ID")
-	private Persona persona;
+	private Persona persona = new Persona();
 
 	@ManyToOne
 	@JoinColumn(name = "GRE_ID")
