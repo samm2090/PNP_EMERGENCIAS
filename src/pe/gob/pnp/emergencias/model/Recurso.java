@@ -26,19 +26,19 @@ public class Recurso {
 
 	@OneToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "PER_ID")
-	private Persona persona;
+	private Persona persona = new Persona();
 
 	@ManyToOne
 	@JoinColumn(name = "GRE_ID")
-	private GradoRecurso gradoRecurso;
+	private GradoRecurso gradoRecurso = new GradoRecurso();
 
 	@ManyToOne
 	@JoinColumn(name = "TUR_ID")
-	private Turno turno;
+	private Turno turno = new Turno();
 
 	@ManyToOne
 	@JoinColumn(name = "COM_ID")
-	private Comisaria comisaria;
+	private Comisaria comisaria = new Comisaria();
 
 	@Column(name = "ESTADO_REGISTRO")
 	private boolean estadoRegistro;

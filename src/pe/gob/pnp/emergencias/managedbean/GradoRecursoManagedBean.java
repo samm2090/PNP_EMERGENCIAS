@@ -1,6 +1,7 @@
 package pe.gob.pnp.emergencias.managedbean;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -47,15 +48,15 @@ public class GradoRecursoManagedBean {
 	}
 
 	public List<GradoRecurso> getGradoRecursos() {
-//		Iterable<GradoRecurso> it = gradoRecursoService.getGradoRecursoRepository().findAll();
-//		Iterator<GradoRecurso> iterator = it.iterator();
-//		
-//		gradoRecursos.clear();
-//		
-//		while(iterator.hasNext()){
-//			gradoRecursos.add(iterator.next());
-//		}
-//		
+		Iterable<GradoRecurso> it = gradoRecursoService.getGradoRecursoRepository().findAll();
+		Iterator<GradoRecurso> iterator = it.iterator();
+				
+		gradoRecursos.clear();
+				
+		while(iterator.hasNext()){
+			gradoRecursos.add(iterator.next());
+		}
+		
 		return gradoRecursos;
 	}
 
