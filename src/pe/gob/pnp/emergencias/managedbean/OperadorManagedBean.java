@@ -16,7 +16,6 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 
 import pe.gob.pnp.emergencias.model.Operador;
-import pe.gob.pnp.emergencias.model.Recurso;
 import pe.gob.pnp.emergencias.service.OperadorService;
 
 @ManagedBean
