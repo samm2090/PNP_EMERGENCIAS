@@ -11,9 +11,8 @@
 
 	<ui:define name="body">
 
-		<p:steps activeIndex="2" style="padding-left:20%">
+		<p:steps activeIndex="1" style="padding-left:30%">
 			<p:menuitem value="Llamada" />
-			<p:menuitem value="Emergencia" />
 			<p:menuitem value="Recursos" />
 		</p:steps>
 
@@ -25,7 +24,7 @@
 						<h:panelGrid columns="2" cellpadding="3" cellspacing="5">
 							<p:outputLabel for="recursos" value="Recursos Disponibles:" />
 							<p:pickList id="recursos" value="#{equipoEmergenciaManagedBean.recursos}"
-								var="r" itemLabel="#{r.persona.perApellido} #{r.persona.perNombre}" itemValue="#{r.recId}" />
+								var="r" itemLabel="#{r.persona.perApellidoPaterno} #{r.persona.perNombre}" itemValue="#{r.recId}" />
 						</h:panelGrid>
 						<div align="center">
 							<p:commandButton value="Enviar Recursos"

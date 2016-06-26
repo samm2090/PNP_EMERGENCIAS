@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -40,6 +41,10 @@ public class Parte implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "REC_ID")
 	private Recurso recurso;
+	
+	@OneToOne
+	@JoinColumn(name = "EME_ID")
+	private Emergencia emergencia;
 
 	public Parte() {
 	}
