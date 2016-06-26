@@ -26,23 +26,23 @@
 						<h:panelGrid columns="2" cellpadding="3" cellspacing="5">
 							<p:outputLabel for="telefono" value="Telefono:" />
 							<p:inputText id="telefono"
-								value="#{emergenciaManagedBean.llamada.llaTelefono}" />
+								value="#{emergenciaManagedBean.emergencia.llamada.llaTelefono}" />
 
 							<p:outputLabel for="documento" value="Número Documento:" />
 							<p:inputText id="documento"
-								value="#{emergenciaManagedBean.civil.civDocumento}" />
+								value="#{emergenciaManagedBean.emergencia.llamada.civil.civDocumento}" />
 
 							<p:outputLabel for="nombre" value="Nombre" />
 							<p:inputText id="nombre"
-								value="#{emergenciaManagedBean.civil.civNombre}" />
+								value="#{emergenciaManagedBean.emergencia.llamada.civil.civNombre}" />
 
 							<p:outputLabel for="apellidoPaterno" value="Apellido Paterno:" />
 							<p:inputText id="apellidoPaterno"
-								value="#{emergenciaManagedBean.civil.civApellidoPaterno}" />
+								value="#{emergenciaManagedBean.emergencia.llamada.civil.civApellidoPaterno}" />
 
 							<p:outputLabel for="apellidoMaterno" value="Apellido Materno:" />
 							<p:inputText id="apellidoMaterno"
-								value="#{emergenciaManagedBean.civil.civApellidoMaterno}" />
+								value="#{emergenciaManagedBean.emergencia.llamada.civil.civApellidoMaterno}" />
 						</h:panelGrid>
 					</p:panel>
 
@@ -50,7 +50,7 @@
 
 						<div class="ui-lg-3" style="margin-right: 75px;">
 							<p:commandButton value="¡Falsa Alarma!"
-								action="#{emergenciaManagedBean.}"/>
+								action="#{emergenciaManagedBean.contestarLlamada()}"/>
 						</div>
 					</div>
 				</div>
