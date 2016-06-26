@@ -11,59 +11,97 @@
 
 	<ui:define name="body">
 
-		<p:steps activeIndex="0" style="padding-left:20%">
+		<p:steps activeIndex="0" style="padding-left:30%">
 			<p:menuitem value="Llamada" />
-			<p:menuitem value="Emergencia" />
 			<p:menuitem value="Recursos" />
 		</p:steps>
 
 		<h:form>
 			<div class="ui-g">
-				<div class="ui-g-5" align="right">
-
+				<div class="ui-g-2" align="right">
 					<p:commandButton value="Contestar Llamada" />
 				</div>
-				<div class="ui-g-7">
-					<p:panel header="Datos del denunciante" style="width:400px">
+				<div class="ui-g-4">
+					<p:panel header="Datos del denunciante" style="width:350px">
 						<h:panelGrid columns="2" cellpadding="3" cellspacing="5">
 							<p:outputLabel for="telefono" value="Telefono:" />
 							<p:inputText id="telefono"
-								value="#{llamadaManagedBean.llamada.llaTelefono}"
-								/>
+								value="#{emergenciaManagedBean.llamada.llaTelefono}" />
 
 							<p:outputLabel for="documento" value="Número Documento:" />
 							<p:inputText id="documento"
-								value="#{llamadaManagedBean.civil.civDocumento}"
-								/>
+								value="#{emergenciaManagedBean.civil.civDocumento}" />
 
 							<p:outputLabel for="nombre" value="Nombre" />
 							<p:inputText id="nombre"
-								value="#{llamadaManagedBean.civil.civNombre}"
-							/>
+								value="#{emergenciaManagedBean.civil.civNombre}" />
 
 							<p:outputLabel for="apellidoPaterno" value="Apellido Paterno:" />
 							<p:inputText id="apellidoPaterno"
-								value="#{llamadaManagedBean.civil.civApellidoPaterno}"
-								 />
+								value="#{emergenciaManagedBean.civil.civApellidoPaterno}" />
 
 							<p:outputLabel for="apellidoMaterno" value="Apellido Materno:" />
 							<p:inputText id="apellidoMaterno"
-								value="#{llamadaManagedBean.civil.civApellidoMaterno}"
-								 />
+								value="#{emergenciaManagedBean.civil.civApellidoMaterno}" />
+						</h:panelGrid>
+					</p:panel>
+
+					<div class="ui-lg" align="right" style="margin-top: 20px;">
+
+						<div class="ui-lg-3" style="margin-right: 75px;">
+							<p:commandButton value="¡Falsa Alarma!"
+								action="#{emergenciaManagedBean.}"/>
+						</div>
+					</div>
+				</div>
+				<div class="ui-g-6">
+					<p:panel header="Emergencia" style="width:450px">
+						<h:panelGrid columns="2" cellpadding="3" cellspacing="5">
+							<p:outputLabel for="distrito" value="Distrito:" />
+							<p:selectOneMenu id="distrito"
+								value="emergenciaManagedBean.emergencia.distrito.disId">
+
+								<f:selectItems value="#{emergenciaManagedBean.distritos}"
+									var="d" itemLabel="#{d.disDescripcion}" itemValue="#{d.disId}" />
+							</p:selectOneMenu>
+
+							<p:outputLabel for="direccion" value="Número Documento:" />
+							<p:inputText id="direccion"
+								value="#{emergenciaManagedBean.emergencia.emeDir}"
+								placeholder="Av. Diez Canseco 114" />
+
+							<p:outputLabel for="tipoEmergencia" value="Tipo Emergencia:" />
+							<p:selectOneMenu id="tipoEmergencia"
+								value="#{emergenciaManagedBean.emergencia.tipoEmergencia.temId}">
+
+								<f:selectItems value="#{emergenciaManagedBean.tiposEmergencia}"
+									var="te" itemLabel="#{te.temDescripcion}"
+									itemValue="#{te.temId}" />
+							</p:selectOneMenu>
+
+							<h:outputLabel for="nivelEmergencia" value="Nivel Emergencia:" />
+							<h:selectOneMenu id="nivelEmergencia"
+								value="#{emergenciaManagedBean.emergencia.nivelEmergencia.nemId}">
+
+								<f:selectItems
+									value="#{emergenciaManagedBean.nivelesEmergencia}" var="x"
+									itemLabel="#{x.nemDescripcion}" itemValue="#{x.nemId}" />
+							</h:selectOneMenu>
+
+							<p:outputLabel for="observacion" value="Observación:" />
+							<p:inputTextarea id="observacion"
+								value="#{emergenciaManagedBean.emergencia.emeObservacion}"
+								rows="7" cols="30" />
+
 						</h:panelGrid>
 						<div align="center">
-							<p:commandButton ajax="false" value="Generar Emergencia"
-								action="#{llamadaManagedBean.registrarLlamada}" />
+							<p:commandButton ajax="false" value="Registrar Emergencia"
+								action="#{emergenciaManagedBean.registrarEmergencia}" />
 						</div>
 					</p:panel>
 				</div>
 			</div>
-			<div class="ui-g">
-				<div class="ui-g-10" align="right">
-					<p:commandButton value="¡Falsa Alarma!"
-						 />
-				</div>
-			</div>
+
 		</h:form>
 	</ui:define>
 </ui:composition>

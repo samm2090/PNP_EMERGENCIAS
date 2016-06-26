@@ -3,6 +3,7 @@ package pe.gob.pnp.emergencias.model;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -29,7 +30,7 @@ public class Llamada {
 	@JoinColumn(name = "TTE_ID")
 	private TipoTerminal tipoTerminal;
 
-	@ManyToOne
+	@ManyToOne(cascade =CascadeType.PERSIST)
 	@JoinColumn(name = "CIV_ID")
 	private Civil civil = new Civil();
 
