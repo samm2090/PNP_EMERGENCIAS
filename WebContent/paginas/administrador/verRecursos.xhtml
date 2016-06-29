@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+     
+    <h:head>
+        <title>Cars</title>
+        <style type="text/css">
+            .ui-widget {
+                font-size: 90%;
+            }
+        </style>
+    </h:head>
+     
+    <h:body>
+        <i id="customheader" class="fa fa-fw fa-car" style="display:none"></i>
+ 
+        <p:dataTable var="recurso" value="#{recursoManagedBean.recursos}" rows="10" paginator="true">
+            <p:column headerText="Id">
+                <h:outputText value="#{recurso.recId}" />
+            </p:column>
+ 
+            <p:column headerText="Nombre">
+                <h:outputText value="#{recurso.persona.perNombre}" />
+            </p:column>
+ 
+        </p:dataTable>
+    </h:body>
+     
+</html>
