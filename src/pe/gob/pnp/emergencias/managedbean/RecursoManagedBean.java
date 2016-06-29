@@ -244,6 +244,8 @@ public class RecursoManagedBean {
 			int resultado = q.executeUpdate();
 			tx.commit();
 			
+			recurso = new Recurso();
+			
 			FacesContext context = FacesContext.getCurrentInstance();
 			if(resultado == 0)
 			{
@@ -254,8 +256,14 @@ public class RecursoManagedBean {
 			{
 				context.addMessage(null, new FacesMessage("Success",
 						"Se guard� correctamente el recurso " + recurso.getPersona().getPerNombre()+" "+recurso.getPersona().getPerApellidoPaterno()));
+			} 
+			}
+			catch (Exception e) {
+				tx.rollback();
+				e.printStackTrace();
+			}
 		
-		return "/paginas/administrador/mantenimientoRecurso";
+		return "mantenimientoRecurso";
 	}
 	
 	public String irPaginaRecurso()
