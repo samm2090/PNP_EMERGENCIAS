@@ -14,7 +14,6 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 
 import pe.gob.pnp.emergencias.model.Emergencia;
-import pe.gob.pnp.emergencias.model.TipoTerminal;
 import pe.gob.pnp.emergencias.service.EmergenciaService;
 
 @ManagedBean
