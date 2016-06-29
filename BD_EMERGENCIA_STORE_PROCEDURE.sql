@@ -203,3 +203,85 @@ BEGIN TRAN
 	END CATCH
 GO
 
+alter procedure sp_editarRecurso
+@codRecurso int,
+@codPersona int,
+@codUsuario INT,
+@nombre nvarchar(50),
+@apePat nvarchar(50),
+@apeMat nvarchar(50),
+@fNac datetime,
+@direccion nvarchar(100),
+@correo nvarchar(100),
+@telefono nvarchar(20),
+@genero char(1),
+@estadoCivil nvarchar(15),
+@nombreUsuario nvarchar(50),
+@clave nvarchar(50),
+@rol int,
+@grado int,
+@tuno int,
+@comisaria int
+as
+begin
+	BEGIN TRAN
+		BEGIN TRY
+			
+			UPDATE USUARIO SET ROL_ID = @rol,FECHA_MODIFICACION = GETDATE() WHERE USU_ID = @codUsuario
+
+			UPDATE PERSONA SET PER_NOMBRE = @nombre , PER_APELLIDO_MATERNO = @apeMat , PER_APELLIDO_PATERNO = @apePat,
+								PER_FECHA_NACIMIENTO = @fNac , PER_DIRECCION= @direccion , PER_CORREO = @correo,PER_TELEFONO = @telefono,
+								PER_GENERO = @genero , PER_ESTADO_CIVIL = @estadoCivil,FECHA_MODIFICACION = GETDATE()
+							WHERE PER_ID = @codPersona
+
+			UPDATE RECURSO SET GRE_ID =@grado , TUR_ID=@tuno ,COM_ID = @comisaria,FECHA_MODIFICACION = GETDATE()
+							WHERE REC_ID = @codRecurso 
+		
+			COMMIT TRAN
+		END TRY
+		BEGIN CATCH
+			ROLLBACK TRAN
+		END CATCH
+end
+
+select * from PERSONA
+select * from recurso
+
+ALTER procedure sp_editarOperador
+@codOperador int,
+@codPersona int,
+@codUsuario INT,
+@nombre nvarchar(50),
+@apePat nvarchar(50),
+@apeMat nvarchar(50),
+@fNac datetime,
+@direccion nvarchar(100),
+@correo nvarchar(100),
+@telefono nvarchar(20),
+@genero char(1),
+@estadoCivil nvarchar(15),
+@clave nvarchar(50),
+@rol int,
+@turno int
+as
+begin
+	BEGIN TRAN
+		BEGIN TRY
+			
+			UPDATE USUARIO SET ROL_ID = @rol,FECHA_MODIFICACION = GETDATE() WHERE USU_ID = @codOperador
+
+			UPDATE PERSONA SET PER_NOMBRE = @nombre , PER_APELLIDO_MATERNO = @apeMat , PER_APELLIDO_PATERNO = @apePat,
+								PER_FECHA_NACIMIENTO = @fNac , PER_DIRECCION= @direccion , PER_CORREO = @correo,PER_TELEFONO = @telefono,
+								PER_GENERO = @genero , PER_ESTADO_CIVIL = @estadoCivil,FECHA_MODIFICACION = GETDATE()
+							WHERE PER_ID = @codPersona
+
+			UPDATE OPERADOR SET TUR_ID = @turno , FECHA_MODIFICACION = GETDATE() where OPE_ID = @codOperador
+		
+			COMMIT TRAN
+		END TRY
+		BEGIN CATCH
+			ROLLBACK TRAN
+		END CATCH
+end
+
+
