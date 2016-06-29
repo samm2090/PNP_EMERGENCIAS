@@ -14,17 +14,9 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
-import com.google.common.collect.Lists;
-
 import pe.gob.pnp.emergencias.model.Persona;
 import pe.gob.pnp.emergencias.model.Recurso;
-import pe.gob.pnp.emergencias.model.Rol;
-import pe.gob.pnp.emergencias.model.TipoPersonal;
-import pe.gob.pnp.emergencias.model.Usuario;
 import pe.gob.pnp.emergencias.service.PersonaService;
-import pe.gob.pnp.emergencias.service.RolService;
-import pe.gob.pnp.emergencias.service.TipoPersonalService;
-import pe.gob.pnp.emergencias.service.UsuarioService;
 
 @ManagedBean
 @SessionScoped

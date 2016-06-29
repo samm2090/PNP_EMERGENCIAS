@@ -18,7 +18,6 @@ import javax.persistence.Query;
 import com.google.common.collect.Lists;
 
 import pe.gob.pnp.emergencias.model.Operador;
-import pe.gob.pnp.emergencias.model.Recurso;
 import pe.gob.pnp.emergencias.service.OperadorService;
 
 @ManagedBean
