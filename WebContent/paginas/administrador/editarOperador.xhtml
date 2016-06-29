@@ -6,11 +6,10 @@
 	template="/paginas/plantillas/plantilla-admin.xhtml">
 
 	<ui:define name="head">
-		<title>Mantenimiento Operador</title>
+		<title>Editar Operador</title>
 	</ui:define>
 
 	<ui:define name="body" >
-	<!--  <div style="width:960px; margin:0 auto;">-->
 		<h:form id="formOperador">
 			<p:panel header="Datos del operador" id="panelDatos" class="ui-g-12">
 				<p:growl id="msgUser" sticky="true" showDetail="true" />
@@ -188,52 +187,11 @@
 						
 					</p:panelGrid>
 					<div align="right">
-						<p:commandButton value="Registrar"
-								action="#{operadorManagedBean.registrar()}" style="margin-top:10px;margin-bottom:20px"
-								icon="ui-icon-disk" ajax="msgUser,panelDatos"/>
+						<p:commandButton value="Actualizar"
+								action="#{operadorManagedBean.guardarEditar()}" style="margin-top:10px;margin-bottom:20px"
+								icon="ui-icon-refresh" ajax="false" update="msgUser" />
 					</div>
-					
-					
-				<p:dataTable id="dtoperadores" var="operador" value="#{operadorManagedBean.operadores}"
-									reflow="true" rows="10" paginator="true" resizableColumns="true" draggableColumns="true">
-									
-					<!-- <f:facet name="header">
-			            <p:outputPanel>
-			                <h:outputText value="Buscar:" />
-			                <p:inputText id="busqueda" onkeyup="PF('dtoperadors').filter()" style="width:150px" placeholder="Ingrese dato"/>
-			            </p:outputPanel>
-			        </f:facet> -->
-					<p:column headerText="Nombre">
-						<h:outputText value="#{operador.persona.perNombre}"></h:outputText>
-					</p:column>
-					<p:column headerText="Apellido Paterno">
-						<h:outputText value="#{operador.persona.perApellidoPaterno}"></h:outputText>
-					</p:column>
-					<p:column headerText="Nombre usuario">
-						<h:outputText value="#{operador.persona.usuId.usuNombre}"></h:outputText>
-					</p:column>
-					<p:column headerText="Turno">
-						<h:outputText value="#{operador.turno.turDescripcion}"></h:outputText>
-					</p:column>
-					<p:column headerText="Rol">
-						<h:outputText value="#{operador.persona.usuId.rol.rolDescripcion}"></h:outputText>
-					</p:column>
-					<p:column headerText=" ">
-						<p:commandButton
-								action="#{operadorManagedBean.editar()}"
-								icon="ui-icon-pencil" title="Icon Only" ajax="false">
-							<f:param name="operadorID" value="#{operador.opeId}"></f:param>	
-						</p:commandButton>
-						<p:commandButton
-								action="#{operadorManagedBean.eliminar()}"
-								icon="ui-icon-trash" title="Icon Only" ajax="true" update="dtoperadores">
-							<f:param name="operadorID" value="#{operador.opeId}"></f:param>	
-						</p:commandButton>
-					</p:column>
-					
-				</p:dataTable>
 			</p:panel>
 		</h:form>
-	<!-- </div> -->
 	</ui:define>
 </ui:composition>

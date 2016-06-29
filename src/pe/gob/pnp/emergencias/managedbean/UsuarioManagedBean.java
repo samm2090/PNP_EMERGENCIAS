@@ -137,22 +137,6 @@ public class UsuarioManagedBean {
 		this.tipoPersonales = tipoPersonales;
 	}
 
-	public String registrar() {
-
-		/*persona = new Persona();
-		usuario = new Usuario();
-
-		persona.setUsuId(this.getUsuario());
-		personaService.getPersonaRepository().save(persona);*/
-		usuarioService.getUsuarioRepository().save(usuario);
-
-		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Registro",
-				"El usuario ha sido grabado correctamente");
-		FacesContext.getCurrentInstance().addMessage(null, message);
-
-		return null;
-	}
-
 	public String autenticar() {
 		userAutentic = usuarioService.getUsuarioRepository().obtenerUsuarioLogged(userAutentic.getUsuNombre(),
 				userAutentic.getUsuClave());

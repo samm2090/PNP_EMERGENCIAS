@@ -1,6 +1,7 @@
 package pe.gob.pnp.emergencias.managedbean;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -14,6 +15,8 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
+
+import org.primefaces.context.RequestContext;
 
 import pe.gob.pnp.emergencias.model.Persona;
 import pe.gob.pnp.emergencias.model.Recurso;
@@ -165,7 +168,7 @@ public class RecursoManagedBean {
 				.getRecursoRepository()
 				.findOne(new Long(id));
 		
-		return "mantenimientoRecurso";
+		return "editarRecurso";
 	}
 	
 	public String registrar()
@@ -211,14 +214,46 @@ public class RecursoManagedBean {
 	}
 	
 	public String guardarEditar()
-	{
-		recursoService.getRecursoRepository().save(recurso);
-		
-		FacesContext context = FacesContext.getCurrentInstance();
-		context.addMessage(null, new FacesMessage("Success",
-				"Se actualizo correctamente el empleado " + recurso.getPersona().getPerNombre()+" "+recurso.getPersona().getPerApellidoPaterno()));
-		
-		recurso = new Recurso();
+	{		
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("SpringData");
+		EntityManager manager = factory.createEntityManager();
+		EntityTransaction tx = manager.getTransaction();
+
+		try {
+			tx.begin();
+			Query q = manager.createNativeQuery("sp_editarRecurso ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?")
+					.setParameter(1, recurso.getRecId())
+					.setParameter(2, recurso.getPersona().getPerId())
+					.setParameter(3, recurso.getPersona().getUsuId().getUsuId())
+					.setParameter(4, recurso.getPersona().getPerNombre())
+					.setParameter(5, recurso.getPersona().getPerApellidoPaterno())
+					.setParameter(6, recurso.getPersona().getPerApellidoMaterno())
+					.setParameter(7, recurso.getPersona().getPerFechaNacimiento())
+					.setParameter(8, recurso.getPersona().getPerDireccion())
+					.setParameter(9, recurso.getPersona().getPerCorreo())
+					.setParameter(10, recurso.getPersona().getPerTelefono())
+					.setParameter(11, recurso.getPersona().getPerGenero())
+					.setParameter(12, recurso.getPersona().getPerEstadoCivil())
+					.setParameter(13, recurso.getPersona().getUsuId().getUsuNombre())
+					.setParameter(14, recurso.getPersona().getUsuId().getUsuClave())
+					.setParameter(15, recurso.getPersona().getUsuId().getRol().getRolId())
+					.setParameter(16, recurso.getGradoRecurso().getGreId())
+					.setParameter(17, recurso.getTurno().getTurId())
+					.setParameter(18, recurso.getComisaria().getComId());
+
+			int resultado = q.executeUpdate();
+			tx.commit();
+			
+			FacesContext context = FacesContext.getCurrentInstance();
+			if(resultado == 0)
+			{
+				context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Success",
+						"No se pudo registrar el recurso"));
+			}
+			else
+			{
+				context.addMessage(null, new FacesMessage("Success",
+						"Se guard� correctamente el recurso " + recurso.getPersona().getPerNombre()+" "+recurso.getPersona().getPerApellidoPaterno()));
 		
 		return "/paginas/administrador/mantenimientoRecurso";
 	}
@@ -227,4 +262,18 @@ public class RecursoManagedBean {
 	{
 		return "mantenimientoRecurso";
 	}
+	
+	public void viewRecursos()
+	{
+		Map<String,Object> options = new HashMap<String, Object>();
+        options.put("modal", true);
+        options.put("width", 640);
+        options.put("height", 340);
+        options.put("contentWidth", "100%");
+        options.put("contentHeight", "100%");
+        options.put("headerElement", "customheader");
+        RequestContext.getCurrentInstance().openDialog("verRecursos", options, null);
+	}
+	
+
 }

@@ -15,6 +15,8 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
+import com.google.common.collect.Lists;
+
 import pe.gob.pnp.emergencias.model.Operador;
 import pe.gob.pnp.emergencias.service.OperadorService;
 
@@ -36,7 +38,7 @@ public class OperadorManagedBean {
 	}
 
 	public List<Operador> getOperadores() {
-		return (List<Operador>) operadorService.getOperadorRepository().findAll();
+		return Lists.newArrayList(operadorService.getOperadorRepository().findAll());
 	}
 
 	public void setOperadores(List<Operador> operadores) {
@@ -95,16 +97,55 @@ public class OperadorManagedBean {
 	
 	public String guardarEditar()
 	{
+				
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("SpringData");
+		EntityManager manager = factory.createEntityManager();
+		EntityTransaction tx = manager.getTransaction();
+
+		try {
+			tx.begin();
+
+			Query q = manager.createNativeQuery("sp_editarOperador ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?")
+					.setParameter(1, operador.getOpeId())
+					.setParameter(2, operador.getPersona().getPerId())
+					.setParameter(3, operador.getPersona().getUsuId().getUsuId())
+					.setParameter(4, operador.getPersona().getPerNombre())
+					.setParameter(5, operador.getPersona().getPerApellidoPaterno())
+					.setParameter(6, operador.getPersona().getPerApellidoMaterno())
+					.setParameter(7, operador.getPersona().getPerFechaNacimiento())
+					.setParameter(8, operador.getPersona().getPerDireccion())
+					.setParameter(9, operador.getPersona().getPerCorreo())
+					.setParameter(10, operador.getPersona().getPerTelefono())
+					.setParameter(11, operador.getPersona().getPerGenero())
+					.setParameter(12, operador.getPersona().getPerEstadoCivil())
+					.setParameter(13, operador.getPersona().getUsuId().getUsuClave())
+					.setParameter(14, operador.getPersona().getUsuId().getRol().getRolId())
+					.setParameter(15, operador.getTurno().getTurId());
+
+			int resultado = q.executeUpdate();
+			tx.commit();
+			
+			FacesContext context = FacesContext.getCurrentInstance();
+			if(resultado == 0)
+			{
+				context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Success",
+						"No se pudo registrar la comisaria"));
+			}
+			else
+			{
+			
+				context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Success",
+					"Se actualizo correctamente el operador " + operador.getPersona().getPerNombre()+" "+operador.getPersona().getPerApellidoPaterno()));
+			}
+			
+			operador = new Operador();
+
+		} catch (Exception e) {
+			tx.rollback();
+			e.printStackTrace();
+		}
 		
-		operadorService.getOperadorRepository().save(operador);
-		
-		FacesContext context = FacesContext.getCurrentInstance();
-		context.addMessage(null, new FacesMessage("Success",
-				"Se actualizo correctamente el operador " + operador.getPersona().getPerNombre()+" "+operador.getPersona().getPerApellidoPaterno()));
-		
-		operador = new Operador();
-		
-		return "/paginas/administrador/mantenimientoOperador";
+		return "mantenimientoOperador";
 	}
 	
 	public String editar()
@@ -117,7 +158,7 @@ public class OperadorManagedBean {
 				.getOperadorRepository()
 				.findOne(new Long(id));
 		
-		return "mantenimientoOperador";
+		return "editarOperador";
 	}
 	
 	public String eliminar()
