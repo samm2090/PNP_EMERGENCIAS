@@ -30,7 +30,7 @@ public class Emergencia {
 
 	@OneToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "LLA_ID")
-	private Llamada llamada;
+	private Llamada llamada = new Llamada();
 
 	@ManyToOne(cascade =CascadeType.PERSIST)
 	@JoinColumn(name = "TEM_ID")

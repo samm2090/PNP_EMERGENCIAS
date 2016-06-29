@@ -26,6 +26,11 @@ public class DistritoManagedBean {
 		distritos = Lists.newArrayList(distritoService.getDistritoRepository().findAll());
 		return distritos;
 	}
+	
+	public List<Distrito> getDistritosLima() {
+		distritos = Lists.newArrayList(distritoService.getDistritoRepository().distritosLima(new Long(136)));
+		return distritos;
+	}
 
 	public void setDistritos(List<Distrito> distritos) {
 		this.distritos = distritos;
