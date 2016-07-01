@@ -1,5 +1,6 @@
 package pe.gob.pnp.emergencias.model;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -56,6 +57,12 @@ public class Emergencia {
 	@Column(name = "EME_HORA_FIN")
 	private String emeHoraFin;
 
+	@Column(name="EME_LATITUD", precision=8, scale=6)
+	private BigDecimal latitud;
+	
+	@Column(name="EME_LONGITUD", precision=8, scale=6)
+	private BigDecimal longitud;
+	
 	public Emergencia() {
 	}
 	
