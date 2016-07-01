@@ -12,7 +12,6 @@
 	<ui:define name="body" >
 		<h:form id="formOperador">
 			<p:panel header="Datos del operador" id="panelDatos" class="ui-g-12">
-				<p:growl id="msgUser" sticky="true" showDetail="true" />
 					<p:panelGrid>
 						<p:row>
 							<p:column>
@@ -189,7 +188,7 @@
 					<div align="right">
 						<p:commandButton value="Actualizar"
 								action="#{operadorManagedBean.guardarEditar()}" style="margin-top:10px;margin-bottom:20px"
-								icon="ui-icon-refresh" ajax="false" update="msgUser" />
+								icon="ui-icon-refresh" ajax="false"/>
 					</div>
 			</p:panel>
 		</h:form>

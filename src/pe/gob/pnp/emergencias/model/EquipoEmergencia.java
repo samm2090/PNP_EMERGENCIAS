@@ -21,12 +21,12 @@ public class EquipoEmergencia {
 	// bi-directional many-to-one association to Emergencia
 	@ManyToOne
 	@JoinColumn(name = "EME_ID")
-	private Emergencia emergencia;
+	private Emergencia emergencia = new Emergencia();
 
 	// bi-directional many-to-one association to Recurso
 	@ManyToOne
 	@JoinColumn(name = "REC_ID")
-	private Recurso recurso;
+	private Recurso recurso = new Recurso();
 
 	public Long getEemId() {
 		return eemId;

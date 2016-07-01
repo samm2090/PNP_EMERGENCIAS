@@ -129,7 +129,7 @@ public class OperadorManagedBean {
 			if(resultado == 0)
 			{
 				context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Success",
-						"No se pudo registrar la comisaria"));
+						"No se pudo actualizar operador"));
 			}
 			else
 			{
@@ -138,12 +138,14 @@ public class OperadorManagedBean {
 					"Se actualizo correctamente el operador " + operador.getPersona().getPerNombre()+" "+operador.getPersona().getPerApellidoPaterno()));
 			}
 			
-			operador = new Operador();
 
 		} catch (Exception e) {
 			tx.rollback();
 			e.printStackTrace();
 		}
+		
+		operador = new Operador();
+		this.setOperadores(Lists.newArrayList(operadorService.getOperadorRepository().findAll()));
 		
 		return "mantenimientoOperador";
 	}

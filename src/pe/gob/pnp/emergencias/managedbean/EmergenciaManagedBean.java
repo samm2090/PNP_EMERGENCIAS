@@ -7,6 +7,7 @@ import java.util.Random;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -14,7 +15,6 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 
 import pe.gob.pnp.emergencias.model.Emergencia;
-import pe.gob.pnp.emergencias.model.TipoTerminal;
 import pe.gob.pnp.emergencias.service.EmergenciaService;
 
 @ManagedBean
@@ -69,7 +69,6 @@ public class EmergenciaManagedBean {
 		EntityManager manager = factory.createEntityManager();
 		EntityTransaction tx = manager.getTransaction();
 	
-
 		try {
 			Date hoy = new Date();
 			Calendar ahora = Calendar.getInstance();
@@ -105,6 +104,8 @@ public class EmergenciaManagedBean {
 			q.executeUpdate();
 
 			tx.commit();
+			
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("emergencia", emergencia);
 
 			emergencia = new Emergencia();
 
@@ -115,5 +116,50 @@ public class EmergenciaManagedBean {
 
 		return "registroEquipoEmergencia";
 	}
+	
+	public String registrarLlamadaFalsa(){
+		
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("SpringData");
+		EntityManager manager = factory.createEntityManager();
+		EntityTransaction tx = manager.getTransaction();
+		
+		try {
+			Date hoy = new Date();
+			Calendar ahora = Calendar.getInstance();
+			
+			emergencia.getLlamada().getCivil().setFechaRegistro(hoy);
+			emergencia.getLlamada().setLlaFecha(hoy);
+			emergencia.getLlamada().setLlaHoraFin(ahora.get(Calendar.HOUR_OF_DAY) + ":" + ahora.get(Calendar.MINUTE));
+			emergencia.getLlamada().getOperador().setOpeId(new Long(1));;
+			tx.begin();
 
+			Query q = manager
+					.createNativeQuery("EXEC USP_REGISTRAR_LLAMADA_FALSA ?,?,?,?,?,?,?,?,?,?,?,?,?")
+					.setParameter(1, emergencia.getLlamada().getCivil().getCivDocumento())
+					.setParameter(2, emergencia.getLlamada().getCivil().getCivNombre())
+					.setParameter(3, emergencia.getLlamada().getCivil().getCivApellidoPaterno())
+					.setParameter(4, emergencia.getLlamada().getCivil().getCivApellidoMaterno())
+					.setParameter(5, emergencia.getLlamada().getCivil().getCivTelefono())
+					.setParameter(6, emergencia.getLlamada().getCivil().getFechaRegistro())
+					.setParameter(7, emergencia.getLlamada().getLlaFecha())
+					.setParameter(8, emergencia.getLlamada().getLlaObservacion())
+					.setParameter(9, emergencia.getLlamada().getLlaTelefono())
+					.setParameter(10, emergencia.getLlamada().getTipoTerminal().getTteId())
+					.setParameter(11, emergencia.getLlamada().getOperador().getOpeId())
+					.setParameter(12, emergencia.getLlamada().getLlaHoraInicio())
+					.setParameter(13, emergencia.getLlamada().getLlaHoraFin());
+			
+			q.executeUpdate();
+
+			tx.commit();
+
+			emergencia = new Emergencia();
+
+		} catch (Exception e) {
+			tx.rollback();
+			e.printStackTrace();
+		}
+		return "registroLlamada";
+	}
+	
 }
