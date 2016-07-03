@@ -288,6 +288,7 @@ end
 
 select * from PERSONA
 select * from recurso
+go
 
 create procedure sp_editarOperador
 @codOperador int,
