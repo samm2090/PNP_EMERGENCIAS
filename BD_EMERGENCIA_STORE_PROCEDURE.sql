@@ -247,7 +247,8 @@ GO
 
 
 
->>>>>>> origin/master
+/****** Propietario: Maria Cristina de Loayza ******/
+/****** Objetivo: Este store permite realizar la actualizacion de los recursos en las tablas USUARIO, PERSONA y RECURSO ******/
 create procedure sp_editarRecurso
 @codRecurso int,
 @codPersona int,
@@ -289,12 +290,8 @@ begin
 		END CATCH
 end
 
-<<<<<<< HEAD
-=======
-select * from PERSONA
-select * from recurso
-go
->>>>>>> origin/master
+/****** Propietario: Maria Cristina de Loayza ******/
+/****** Objetivo: Este store permite realizar la actualizacion de los operadores en las tablas USUARIO, PERSONA y RECURSO ******/
 
 create procedure sp_editarOperador
 @codOperador int,
@@ -334,6 +331,8 @@ begin
 end
 GO
 
+/****** Propietario: Maria Cristina de Loayza ******/
+/****** Objetivo: OBTENER LA CANTIDAD DE MINUTOS DE TODAS LAS LLAMADAS******/
 create procedure SP_MINUTOSLLAMADAS
 AS
 select sum(DATEDIFF(SECOND,LLA_HORA_INICIO,LLA_HORA_FIN)/60) from LLAMADA
