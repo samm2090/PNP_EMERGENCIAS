@@ -27,7 +27,7 @@ public class ParteManagedBean {
 	private Parte parte = new Parte();
 	private Emergencia emergencia = new Emergencia();
 	private EstadoParte estadoParte = new EstadoParte();
-	private EquipoEmergencia equipoEmergencia= new EquipoEmergencia();
+	private EquipoEmergencia equipoEmergencia = new EquipoEmergencia();
 
 	public ParteService getParteService() {
 		return parteService;
@@ -44,7 +44,7 @@ public class ParteManagedBean {
 	public void setParte(Parte parte) {
 		this.parte = parte;
 	}
-	
+
 	public Emergencia getEmergencia() {
 		return emergencia;
 	}
@@ -82,28 +82,31 @@ public class ParteManagedBean {
 		try {
 			tx.begin();
 
-			Query q = manager.createNativeQuery("EXEC sp_registrarParte ?,?,?,?")
-					.setParameter(1, equipoEmergencia1.getEmergencia().getEmeId())
-					.setParameter(2, estadoParte.getEpaId())
-					.setParameter(3, equipoEmergencia1.getRecurso().getRecId())
-					.setParameter(4, parte.getParObservacion());
+			if (equipoEmergencia1 == null) {
+				return "emergenciaNoEncontrada?faces-redirect=true";
+			} else {
+				Query q = manager.createNativeQuery("EXEC sp_registrarParte ?,?,?,?")
+						.setParameter(1, equipoEmergencia1.getEmergencia().getEmeId())
+						.setParameter(2, estadoParte.getEpaId())
+						.setParameter(3, equipoEmergencia1.getRecurso().getRecId())
+						.setParameter(4, parte.getParObservacion());
 
-			q.executeUpdate();
+				q.executeUpdate();
 
-			tx.commit();
+				tx.commit();
 
-			equipoEmergencia = new EquipoEmergencia();
-			estadoParte = new EstadoParte();
-			parte = new Parte();
-			emergencia = new Emergencia();
+				equipoEmergencia = new EquipoEmergencia();
+				estadoParte = new EstadoParte();
+				parte = new Parte();
+				emergencia = new Emergencia();
+			}
 
 		} catch (Exception e) {
 			tx.rollback();
 			e.printStackTrace();
 		}
 
-		return "ultimaEmergencia3";
+		return "emergenciaNoEncontrada";
 	}
-
 
 }

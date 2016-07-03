@@ -186,6 +186,6 @@ public class OperadorManagedBean {
 	
 	public String irPaginaOperador()
 	{
-		return "mantenimientoOperador";
+		return "mantenimientoOperador?faces-redirect=true";
 	}
 }

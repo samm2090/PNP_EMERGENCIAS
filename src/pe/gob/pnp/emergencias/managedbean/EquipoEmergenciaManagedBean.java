@@ -97,15 +97,15 @@ public class EquipoEmergenciaManagedBean {
 	public void setEmergencia(Emergencia emergencia) {
 		this.emergencia = emergencia;
 	}
-	
+
 	public List<EquipoEmergencia> getEquiposEmergenciaXRecurso() {
 		FacesContext context = FacesContext.getCurrentInstance();
 		@SuppressWarnings("rawtypes")
 		Map params = context.getExternalContext().getSessionMap();
 		EquipoEmergencia equipoEmergencia1 = (EquipoEmergencia) params.get("equipoLogin");
-
-		equiposEmergenciaXRecurso = Lists.newArrayList(equipoEmergenciaService.getEquipoEmergenciaRepository()
-				.equipoXEmergencia(equipoEmergencia1.getEmergencia().getEmeId()));
+		
+		equiposEmergenciaXRecurso = Lists.newArrayList(
+				equipoEmergenciaService.getEquipoEmergenciaRepository().equipoXEmergencia(equipoEmergencia1.getEmergencia().getEmeId()));
 		return equiposEmergenciaXRecurso;
 	}
 
@@ -174,7 +174,7 @@ public class EquipoEmergenciaManagedBean {
 			tx.begin();
 
 			if (equipoEmergencia1 == null) {
-				return "ultimaEmergencia3?faces-redirect=true";
+				return "emergenciaNoEncontrada?faces-redirect=true";
 			} else {
 				Query q = manager.createNativeQuery("sp_obtenerUltimaEmergencia ?").setParameter(1,
 						equipoEmergencia1.getRecurso().getRecId());
@@ -184,17 +184,17 @@ public class EquipoEmergenciaManagedBean {
 					int unaemergencia = (int) q.getResultList().get(0);
 					equipoEmergencia = equipoEmergenciaService.getEquipoEmergenciaRepository()
 							.obtenerEquipoEmergenciaId(unaemergencia);
-					return "ultimaEmergencia2?faces-redirect=true";
+					return "emergenciaEncontrada?faces-redirect=true";
 				} else {
 					addMessageInfo("Confirmación", "USTED NO TIENE EMERGENCIAS ASIGNADAS");
-					return "ultimaEmergencia3?faces-redirect=true";
+					return "emergenciaNoEncontrada?faces-redirect=true";
 				}
 			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "ultimaEmergencia2?faces-redirect=true";
+		return "emergenciaEncontrada?faces-redirect=true";
 	}
 
 	public String irReporteEmergenciaPorRecurso() {
