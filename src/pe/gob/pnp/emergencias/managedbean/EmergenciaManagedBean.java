@@ -165,14 +165,10 @@ public class EmergenciaManagedBean {
 		}
 		return "registroLlamada";
 	}
-<<<<<<< HEAD
-
-=======
 	
 	public String irPaginaChart()
 	{
 		return "ejemploChart";
 	}
 	
->>>>>>> 4131abf4a499388f57a7b7f20d162a68ca7c5a98
 }
