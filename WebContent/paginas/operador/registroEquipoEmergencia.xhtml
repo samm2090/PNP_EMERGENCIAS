@@ -17,10 +17,10 @@
 		</p:steps>
 
 		<h:form>
-			<div class="ui-g" align="center">
-				<p:panel header="Seleccionar Recursos" style="width:800px">
-					<h:panelGrid columns="2" cellpadding="3" cellspacing="5">
-						<p:panel header="Disponibles" style="width:300px">
+			<div class="ui-g-12" align="center">
+				<p:panel header="Seleccionar Recursos" style="width:1100px">
+					<p:panelGrid columns="2">
+						<p:panel header="Disponibles" style="width:500px">
 							<p:dataTable id="dtDisponibles" var="recursoEstado"
 								value="#{equipoEmergenciaManagedBean.recursosEstado}"
 								reflow="true" resizableColumns="true" draggableColumns="true">
@@ -40,18 +40,41 @@
 								<p:column headerText="Agregar">
 									<p:commandButton
 										action="#{equipoEmergenciaManagedBean.agregarRecursoEquipo()}"
-										icon="fa-arrow-circle-o-right" title="Icon Only" ajax="false">
+										icon="fa fa-fw fa-arrow-circle-o-right" title="Icon Only" ajax="false">
+										<f:param name="recId" value="#{recursoEstado.recurso.recId}"></f:param>	
 									</p:commandButton>
 								</p:column>
 							</p:dataTable>
 						</p:panel>
 
-						<p:panel header="Seleccionados" style="width:300px">
+						<p:panel header="Seleccionados" style="width:500px">
+							<p:dataTable id="dtSeleccionados" var="equipo"
+								value="#{equipoEmergenciaManagedBean.equiposEmergencia}"
+								reflow="true" resizableColumns="true" draggableColumns="true">
+
+								<p:column headerText="Nombre">
+									<h:outputText
+										value="#{equipo.recurso.persona.perNombre}"></h:outputText>
+								</p:column>
+								<p:column headerText="Grado">
+									<h:outputText
+										value="#{equipo.recurso.gradoRecurso}"></h:outputText>
+								</p:column>
+								<p:column headerText="Comisaria">
+									<h:outputText
+										value="#{equipo.recurso.comisaria.comNombre}"></h:outputText>
+								</p:column>
+								<p:column headerText="Agregar">
+									<p:commandButton
+										action="#{equipoEmergenciaManagedBean.agregarRecursoEquipo()}"
+										icon="fa fa-fw fa-arrow-circle-o-left" title="Icon Only" ajax="false">
+									</p:commandButton>
+								</p:column>
+							</p:dataTable>
 
 						</p:panel>
 
-
-					</h:panelGrid>
+					</p:panelGrid>
 				</p:panel>
 			</div>
 		</h:form>

@@ -1,5 +1,6 @@
 package pe.gob.pnp.emergencias.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,12 +20,12 @@ public class EquipoEmergencia {
 	private Long eemId;
 
 	// bi-directional many-to-one association to Emergencia
-	@ManyToOne
+	@ManyToOne(cascade =CascadeType.PERSIST)
 	@JoinColumn(name = "EME_ID")
 	private Emergencia emergencia = new Emergencia();
 
 	// bi-directional many-to-one association to Recurso
-	@ManyToOne
+	@ManyToOne(cascade =CascadeType.PERSIST)
 	@JoinColumn(name = "REC_ID")
 	private Recurso recurso = new Recurso();
 

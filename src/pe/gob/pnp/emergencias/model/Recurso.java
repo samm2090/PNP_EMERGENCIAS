@@ -28,15 +28,15 @@ public class Recurso {
 	@JoinColumn(name = "PER_ID")
 	private Persona persona = new Persona();
 
-	@ManyToOne
+	@ManyToOne(cascade =CascadeType.PERSIST)
 	@JoinColumn(name = "GRE_ID")
 	private GradoRecurso gradoRecurso = new GradoRecurso();
 
-	@ManyToOne
+	@ManyToOne(cascade =CascadeType.PERSIST)
 	@JoinColumn(name = "TUR_ID")
 	private Turno turno = new Turno();
 
-	@ManyToOne
+	@ManyToOne(cascade =CascadeType.PERSIST)
 	@JoinColumn(name = "COM_ID")
 	private Comisaria comisaria = new Comisaria();
 

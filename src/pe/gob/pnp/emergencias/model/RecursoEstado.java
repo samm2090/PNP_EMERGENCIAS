@@ -3,6 +3,7 @@ package pe.gob.pnp.emergencias.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -29,12 +30,12 @@ public class RecursoEstado implements Serializable {
 	private Date reeFecha;
 
 	// bi-directional many-to-one association to Estado
-	@ManyToOne
+	@ManyToOne(cascade =CascadeType.PERSIST)
 	@JoinColumn(name = "EST_ID")
 	private Estado estado = new Estado();
 
 	// bi-directional many-to-one association to Recurso
-	@ManyToOne
+	@ManyToOne(cascade =CascadeType.PERSIST)
 	@JoinColumn(name = "REC_ID")
 	private Recurso recurso = new Recurso();
 

@@ -3,6 +3,7 @@ package pe.gob.pnp.emergencias.model;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -34,7 +35,7 @@ public class Comisaria implements Serializable {
 	private boolean estadoRegistro;
 
 	// bi-directional many-to-one association to Distrito
-	@ManyToOne
+	@ManyToOne(cascade =CascadeType.PERSIST)
 	@JoinColumn(name = "DIS_ID")
 	private Distrito distrito=new Distrito();
 

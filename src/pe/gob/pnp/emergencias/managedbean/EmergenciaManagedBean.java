@@ -81,7 +81,7 @@ public class EmergenciaManagedBean {
 			tx.begin();
 
 			Query q = manager
-					.createNativeQuery("EXEC USP_REGISTRAR_EMERGENCIA ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?")
+					.createNativeQuery("EXEC USP_REGISTRAR_EMERGENCIA ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?")
 					.setParameter(1, emergencia.getLlamada().getCivil().getCivDocumento())
 					.setParameter(2, emergencia.getLlamada().getCivil().getCivNombre())
 					.setParameter(3, emergencia.getLlamada().getCivil().getCivApellidoPaterno())
@@ -99,7 +99,8 @@ public class EmergenciaManagedBean {
 					.setParameter(15, emergencia.getTipoEmergencia().getTemId())
 					.setParameter(16, emergencia.getDistrito().getDisId()).setParameter(17, emergencia.getEmeDir())
 					.setParameter(18, emergencia.getEmeObservacion()).setParameter(19, emergencia.getEmeFecha())
-					.setParameter(20, emergencia.getEmeHoraInicio()).setParameter(21, emergencia.getEmeHoraFin());
+					.setParameter(20, emergencia.getEmeHoraInicio()).setParameter(21, emergencia.getEmeHoraFin())
+					.setParameter(22, emergencia.getLatitud()).setParameter(23, emergencia.getLongitud());
 
 			q.executeUpdate();
 

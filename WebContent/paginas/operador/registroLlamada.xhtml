@@ -7,6 +7,57 @@
 
 	<ui:define name="head">
 		<title>Registro Llamada</title>
+		<script type="text/javascript"
+			src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJXqqF2pp5DLzQesnl45jrBSE6aSiz7hc"></script>
+		<script type="text/javascript">
+			function geocode() {
+				PF('geoMap')
+						.geocode(document.getElementById('direccion').value);
+			}
+
+			function reverseGeocode() {
+				var lat = document.getElementById('lat').value, lng = document
+						.getElementById('lng').value;
+
+				PF('revGeoMap').reverseGeocode(lat, lng);
+			}
+		</script>
+		<script type="text/javascript">
+			var currentMarker = null;
+
+			function handlePointClick(event) {
+				if (currentMarker === null) {
+					document.getElementById('lat').value = event.latLng.lat();
+					document.getElementById('lng').value = event.latLng.lng();
+
+					currentMarker = new google.maps.Marker({
+						position : new google.maps.LatLng(event.latLng.lat(),
+								event.latLng.lng())
+					});
+
+					PF('geoMap').addOverlay(currentMarker);
+
+					PF('dlg').show();
+				}
+			}
+
+			function markerAddComplete() {
+				var title = document.getElementById('title');
+				currentMarker.setTitle(title.value);
+				title.value = "";
+
+				currentMarker = null;
+				PF('dlg').hide();
+			}
+
+			function cancel() {
+				PF('dlg').hide();
+				currentMarker.setMap(null);
+				currentMarker = null;
+
+				return false;
+			}
+		</script>
 	</ui:define>
 
 	<ui:define name="body">
@@ -16,7 +67,7 @@
 			<p:menuitem value="Recursos" />
 		</p:steps>
 
-		<h:form>
+		<h:form id="form_emergencia" prependId="false">
 			<p:dialog header="¡Falsa Alarma!" widgetVar="dlgFalsaAlarma"
 				modal="true" height="200">
 				<h:panelGrid columns="2" cellpadding="3" cellspacing="1">
@@ -29,6 +80,38 @@
 						action="#{emergenciaManagedBean.registrarLlamadaFalsa()}" />
 				</h:panelGrid>
 			</p:dialog>
+
+			<p:dialog header="Mapa" widgetVar="dlgMapa" modal="true" height="400"
+				width="600">
+				<p:gmap id="geoMap" center="#{geoCodeView.centerGeoMap}" zoom="15"
+					type="ROADMAP" style="width:100%;height:400px"
+					model="#{addMarkersView.geoModel}"
+					listener="#{geoCodeView.onGeocode}"
+					onPointClick="handlePointClick(event);" widgetVar="geoMap">
+					<p:ajax event="geocode" listener="#{geoCodeView.onGeocode}"
+						update="@this" />
+				</p:gmap>
+			</p:dialog>
+
+
+			<p:dialog widgetVar="dlg" showEffect="fade">
+				<h:panelGrid columns="2">
+					<!-- <h:outputLabel for="title" value="Title:" />
+			            <p:inputText id="title" value="#{addMarkersView.title}" /> -->
+
+					<f:facet name="footer">
+						<p:commandButton value="Marcar"
+							actionListener="#{addMarkersView.addMarker}"
+							oncomplete="markerAddComplete()" />
+						<p:commandButton value="Cancelar" onclick="return cancel()" />
+					</f:facet>
+				</h:panelGrid>
+				<h:inputHidden id="lat"
+					value="#{emergenciaManagedBean.emergencia.latitud}" />
+				<h:inputHidden id="lng"
+					value="#{emergenciaManagedBean.emergencia.longitud}" />
+			</p:dialog>
+
 			<div class="ui-g">
 				<div class="ui-g-2" align="right">
 					<p:commandButton value="Contestar Llamada" update="telefono"
@@ -69,44 +152,74 @@
 				</div>
 				<div class="ui-g-6">
 					<p:panel header="Emergencia" style="width:450px">
-						<h:panelGrid columns="2" cellpadding="3" cellspacing="5">
-							<p:outputLabel for="distrito" value="Distrito:" />
-							<p:selectOneMenu id="distrito"
-								value="#{emergenciaManagedBean.emergencia.distrito.disId}">
+						<p:panelGrid>
 
-								<f:selectItems value="#{distritoManagedBean.distritosLima}"
-									var="d" itemLabel="#{d.disDescripcion}" itemValue="#{d.disId}" />
-							</p:selectOneMenu>
+							<p:row>
+								<p:column>
+									<p:outputLabel for="distrito" value="Distrito:" />
+								</p:column>
+								<p:column>
+									<p:selectOneMenu id="distrito"
+										value="#{emergenciaManagedBean.emergencia.distrito.disId}">
+										<f:selectItems value="#{distritoManagedBean.distritosLima}"
+											var="d" itemLabel="#{d.disDescripcion}"
+											itemValue="#{d.disId}" />
+									</p:selectOneMenu>
+								</p:column>
+							</p:row>
 
-							<p:outputLabel for="direccion" value="Número Documento:" />
-							<p:inputText id="direccion"
-								value="#{emergenciaManagedBean.emergencia.emeDir}"
-								placeholder="Av. Diez Canseco 114" />
+							<p:row>
+								<p:column>
+									<p:outputLabel for="direccion" value="Dirección:" />
+								</p:column>
+								<p:column>
+									<p:inputText id="direccion"
+										value="#{emergenciaManagedBean.emergencia.emeDir}" />
+									<p:commandButton icon="fa fa-fw fa-search" type="button"
+										onclick="PF('dlgMapa').show();geocode();" />
+								</p:column>
+							</p:row>
 
-							<p:outputLabel for="tipoEmergencia" value="Tipo Emergencia:" />
-							<p:selectOneMenu id="tipoEmergencia"
-								value="#{emergenciaManagedBean.emergencia.tipoEmergencia.temId}">
+							<p:row>
+								<p:column>
+									<p:outputLabel for="tipoEmergencia" value="Tipo Emergencia:" />
+								</p:column>
+								<p:column>
+									<p:selectOneMenu id="tipoEmergencia"
+										value="#{emergenciaManagedBean.emergencia.tipoEmergencia.temId}">
+										<f:selectItems
+											value="#{tipoEmergenciaManagedBean.tiposEmergencia}" var="te"
+											itemLabel="#{te.temDescripcion}" itemValue="#{te.temId}" />
+									</p:selectOneMenu>
+								</p:column>
+							</p:row>
 
-								<f:selectItems
-									value="#{tipoEmergenciaManagedBean.tiposEmergencia}" var="te"
-									itemLabel="#{te.temDescripcion}" itemValue="#{te.temId}" />
-							</p:selectOneMenu>
+							<p:row>
+								<p:column>
+									<p:outputLabel for="nivelEmergencia" value="Nivel Emergencia:" />
+								</p:column>
+								<p:column>
+									<p:selectOneMenu id="nivelEmergencia"
+										value="#{emergenciaManagedBean.emergencia.nivelEmergencia.nemId}">
+										<f:selectItems
+											value="#{nivelEmergenciaManagedBean.nivelesEmergencia}"
+											var="x" itemLabel="#{x.nemDescripcion}"
+											itemValue="#{x.nemId}" />
+									</p:selectOneMenu>
+								</p:column>
+							</p:row>
 
-							<p:outputLabel for="nivelEmergencia" value="Nivel Emergencia:" />
-							<p:selectOneMenu id="nivelEmergencia"
-								value="#{emergenciaManagedBean.emergencia.nivelEmergencia.nemId}">
-
-								<f:selectItems
-									value="#{nivelEmergenciaManagedBean.nivelesEmergencia}" var="x"
-									itemLabel="#{x.nemDescripcion}" itemValue="#{x.nemId}" />
-							</p:selectOneMenu>
-
-							<p:outputLabel for="observacion" value="Observación:" />
-							<p:inputTextarea id="observacion"
-								value="#{emergenciaManagedBean.emergencia.emeObservacion}"
-								rows="7" cols="30" />
-
-						</h:panelGrid>
+							<p:row>
+								<p:column>
+									<p:outputLabel for="observacion" value="Observación:" />
+								</p:column>
+								<p:column>
+									<p:inputTextarea id="observacion"
+										value="#{emergenciaManagedBean.emergencia.emeObservacion}"
+										rows="7" cols="30" />
+								</p:column>
+							</p:row>
+						</p:panelGrid>
 						<div align="center">
 							<p:commandButton ajax="false" value="Registrar Emergencia"
 								action="#{emergenciaManagedBean.registrarEmergencia()}" />
@@ -114,7 +227,6 @@
 					</p:panel>
 				</div>
 			</div>
-
 		</h:form>
 	</ui:define>
 </ui:composition>

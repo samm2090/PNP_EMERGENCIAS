@@ -37,7 +37,7 @@ public class Emergencia {
 	@JoinColumn(name = "TEM_ID")
 	private TipoEmergencia tipoEmergencia = new TipoEmergencia();
 
-	@ManyToOne
+	@ManyToOne(cascade =CascadeType.PERSIST)
 	@JoinColumn(name = "DIS_ID")
 	private Distrito distrito = new Distrito();
 
