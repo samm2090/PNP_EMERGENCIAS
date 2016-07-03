@@ -21,6 +21,10 @@
 				<p:commandButton value="Click para registrar el parte"
 					action="#{equipoEmergenciaManagedBean.obtenerUltimaEmergencia}" update="message" ajax="false">
 				</p:commandButton>
+				
+				<p:commandButton value="Reportes"
+					action="#{equipoEmergenciaManagedBean.irReporteEmergenciaPorRecurso}" update="message" ajax="false">
+				</p:commandButton>
 			</h:form>
 		</div>
 	</ui:define>

@@ -1,0 +1,61 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/paginas/plantillas/plantilla-operador.xhtml">
+
+	<ui:define name="head">
+		<title>Login</title>
+	</ui:define>
+
+	<ui:define name="body">
+
+		<h:form id="formRecurso">
+
+			<p:panel header="Reporte de Emergencias Atendidas" id="panelDatos" class="ui-g-12">
+				<p:growl id="msgUser" sticky="true" showDetail="true" />
+				
+
+				<p:dataTable id="dtEmergencias" var="emergenciaxrecurso"
+				 	paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}" value="#{equipoEmergenciaManagedBean.equiposEmergenciaXRecurso}" 
+				 	reflow="true" rows="10" paginator="true" resizableColumns="true" draggableColumns="true">
+
+					<f:facet name="{Exporters}">
+						<h:commandLink>
+							<p:graphicImage name="/demo/images/excel.png" width="24" />
+							<p:dataExporter type="xls" target="dtEmergencias" fileName="emergencias" />
+						</h:commandLink>
+					</f:facet>
+
+					<p:column headerText="Id" width="5" id="idEmergencia" style="text-align:center">
+						<h:outputText value="#{emergenciaxrecurso.emergencia.emeId}"></h:outputText>
+					</p:column>					
+					<p:column headerText="Dirección" width="40">
+						<h:outputText value="#{emergenciaxrecurso.emergencia.emeDir}"></h:outputText>
+					</p:column>
+					<p:column headerText="Observación" width="60">
+						<h:outputText value="#{emergenciaxrecurso.emergencia.emeObservacion}"></h:outputText>
+					</p:column>
+					<p:column headerText="Fecha Emergencia" width="40" style="text-align:center">
+						<h:outputText value="#{emergenciaxrecurso.emergencia.emeFecha}">
+							<f:convertDateTime type="date" pattern="dd/MM/yyyy" />
+						</h:outputText>
+					</p:column>
+					<p:column headerText="Nivel Emergencia" width="40">
+						<h:outputText value="#{emergenciaxrecurso.emergencia.nivelEmergencia.nemDescripcion}"></h:outputText>
+					</p:column>
+					<p:column headerText="Tipo Emergencia" width="40">
+						<h:outputText value="#{emergenciaxrecurso.emergencia.tipoEmergencia.temDescripcion}"></h:outputText>
+					</p:column>
+					<p:column headerText="Distrito" width="30" style="text-align:left">
+						<h:outputText value="#{emergenciaxrecurso.emergencia.distrito.disDescripcion}"></h:outputText>
+					</p:column>
+				</p:dataTable>
+			</p:panel>
+
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>

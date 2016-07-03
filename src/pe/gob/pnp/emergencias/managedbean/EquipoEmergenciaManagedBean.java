@@ -39,6 +39,7 @@ public class EquipoEmergenciaManagedBean {
 			.get("emergencia");
 
 	List<EquipoEmergencia> equiposEmergencia = new ArrayList<EquipoEmergencia>();
+	List<EquipoEmergencia> equiposEmergenciaXRecurso = new ArrayList<EquipoEmergencia>();
 	List<RecursoEstado> recursosEstado = new ArrayList<RecursoEstado>();
 
 	public EquipoEmergencia getEquipoEmergencia() {
@@ -87,6 +88,29 @@ public class EquipoEmergenciaManagedBean {
 
 	public void setRecursosEstado(List<RecursoEstado> recursosEstado) {
 		this.recursosEstado = recursosEstado;
+	}
+
+	public Emergencia getEmergencia() {
+		return emergencia;
+	}
+
+	public void setEmergencia(Emergencia emergencia) {
+		this.emergencia = emergencia;
+	}
+	
+	public List<EquipoEmergencia> getEquiposEmergenciaXRecurso() {
+		FacesContext context = FacesContext.getCurrentInstance();
+		@SuppressWarnings("rawtypes")
+		Map params = context.getExternalContext().getSessionMap();
+		EquipoEmergencia equipoEmergencia1 = (EquipoEmergencia) params.get("equipoLogin");
+
+		equiposEmergenciaXRecurso = Lists.newArrayList(equipoEmergenciaService.getEquipoEmergenciaRepository()
+				.equipoXEmergencia(equipoEmergencia1.getEmergencia().getEmeId()));
+		return equiposEmergenciaXRecurso;
+	}
+
+	public void setEquiposEmergenciaXRecurso(List<EquipoEmergencia> equiposEmergenciaXRecurso) {
+		this.equiposEmergenciaXRecurso = equiposEmergenciaXRecurso;
 	}
 
 	public String agregarRecursoEquipo() {
@@ -171,6 +195,10 @@ public class EquipoEmergenciaManagedBean {
 			e.printStackTrace();
 		}
 		return "ultimaEmergencia2?faces-redirect=true";
+	}
+
+	public String irReporteEmergenciaPorRecurso() {
+		return "reporteEmergenciaPorRecurso?faces-redirect=true";
 	}
 
 	public void addMessageInfo(String summary, String detail) {
