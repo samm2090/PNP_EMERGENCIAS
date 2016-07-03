@@ -28,7 +28,7 @@ public class Llamada {
 
 	@ManyToOne
 	@JoinColumn(name = "TTE_ID")
-	private TipoTerminal tipoTerminal;
+	private TipoTerminal tipoTerminal = new TipoTerminal();
 
 	@ManyToOne(cascade =CascadeType.PERSIST)
 	@JoinColumn(name = "CIV_ID")
@@ -36,7 +36,7 @@ public class Llamada {
 
 	@ManyToOne
 	@JoinColumn(name = "OPE_ID")
-	private Operador operador;
+	private Operador operador = new Operador();
 
 	// bi-directional many-to-one association to Comisaria
 	@OneToMany(mappedBy = "llamada", fetch = FetchType.EAGER)

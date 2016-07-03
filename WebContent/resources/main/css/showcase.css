@@ -25,7 +25,7 @@
 
 /*  ----------------------------------------------------------------------------------------------------- */
 
-body{margin:0px; height:100%; overflow-x:hidden; overflow-y:auto; background-color:#20272a; font-family: 'latoregular', "Trebuchet MS", Arial, Helvetica, sans-serif;color:#5C666A;}
+body{margin:0px; height:100%; overflow-x:hidden; overflow-y:auto; background-color:white; font-family: 'latoregular', "Trebuchet MS", Arial, Helvetica, sans-serif;color:#5C666A;}
 
 	#LOGOTEXTSIDE{display:block;width:290px; float:left; height:74px; z-index:999; background-image:url("#{resource['main/images/logoCircuitLines.svg']}"); background-repeat:no-repeat; background-position:center right;
 				  margin:-20px 0px 0px 0px; padding-top:25px; line-height:30px;}

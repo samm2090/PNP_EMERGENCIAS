@@ -1,0 +1,60 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/paginas/plantillas/plantilla-operador.xhtml">
+
+	<ui:define name="head">
+		<title>Registro Llamada</title>
+	</ui:define>
+
+	<ui:define name="body">
+
+		<p:steps activeIndex="1" style="padding-left:30%">
+			<p:menuitem value="Llamada" />
+			<p:menuitem value="Recursos" />
+		</p:steps>
+
+		<h:form>
+			<div class="ui-g" align="center">
+				<p:panel header="Seleccionar Recursos" style="width:800px">
+					<h:panelGrid columns="2" cellpadding="3" cellspacing="5">
+						<p:panel header="Disponibles" style="width:300px">
+							<p:dataTable id="dtDisponibles" var="recursoEstado"
+								value="#{equipoEmergenciaManagedBean.recursosEstado}"
+								reflow="true" resizableColumns="true" draggableColumns="true">
+
+								<p:column headerText="Nombre">
+									<h:outputText
+										value="#{recursoEstado.recurso.persona.perNombre}"></h:outputText>
+								</p:column>
+								<p:column headerText="Grado">
+									<h:outputText
+										value="#{recursoEstado.recurso.gradoRecurso.greDescripcion}"></h:outputText>
+								</p:column>
+								<p:column headerText="Comisaria">
+									<h:outputText
+										value="#{recursoEstado.recurso.comisaria.comNombre}"></h:outputText>
+								</p:column>
+								<p:column headerText="Agregar">
+									<p:commandButton
+										action="#{equipoEmergenciaManagedBean.agregarRecursoEquipo()}"
+										icon="fa-arrow-circle-o-right" title="Icon Only" ajax="false">
+									</p:commandButton>
+								</p:column>
+							</p:dataTable>
+						</p:panel>
+
+						<p:panel header="Seleccionados" style="width:300px">
+
+						</p:panel>
+
+
+					</h:panelGrid>
+				</p:panel>
+			</div>
+		</h:form>
+
+	</ui:define>
+</ui:composition>

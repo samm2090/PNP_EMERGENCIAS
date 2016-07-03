@@ -9,6 +9,7 @@ import pe.gob.pnp.emergencias.model.Recurso;
 
 @Repository
 public interface RecursoRepository extends CrudRepository<Recurso, Long> {
+<<<<<<< HEAD
 	
 	@Query(" SELECT re FROM Recurso re "
 			+ "INNER JOIN re.persona pe "
@@ -16,5 +17,7 @@ public interface RecursoRepository extends CrudRepository<Recurso, Long> {
 		+ "WHERE usu.usuNombre like :usuario and "
 			  + "usu.usuClave like :contrasena ")
 	public Recurso obtenerRecursoLogged(@Param("usuario") String usuario, @Param("contrasena") String contrasena);
+=======
+>>>>>>> origin/master
 
 }

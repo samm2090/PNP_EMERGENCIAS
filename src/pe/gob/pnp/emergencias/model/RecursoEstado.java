@@ -31,12 +31,12 @@ public class RecursoEstado implements Serializable {
 	// bi-directional many-to-one association to Estado
 	@ManyToOne
 	@JoinColumn(name = "EST_ID")
-	private Estado estado;
+	private Estado estado = new Estado();
 
 	// bi-directional many-to-one association to Recurso
 	@ManyToOne
 	@JoinColumn(name = "REC_ID")
-	private Recurso recurso;
+	private Recurso recurso = new Recurso();
 
 	public RecursoEstado() {
 	}

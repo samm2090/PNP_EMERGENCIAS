@@ -3,10 +3,13 @@ package pe.gob.pnp.emergencias.managedbean;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 import pe.gob.pnp.emergencias.model.Comisaria;
 import pe.gob.pnp.emergencias.service.ComisariaService;
@@ -53,6 +56,82 @@ public class ComisariaManagedBean {
 	public void setComisarias(List<Comisaria> comisarias) {
 		this.comisarias = comisarias;
 	}
+	
+	public String registrar()
+	{
+		Comisaria aux = comisariaService.getComisariaRepository().save(comisaria);
+		
+		FacesContext context = FacesContext.getCurrentInstance();
+		
+		
+		if(aux == null)
+		{
+			context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Success",
+					"No se pudo registrar la comisaria"));
+		}
+		else
+		{
+			context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Success",
+					"Se registro la comisaria "+ comisaria.getComNombre()+" exitosamente"));
+		}
+		
+		
+		return "mantenimientoComisaria";
+	}
+	
+	public String editar()
+	{
+		FacesContext context = FacesContext.getCurrentInstance();
+		Map params = context.getExternalContext().getRequestParameterMap();
+		String id = (String) params.get("comisariaID");
+				
+		comisaria = comisariaService
+				.getComisariaRepository()
+				.findOne(new Long(id));
+		
+		comisaria = new Comisaria();
+		return "editarComisaria";
+	}
+	
+	public String eliminar()
+	{
+		FacesContext context = FacesContext.getCurrentInstance();
+		Map params = context.getExternalContext().getRequestParameterMap();
+		String id = (String) params.get("comisariaID");
+				
+		comisaria = comisariaService
+				.getComisariaRepository()
+				.findOne(new Long(id));
+		
+		comisariaService.getComisariaRepository().delete(comisaria);
+		
+		return "mantenimientoComisaria";
+	}
+	
+	public String editarEditar()
+	{
+		Comisaria aux = comisariaService.getComisariaRepository().save(comisaria);
+		
+		FacesContext context = FacesContext.getCurrentInstance();
+		if(aux==null)
+		{
+			context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Success",
+					"No se pudo registrar la comisaria"));
+		}
+		else
+		{
+			context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Success",
+					"Se actualizo correctamente la comisaria " + comisaria.getComNombre()));
+		}
+		
+		return "mantenimientoComisaria";
+	}
+	
+	public String irPaginaComisaria()
+	{
+		return "mantenimientoComisaria";
+	}
+	
 	
 	
 

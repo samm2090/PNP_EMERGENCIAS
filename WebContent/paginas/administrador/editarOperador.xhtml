@@ -1,0 +1,196 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/paginas/plantillas/plantilla-admin.xhtml">
+
+	<ui:define name="head">
+		<title>Editar Operador</title>
+	</ui:define>
+
+	<ui:define name="body" >
+		<h:form id="formOperador">
+			<p:panel header="Datos del operador" id="panelDatos" class="ui-g-12">
+					<p:panelGrid>
+						<p:row>
+							<p:column>
+								<p:outputLabel value="Nombre: " />
+							</p:column>
+							<p:column>
+								<p:inputText id="txtNombre" value="#{operadorManagedBean.operador.persona.perNombre}" />
+							</p:column>
+							<p:column>
+								
+							</p:column>
+							<p:column>
+								
+							</p:column>
+						</p:row>
+						
+						<p:row>
+							<p:column>
+								<p:outputLabel value="Apellido Paterno" />
+							</p:column>
+							<p:column>
+								<p:inputText id="txtApellidoPaterno" value="#{operadorManagedBean.operador.persona.perApellidoPaterno}" />
+							</p:column>
+							<p:column>
+								<p:outputLabel  value="Turno: " />
+							</p:column>
+							<p:column>
+								<p:selectOneMenu id="cboTurno"
+								value="#{operadorManagedBean.operador.turno.turId}">
+
+								<f:selectItems value="#{turnoManagedBean.turnos}"
+									var="turno" itemLabel="#{turno.turDescripcion}"
+									itemValue="#{turno.turId}" />
+								</p:selectOneMenu>
+							</p:column>
+						</p:row>
+						
+						<p:row>
+							<p:column>
+								<p:outputLabel value="Apellido Materno" />
+							</p:column>
+							<p:column>
+								<p:inputText id="txtApellidoMaterno" value="#{operadorManagedBean.operador.persona.perApellidoMaterno}" />
+							</p:column>
+							<p:column>
+								
+							</p:column>
+							<p:column>
+								
+							</p:column>
+						</p:row>
+						
+						<p:row>
+							<p:column>
+								<p:outputLabel value="Fecha Nacimiento:" />
+							</p:column>
+							<p:column>
+								<p:calendar id="txtFechaNac" value="#{operadorManagedBean.operador.persona.perFechaNacimiento}" 
+								locale="de" navigator="true" pattern="yyyy/MM/dd"/>
+							</p:column>
+							<p:column>
+								<p:outputLabel value="Rol:" />
+							</p:column>
+							<p:column>
+								<p:selectOneMenu id="cboRol"
+								value="#{operadorManagedBean.operador.persona.usuId.rol.rolId}">
+
+								<f:selectItems value="#{rolManagedBean.roles}"
+									var="rol" itemLabel="#{rol.rolDescripcion}"
+									itemValue="#{rol.rolId}" />
+								</p:selectOneMenu>
+							</p:column>
+						</p:row>
+						
+						<p:row>
+							<p:column>
+								<p:outputLabel value="DNI" />
+							</p:column>
+							<p:column>
+								<p:inputText id="txtDNI" value="#{operadorManagedBean.operador.persona.perDni}" />
+							</p:column>
+							<p:column>
+								
+							</p:column>
+							<p:column>
+								
+							</p:column>
+						</p:row>
+						
+						<p:row>
+							<p:column>
+								<p:outputLabel value="Direccion:" />
+							</p:column>
+							<p:column>
+								<p:inputText id="txtDireccion" value="#{operadorManagedBean.operador.persona.perDireccion}" />
+							</p:column>
+							<p:column>
+								
+							</p:column>
+							<p:column>
+								
+							</p:column>
+						</p:row>
+						
+						<p:row>
+							<p:column>
+								<p:outputLabel value="Correo: " />
+							</p:column>
+							<p:column>
+								<p:inputText id="txtCorreo" value="#{operadorManagedBean.operador.persona.perCorreo}" />
+							</p:column>
+							<p:column>
+								
+							</p:column>
+							<p:column>
+								
+							</p:column>
+						</p:row>
+						
+						<p:row>
+							<p:column>
+								<p:outputLabel value="Telefono:" />
+							</p:column>
+							<p:column>
+								<p:inputText id="txtTelefono" value="#{operadorManagedBean.operador.persona.perTelefono}" />
+							</p:column>
+							<p:column>
+								
+							</p:column>
+							<p:column>
+								
+							</p:column>
+						</p:row>
+						
+						<p:row>
+							<p:column>
+								<p:outputLabel value="Genero:" />
+							</p:column>
+							<p:column>
+								<p:selectOneMenu id="cboGenero" value="#{operadorManagedBean.operador.persona.perGenero}" style="width:125px">
+						            <f:selectItem itemLabel="Mujer" itemValue="F" />
+						            <f:selectItem itemLabel="Hombre" itemValue="M" />
+						        </p:selectOneMenu>
+							</p:column>
+							<p:column>
+								
+							</p:column>
+							<p:column>
+								
+							</p:column>
+						</p:row>
+						
+						<p:row>
+							<p:column>
+								<p:outputLabel value="Estado Civil:" />
+							</p:column>
+							<p:column>
+								<p:selectOneMenu id="cboEstadoCivil" value="#{operadorManagedBean.operador.persona.perEstadoCivil}" style="width:125px">
+						            <f:selectItem itemLabel="Soltero" itemValue="Soltero" />
+						            <f:selectItem itemLabel="Casado" itemValue="Casado" />
+						            <f:selectItem itemLabel="Divorciado" itemValue="Divorciado" />
+						            <f:selectItem itemLabel="Viudo" itemValue="Viudo" />
+						        </p:selectOneMenu>
+							</p:column>
+							<p:column>
+								
+							</p:column>
+							<p:column>
+								
+							</p:column>
+						</p:row>
+						
+					</p:panelGrid>
+					<div align="right">
+						<p:commandButton value="Actualizar"
+								action="#{operadorManagedBean.guardarEditar()}" style="margin-top:10px;margin-bottom:20px"
+								icon="ui-icon-refresh" ajax="false"/>
+					</div>
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>
