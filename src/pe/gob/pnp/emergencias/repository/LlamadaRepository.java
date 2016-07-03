@@ -8,7 +8,6 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import pe.gob.pnp.emergencias.model.Llamada;
-import pe.gob.pnp.emergencias.model.Usuario;
 
 @Repository
 public interface LlamadaRepository extends CrudRepository<Llamada, Long>{

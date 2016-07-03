@@ -1,10 +1,10 @@
 package pe.gob.pnp.emergencias.managedbean;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
@@ -30,31 +30,6 @@ public class EquipoEmergenciaManagedBean {
 	@ManagedProperty(value = "#{equipoEmergenciaService}")
 	private EquipoEmergenciaService equipoEmergenciaService;
 
-<<<<<<< HEAD
-	@ManagedProperty(value = "#{recursoService}")
-	private RecursoService recursoService;
-
-	private EquipoEmergencia equipoEmergencia = new EquipoEmergencia();
-
-	List<Recurso> recursos = new ArrayList<Recurso>();
-	private List<EquipoEmergencia> equipoEmergencias = new ArrayList<EquipoEmergencia>();
-
-	public EquipoEmergenciaService getEquipoEmergenciaService() {
-		return equipoEmergenciaService;
-	}
-
-	public void setEquipoEmergenciaService(EquipoEmergenciaService equipoEmergenciaService) {
-		this.equipoEmergenciaService = equipoEmergenciaService;
-	}
-
-	public RecursoService getRecursoService() {
-		return recursoService;
-	}
-
-	public void setRecursoService(RecursoService recursoService) {
-		this.recursoService = recursoService;
-	}
-=======
 	@ManagedProperty(value = "#{recursoEstadoService}")
 	private RecursoEstadoService recursoEstadoService;
 
@@ -65,7 +40,6 @@ public class EquipoEmergenciaManagedBean {
 
 	List<EquipoEmergencia> equiposEmergencia = new ArrayList<EquipoEmergencia>();
 	List<RecursoEstado> recursosEstado = new ArrayList<RecursoEstado>();
->>>>>>> origin/master
 
 	public EquipoEmergencia getEquipoEmergencia() {
 		return equipoEmergencia;
@@ -75,35 +49,14 @@ public class EquipoEmergenciaManagedBean {
 		this.equipoEmergencia = equipoEmergencia;
 	}
 
-<<<<<<< HEAD
-	public List<Recurso> getRecursos() {
-		recursos = Lists.newArrayList(recursoService.getRecursoRepository().findAll());
-		return recursos;
-=======
 	public EquipoEmergenciaService getEquipoEmergenciaService() {
 		return equipoEmergenciaService;
->>>>>>> origin/master
 	}
 
 	public void setEquipoEmergenciaService(EquipoEmergenciaService equipoEmergenciaService) {
 		this.equipoEmergenciaService = equipoEmergenciaService;
 	}
 
-<<<<<<< HEAD
-	public List<EquipoEmergencia> getEquipoEmergencias() {
-		return equipoEmergencias;
-	}
-
-	public void setEquipoEmergencias(List<EquipoEmergencia> equipoEmergencias) {
-		this.equipoEmergencias = equipoEmergencias;
-	}
-
-	public String registrarEquipoEmergencia() {
-
-		return "registroLlamada";
-	}
-
-=======
 	public RecursoEstadoService getRecursoEstadoService() {
 		return recursoEstadoService;
 	}
@@ -118,7 +71,7 @@ public class EquipoEmergenciaManagedBean {
 
 	public List<EquipoEmergencia> getEquiposEmergencia() {
 		equiposEmergencia = Lists.newArrayList(
-				equipoEmergenciaService.getEmergenciaRepository().equipoXEmergencia(emergencia.getEmeId()));
+				equipoEmergenciaService.getEquipoEmergenciaRepository().equipoXEmergencia(emergencia.getEmeId()));
 		return equiposEmergencia;
 	}
 
@@ -148,9 +101,7 @@ public class EquipoEmergenciaManagedBean {
 		try {
 			tx.begin();
 
-			Query q = manager
-					.createNativeQuery("EXEC USP_AGREGAR_RECURSO_EQUIPO ?,?")
-					.setParameter(1, recId)
+			Query q = manager.createNativeQuery("EXEC USP_AGREGAR_RECURSO_EQUIPO ?,?").setParameter(1, recId)
 					.setParameter(2, emergencia.getEmeId());
 
 			q.executeUpdate();
@@ -183,5 +134,47 @@ public class EquipoEmergenciaManagedBean {
 
 		return "registroEquipoEmergencia";
 	}
->>>>>>> origin/master
+	
+	public String obtenerUltimaEmergencia() {
+
+		FacesContext context = FacesContext.getCurrentInstance();
+		@SuppressWarnings("rawtypes")
+		Map params = context.getExternalContext().getSessionMap();
+		EquipoEmergencia equipoEmergencia1 = (EquipoEmergencia) params.get("equipoLogin");
+
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("SpringData");
+		EntityManager manager = factory.createEntityManager();
+		EntityTransaction tx = manager.getTransaction();
+
+		try {
+			tx.begin();
+
+			Query q = manager.createNativeQuery("sp_obtenerUltimaEmergencia ?").setParameter(1,
+					equipoEmergencia1.getRecurso().getRecId());
+			int cant = q.getResultList().size();
+
+			if (cant > 0) {
+				int unaemergencia = (int) q.getResultList().get(0);
+				equipoEmergencia = equipoEmergenciaService.getEquipoEmergenciaRepository().obtenerEquipoEmergenciaId(unaemergencia);
+				return "ultimaEmergencia2?faces-redirect=true";
+			} else {
+				addMessageInfo("Confirmación","USTED NO TIENE EMERGENCIAS ASIGNADAS");
+				return "ultimaEmergencia3?faces-redirect=true";
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "ultimaEmergencia2?faces-redirect=true";
+	}
+	
+	public void addMessageInfo(String summary, String detail) {
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, detail);
+        FacesContext.getCurrentInstance().addMessage(null, message);
+    }
+	
+	public void addMessageError(String summary, String detail) {
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, summary, detail);
+        FacesContext.getCurrentInstance().addMessage(null, message);
+    }
 }

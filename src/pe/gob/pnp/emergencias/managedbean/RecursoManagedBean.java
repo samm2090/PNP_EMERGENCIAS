@@ -30,16 +30,16 @@ import pe.gob.pnp.emergencias.service.RecursoService;
 public class RecursoManagedBean {
 	@ManagedProperty(value = "#{recursoService}")
 	private RecursoService recursoService;
-
+	
 	@ManagedProperty(value = "#{personaService}")
 	private PersonaService personaService;
 
 	@ManagedProperty(value = "#{recursoEstadoService}")
 	private RecursoEstadoService recursoEstadoService;
-
+	
 	private Recurso recurso = new Recurso();
-
-	private List<Recurso> recursos = new ArrayList<Recurso>();
+	
+	private List<Recurso> recursos = new ArrayList<Recurso>();	
 
 	private Persona persona = new Persona();
 
@@ -60,7 +60,7 @@ public class RecursoManagedBean {
 	public void setPersonaService(PersonaService personaService) {
 		this.personaService = personaService;
 	}
-
+	
 	public Recurso getRecurso() {
 		return recurso;
 	}
@@ -111,20 +111,21 @@ public class RecursoManagedBean {
 		try {
 			tx.begin();
 
-			Query q = manager.createNativeQuery("sp_ingresoRecursoPorDia ?").setParameter(1, persona.getPerDni());
+			Query q = manager.createNativeQuery("sp_ingresoRecursoPorDia ?")
+						.setParameter(1, persona.getPerDni());
 			int resultado = q.executeUpdate();
 
 			tx.commit();
 
-			if (resultado > 0) {
-				FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Confirmación",
-						"El ingreso fue satisfactorio");
-				FacesContext.getCurrentInstance().addMessage(null, message);
-			} else {
-				FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error",
-						"El recurso ingresado es incorrecto o pertenece a otro turno");
-				FacesContext.getCurrentInstance().addMessage(null, message);
-			}
+				if (resultado > 0) {
+					FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Confirmación",
+							"El ingreso fue satisfactorio");
+					FacesContext.getCurrentInstance().addMessage(null, message);
+				} else {
+					FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error",
+							"El recurso ingresado es incorrecto o pertenece a otro turno");
+					FacesContext.getCurrentInstance().addMessage(null, message);
+				}
 
 			persona = new Persona();
 			manager.close();
@@ -136,43 +137,42 @@ public class RecursoManagedBean {
 
 		return "controlAsistenciaRecurso";
 	}
-
-	public String eliminar() {
+	
+	public String eliminar()
+	{
 		FacesContext context = FacesContext.getCurrentInstance();
 		Map params = context.getExternalContext().getRequestParameterMap();
 		String id = (String) params.get("recursoID");
-
-		recurso = recursoService.getRecursoRepository().findOne(new Long(id));
-
-		context.addMessage(null, new FacesMessage("Success", "Se elimino correctamente el empleado "
-				+ recurso.getPersona().getPerNombre() + " " + recurso.getPersona().getPerApellidoPaterno()));
-
+				
+		recurso = recursoService
+				.getRecursoRepository()
+				.findOne(new Long(id));
+		
+		context.addMessage(null, new FacesMessage("Success",
+				"Se elimino correctamente el empleado " + recurso.getPersona().getPerNombre()+" "+recurso.getPersona().getPerApellidoPaterno()));
+		
 		recursoService.getRecursoRepository().delete(new Long(id));
 		recurso = new Recurso();
-
+	
+		
 		return "mantenimientoRecurso";
 	}
-
-	public String editar() {
+	
+	public String editar()
+	{
 		FacesContext context = FacesContext.getCurrentInstance();
 		Map params = context.getExternalContext().getRequestParameterMap();
 		String id = (String) params.get("recursoID");
-<<<<<<< HEAD
-
-		recurso = recursoService.getRecursoRepository().findOne(new Long(id));
-
-		return "mantenimientoRecurso";
-=======
 				
 		recurso = recursoService
 				.getRecursoRepository()
 				.findOne(new Long(id));
 		
 		return "editarRecurso";
->>>>>>> origin/master
 	}
-
-	public String registrar() {
+	
+	public String registrar()
+	{
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("SpringData");
 		EntityManager manager = factory.createEntityManager();
 		EntityTransaction tx = manager.getTransaction();
@@ -190,7 +190,8 @@ public class RecursoManagedBean {
 					.setParameter(8, recurso.getPersona().getPerTelefono())
 					.setParameter(9, recurso.getPersona().getPerGenero())
 					.setParameter(10, recurso.getPersona().getPerEstadoCivil())
-					.setParameter(11, recurso.getPersona().getPerDni()).setParameter(12, "123456")
+					.setParameter(11, recurso.getPersona().getPerDni())
+					.setParameter(12, "123456")
 					.setParameter(13, recurso.getPersona().getUsuId().getRol().getRolId())
 					.setParameter(14, recurso.getGradoRecurso().getGreId())
 					.setParameter(15, recurso.getTurno().getTurId())
@@ -198,32 +199,19 @@ public class RecursoManagedBean {
 
 			int resultado = q.executeUpdate();
 			tx.commit();
-
+			
 			FacesContext context = FacesContext.getCurrentInstance();
-			context.addMessage(null, new FacesMessage("Success", "Se guardó correctamente el empleado "
-					+ recurso.getPersona().getPerNombre() + " " + recurso.getPersona().getPerApellidoPaterno()));
-
+			context.addMessage(null, new FacesMessage("Success",
+					"Se guardó correctamente el empleado " + recurso.getPersona().getPerNombre()+" "+recurso.getPersona().getPerApellidoPaterno()));
+			
 			recurso = new Recurso();
 
-		} catch (Exception e) {
-			tx.rollback();
-			e.printStackTrace();
-		}
+			} catch (Exception e) {
+				tx.rollback();
+				e.printStackTrace();
+			}
 		return "/paginas/administrador/mantenimientoRecurso";
 	}
-<<<<<<< HEAD
-
-	public String guardarEditar() {
-		recursoService.getRecursoRepository().save(recurso);
-
-		FacesContext context = FacesContext.getCurrentInstance();
-		context.addMessage(null, new FacesMessage("Success", "Se actualizo correctamente el empleado "
-				+ recurso.getPersona().getPerNombre() + " " + recurso.getPersona().getPerApellidoPaterno()));
-
-		recurso = new Recurso();
-
-		return "/paginas/administrador/mantenimientoRecurso";
-=======
 	
 	public String guardarEditar()
 	{		
@@ -276,16 +264,12 @@ public class RecursoManagedBean {
 			}
 		
 		return "mantenimientoRecurso";
->>>>>>> origin/master
 	}
-
-	public String irPaginaRecurso() {
+	
+	public String irPaginaRecurso()
+	{
 		return "mantenimientoRecurso";
 	}
-<<<<<<< HEAD
-
-}
-=======
 	
 	public void viewRecursos()
 	{
@@ -299,6 +283,4 @@ public class RecursoManagedBean {
         RequestContext.getCurrentInstance().openDialog("verRecursos", options, null);
 	}
 	
-
 }
->>>>>>> origin/master

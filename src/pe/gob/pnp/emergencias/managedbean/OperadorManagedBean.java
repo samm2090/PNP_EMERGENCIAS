@@ -38,7 +38,8 @@ public class OperadorManagedBean {
 	}
 
 	public List<Operador> getOperadores() {
-		return Lists.newArrayList(operadorService.getOperadorRepository().findAll());
+		operadores = Lists.newArrayList(operadorService.getOperadorRepository().findAll());
+		return operadores;
 	}
 
 	public void setOperadores(List<Operador> operadores) {

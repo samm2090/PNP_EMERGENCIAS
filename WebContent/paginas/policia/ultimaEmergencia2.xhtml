@@ -26,42 +26,42 @@
 							</f:facet>
 
 							<h:outputText value="Dirección:" />
-							<h:outputText value="#{emergenciaManagedBean.equipoEmergencia.emergencia.emeDir}" readonly="true"></h:outputText>
+							<h:outputText value="#{equipoEmergenciaManagedBean.equipoEmergencia.emergencia.emeDir}" readonly="true"></h:outputText>
 
 							<h:outputText value="Observaciones:" />
-							<p:inputTextarea value="#{emergenciaManagedBean.equipoEmergencia.emergencia.emeObservacion}" readonly="true"></p:inputTextarea>
+							<p:inputTextarea value="#{equipoEmergenciaManagedBean.equipoEmergencia.emergencia.emeObservacion}" readonly="true"></p:inputTextarea>
 
 							<h:outputText value="Fecha Emergencia:" />
-							<h:outputText value="#{emergenciaManagedBean.equipoEmergencia.emergencia.emeFecha}" readonly="true">
+							<h:outputText value="#{equipoEmergenciaManagedBean.equipoEmergencia.emergencia.emeFecha}" readonly="true">
 								<f:convertDateTime pattern="dd-MM-yyyy" />
 							</h:outputText>
 							
 							<h:outputLabel for="nivelEmergencia" value="Nivel Emergencia:" />
 							<p:selectOneMenu id="nivelEmergencia" disabled="true"
-								value="#{emergenciaManagedBean.equipoEmergencia.emergencia.nivelEmergencia.nemId}">
+								value="#{equipoEmergenciaManagedBean.equipoEmergencia.emergencia.nivelEmergencia.nemId}">
 
 								<f:selectItems
-									value="#{emergenciaManagedBean.nivelesEmergencia}" var="x"
+									value="#{nivelEmergenciaManagedBean.nivelesEmergencia}" var="x"
 									itemLabel="#{x.nemDescripcion}" itemValue="#{x.nemId}" />
 							</p:selectOneMenu>
 							
 							<p:outputLabel for="tipoEmergencia" value="Tipo Emergencia:" />
 							<p:selectOneMenu id="tipoEmergencia" disabled="true"
-								value="#{emergenciaManagedBean.equipoEmergencia.emergencia.tipoEmergencia.temId}">
+								value="#{equipoEmergenciaManagedBean.equipoEmergencia.emergencia.tipoEmergencia.temId}">
 
-								<f:selectItems value="#{emergenciaManagedBean.tiposEmergencia}"
+								<f:selectItems value="#{tipoEmergenciaManagedBean.tiposEmergencia}"
 									var="te" itemLabel="#{te.temDescripcion}"
 									itemValue="#{te.temId}" />
 							</p:selectOneMenu>
 							
 							<h:outputText value="Observaciones Parte:" />
 							<p:inputTextarea
-								value="#{emergenciaManagedBean.parte.parObservacion}">
+								value="#{parteManagedBean.parte.parObservacion}">
 							</p:inputTextarea>
 						
 							<p:outputLabel for="estadoParte" value="Estado Parte:" />
 							<p:selectOneMenu id="estadoParte"
-								value="#{emergenciaManagedBean.estadoParte.epaId}">
+								value="#{parteManagedBean.estadoParte.epaId}">
 	
 								<f:selectItems value="#{estadoParteManagedBean.estadoPartes}"
 									var="ep" itemLabel="#{ep.epaDescripcion}"
@@ -72,7 +72,7 @@
 					<div align="center">
 						<f:facet name="footer">
 							<p:commandButton ajax="false" value="Registrar Parte"
-								action="#{emergenciaManagedBean.registrarParte}" />
+								action="#{parteManagedBean.registrarParte}" />
 						</f:facet>
 					</div>
 

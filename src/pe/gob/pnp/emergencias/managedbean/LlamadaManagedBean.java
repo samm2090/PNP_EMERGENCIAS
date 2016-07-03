@@ -1,6 +1,5 @@
 package pe.gob.pnp.emergencias.managedbean;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -62,33 +61,6 @@ public class LlamadaManagedBean {
 
 	public void setLlamadaService(LlamadaService llamadaService) {
 		this.llamadaService = llamadaService;
-	}
-	
-	public String registrarLlamada(){
-
-		
-//		EntityManagerFactory factory = Persistence.createEntityManagerFactory("SpringData");
-//		EntityManager manager = factory.createEntityManager();
-//		EntityTransaction tx = manager.getTransaction();
-//		tx.begin();
-//		try {
-//			civil.setFechaRegistro(new Date());
-//			manager.persist(civil);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		tx.commit();
-		civil.setFechaRegistro(new Date());
-		
-		civilService.getCivilRepository().save(civil);
-		
-		civil = new Civil();
-//	
-//		llamada.setCivil(civil);
-//		llamadaService.getLlamadaRepository().save(llamada);
-//		llamada = new Llamada();
-		
-		return "registroEmergencia";
 	}
 	
 	public String falsaAlarma(){
