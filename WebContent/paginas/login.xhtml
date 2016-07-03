@@ -23,19 +23,19 @@
 					<h:panelGrid columns="2" cellpadding="3">
 						<p:outputLabel value="Usuario:" />
 						<p:inputText id="usuario"
-							value="#{usuarioManagedBean.userAutentic.usuNombre}"
+							value="#{personaManagedBean.persona.usuId.usuNombre}"
 							required="true" />
 
 						<p:outputLabel value="Contraseña:" />
 						<p:password id="clave"
-							value="#{usuarioManagedBean.userAutentic.usuClave}"
+							value="#{personaManagedBean.persona.usuId.usuClave}"
 							required="true" />
 					</h:panelGrid>
 
-					<div align="right">
+					<div align="center">
 						<f:facet name="footer">
 							<p:commandButton value="Entrar" update="msgs"
-								action="#{usuarioManagedBean.autenticar}" type="submit"
+								action="#{personaManagedBean.autenticar}" type="submit"
 								icon="ui-icon-check"></p:commandButton>
 						</f:facet>
 					</div>

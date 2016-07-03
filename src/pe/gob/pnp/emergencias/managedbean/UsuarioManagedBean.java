@@ -1,15 +1,11 @@
 package pe.gob.pnp.emergencias.managedbean;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
 
 import com.google.common.collect.Lists;
 
@@ -135,37 +131,6 @@ public class UsuarioManagedBean {
 
 	public void setTipoPersonales(List<TipoPersonal> tipoPersonales) {
 		this.tipoPersonales = tipoPersonales;
-	}
-
-	public String autenticar() {
-		userAutentic = usuarioService.getUsuarioRepository().obtenerUsuarioLogged(userAutentic.getUsuNombre(),
-				userAutentic.getUsuClave());
-		if (userAutentic != null) {
-			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", userAutentic);
-			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Ingreso",
-					"Usuario autenticado correctamente");
-			FacesContext.getCurrentInstance().addMessage(null, message);
-
-			return "operador/registroLlamada?faces-redirect=true";
-		} else {
-			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error",
-					"Usuario y/o contraseña ingresado son incorrectos");
-			FacesContext.getCurrentInstance().addMessage(null, message);
-			userAutentic = new Usuario();
-			System.out.println("no ingreso");
-			return "";
-		}
-	}
-
-	public void cerrarSesion() {
-		ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
-		try {
-			FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-			ec.redirect(ec.getRequestContextPath() + "/paginas/login.xhtml");
-		} catch (IOException e) {
-
-			e.printStackTrace();
-		}
 	}
 
 }

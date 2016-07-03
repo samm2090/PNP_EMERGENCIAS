@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import pe.gob.pnp.emergencias.model.Persona;
 
 @Repository
-public interface PersonaRepository extends CrudRepository<Persona, Long>{
+public interface PersonaRepository extends CrudRepository<Persona, Long> {
 
 }

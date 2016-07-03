@@ -9,13 +9,14 @@ import pe.gob.pnp.emergencias.repository.EquipoEmergenciaRepository;
 public class EquipoEmergenciaService {
 
 	@Autowired
-	private EquipoEmergenciaRepository emergenciaRepository;
+	private EquipoEmergenciaRepository equipoEmergenciaRepository;
 
-	public EquipoEmergenciaRepository getEmergenciaRepository() {
-		return emergenciaRepository;
+	public EquipoEmergenciaRepository getEquipoEmergenciaRepository() {
+		return equipoEmergenciaRepository;
 	}
 
-	public void setEmergenciaRepository(EquipoEmergenciaRepository emergenciaRepository) {
-		this.emergenciaRepository = emergenciaRepository;
+	public void setEquipoEmergenciaRepository(EquipoEmergenciaRepository equipoEmergenciaRepository) {
+		this.equipoEmergenciaRepository = equipoEmergenciaRepository;
 	}
+
 }

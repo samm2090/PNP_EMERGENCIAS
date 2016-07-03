@@ -1,0 +1,84 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/paginas/plantillas/plantilla-limpia.xhtml">
+
+	<ui:define name="head">
+		<title>Login</title>
+	</ui:define>
+
+	<ui:define name="body">
+		<div align="center">
+			<p:graphicImage value="/resources/main/images/pnp/escudo_PNP.jpg"
+				height="150px" width="150px" />
+			<H1>PNP - EMERGENCIAS</H1>
+		</div>
+		<div align="center">
+			<h:form>
+				<p:growl id="msgs" sticky="true" showDetail="true" />
+				<p:panel header="Datos de la Emergencia Asignada" style="width:400px">
+
+					<h:panelGrid columns="2" cellpadding="3">
+						<f:facet name="header">
+							
+							</f:facet>
+
+							<h:outputText value="Dirección:" />
+							<h:outputText value="#{emergenciaManagedBean.equipoEmergencia.emergencia.emeDir}" readonly="true"></h:outputText>
+
+							<h:outputText value="Observaciones:" />
+							<p:inputTextarea value="#{emergenciaManagedBean.equipoEmergencia.emergencia.emeObservacion}" readonly="true"></p:inputTextarea>
+
+							<h:outputText value="Fecha Emergencia:" />
+							<h:outputText value="#{emergenciaManagedBean.equipoEmergencia.emergencia.emeFecha}" readonly="true">
+								<f:convertDateTime pattern="dd-MM-yyyy" />
+							</h:outputText>
+							
+							<h:outputLabel for="nivelEmergencia" value="Nivel Emergencia:" />
+							<p:selectOneMenu id="nivelEmergencia" disabled="true"
+								value="#{emergenciaManagedBean.equipoEmergencia.emergencia.nivelEmergencia.nemId}">
+
+								<f:selectItems
+									value="#{emergenciaManagedBean.nivelesEmergencia}" var="x"
+									itemLabel="#{x.nemDescripcion}" itemValue="#{x.nemId}" />
+							</p:selectOneMenu>
+							
+							<p:outputLabel for="tipoEmergencia" value="Tipo Emergencia:" />
+							<p:selectOneMenu id="tipoEmergencia" disabled="true"
+								value="#{emergenciaManagedBean.equipoEmergencia.emergencia.tipoEmergencia.temId}">
+
+								<f:selectItems value="#{emergenciaManagedBean.tiposEmergencia}"
+									var="te" itemLabel="#{te.temDescripcion}"
+									itemValue="#{te.temId}" />
+							</p:selectOneMenu>
+							
+							<h:outputText value="Observaciones Parte:" />
+							<p:inputTextarea
+								value="#{emergenciaManagedBean.parte.parObservacion}">
+							</p:inputTextarea>
+						
+							<p:outputLabel for="estadoParte" value="Estado Parte:" />
+							<p:selectOneMenu id="estadoParte"
+								value="#{emergenciaManagedBean.estadoParte.epaId}">
+	
+								<f:selectItems value="#{estadoParteManagedBean.estadoPartes}"
+									var="ep" itemLabel="#{ep.epaDescripcion}"
+									itemValue="#{ep.epaId}" />
+							</p:selectOneMenu>
+					</h:panelGrid>
+
+					<div align="center">
+						<f:facet name="footer">
+							<p:commandButton ajax="false" value="Registrar Parte"
+								action="#{emergenciaManagedBean.registrarParte}" />
+						</f:facet>
+					</div>
+
+				</p:panel>
+			</h:form>
+		</div>
+	</ui:define>
+
+</ui:composition>

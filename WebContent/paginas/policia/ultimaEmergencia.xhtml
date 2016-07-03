@@ -1,0 +1,28 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/paginas/plantillas/plantilla-operador.xhtml">
+
+	<ui:define name="head">
+		<title>Login</title>
+	</ui:define>
+
+	<ui:define name="body">
+		<div align="center">
+			<p:graphicImage value="/resources/main/images/pnp/escudo_PNP.jpg"
+				height="150px" width="150px" />
+			<H1>PNP - EMERGENCIAS</H1>
+		</div>
+		<div align="center">
+			<h:form>
+				<p:growl id="message" showDetail="true" />
+				<p:commandButton value="Click para registrar el parte"
+					action="#{emergenciaManagedBean.obtenerUltimaEmergencia}" update="message" ajax="false">
+				</p:commandButton>
+			</h:form>
+		</div>
+	</ui:define>
+
+</ui:composition>

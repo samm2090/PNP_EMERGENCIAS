@@ -16,33 +16,25 @@ import pe.gob.pnp.emergencias.service.RecursoService;
 
 @ManagedBean
 @SessionScoped
-public class EquipoEmergenciaManagedBean{
-	
-	@ManagedProperty(value="#{equipoEmergenciaService}")
+public class EquipoEmergenciaManagedBean {
+
+	@ManagedProperty(value = "#{equipoEmergenciaService}")
 	private EquipoEmergenciaService equipoEmergenciaService;
-	
+
 	@ManagedProperty(value = "#{recursoService}")
 	private RecursoService recursoService;
-	
-	EquipoEmergencia equipoEmergencia = new EquipoEmergencia();
-	
+
+	private EquipoEmergencia equipoEmergencia = new EquipoEmergencia();
+
 	List<Recurso> recursos = new ArrayList<Recurso>();
-	
-	public EquipoEmergencia getEquipoEmergencia() {
-		return equipoEmergencia;
+	private List<EquipoEmergencia> equipoEmergencias = new ArrayList<EquipoEmergencia>();
+
+	public EquipoEmergenciaService getEquipoEmergenciaService() {
+		return equipoEmergenciaService;
 	}
 
-	public void setEquipoEmergencia(EquipoEmergencia equipoEmergencia) {
-		this.equipoEmergencia = equipoEmergencia;
-	}
-
-	public List<Recurso> getRecursos() {
-		recursos=Lists.newArrayList(recursoService.getRecursoRepository().findAll());
-		return recursos;
-	}
-
-	public void setRecursos(List<Recurso> recursos) {
-		this.recursos = recursos;
+	public void setEquipoEmergenciaService(EquipoEmergenciaService equipoEmergenciaService) {
+		this.equipoEmergenciaService = equipoEmergenciaService;
 	}
 
 	public RecursoService getRecursoService() {
@@ -53,17 +45,34 @@ public class EquipoEmergenciaManagedBean{
 		this.recursoService = recursoService;
 	}
 
-	public EquipoEmergenciaService getEquipoEmergenciaService() {
-		return equipoEmergenciaService;
+	public EquipoEmergencia getEquipoEmergencia() {
+		return equipoEmergencia;
 	}
 
-	public void setEquipoEmergenciaService(EquipoEmergenciaService equipoEmergenciaService) {
-		this.equipoEmergenciaService = equipoEmergenciaService;
+	public void setEquipoEmergencia(EquipoEmergencia equipoEmergencia) {
+		this.equipoEmergencia = equipoEmergencia;
 	}
-	
-	public String registrarEquipoEmergencia(){
-		
+
+	public List<Recurso> getRecursos() {
+		recursos = Lists.newArrayList(recursoService.getRecursoRepository().findAll());
+		return recursos;
+	}
+
+	public void setRecursos(List<Recurso> recursos) {
+		this.recursos = recursos;
+	}
+
+	public List<EquipoEmergencia> getEquipoEmergencias() {
+		return equipoEmergencias;
+	}
+
+	public void setEquipoEmergencias(List<EquipoEmergencia> equipoEmergencias) {
+		this.equipoEmergencias = equipoEmergencias;
+	}
+
+	public String registrarEquipoEmergencia() {
+
 		return "registroLlamada";
 	}
-	
+
 }
