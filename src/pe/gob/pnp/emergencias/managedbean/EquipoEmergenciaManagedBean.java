@@ -134,7 +134,7 @@ public class EquipoEmergenciaManagedBean {
 
 		return "registroEquipoEmergencia";
 	}
-	
+
 	public String obtenerUltimaEmergencia() {
 
 		FacesContext context = FacesContext.getCurrentInstance();
@@ -149,17 +149,22 @@ public class EquipoEmergenciaManagedBean {
 		try {
 			tx.begin();
 
-			Query q = manager.createNativeQuery("sp_obtenerUltimaEmergencia ?").setParameter(1,
-					equipoEmergencia1.getRecurso().getRecId());
-			int cant = q.getResultList().size();
-
-			if (cant > 0) {
-				int unaemergencia = (int) q.getResultList().get(0);
-				equipoEmergencia = equipoEmergenciaService.getEquipoEmergenciaRepository().obtenerEquipoEmergenciaId(unaemergencia);
-				return "ultimaEmergencia2?faces-redirect=true";
-			} else {
-				addMessageInfo("Confirmación","USTED NO TIENE EMERGENCIAS ASIGNADAS");
+			if (equipoEmergencia1 == null) {
 				return "ultimaEmergencia3?faces-redirect=true";
+			} else {
+				Query q = manager.createNativeQuery("sp_obtenerUltimaEmergencia ?").setParameter(1,
+						equipoEmergencia1.getRecurso().getRecId());
+				int cant = q.getResultList().size();
+
+				if (cant > 0) {
+					int unaemergencia = (int) q.getResultList().get(0);
+					equipoEmergencia = equipoEmergenciaService.getEquipoEmergenciaRepository()
+							.obtenerEquipoEmergenciaId(unaemergencia);
+					return "ultimaEmergencia2?faces-redirect=true";
+				} else {
+					addMessageInfo("Confirmación", "USTED NO TIENE EMERGENCIAS ASIGNADAS");
+					return "ultimaEmergencia3?faces-redirect=true";
+				}
 			}
 
 		} catch (Exception e) {
@@ -167,14 +172,14 @@ public class EquipoEmergenciaManagedBean {
 		}
 		return "ultimaEmergencia2?faces-redirect=true";
 	}
-	
+
 	public void addMessageInfo(String summary, String detail) {
-        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, detail);
-        FacesContext.getCurrentInstance().addMessage(null, message);
-    }
-	
+		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, detail);
+		FacesContext.getCurrentInstance().addMessage(null, message);
+	}
+
 	public void addMessageError(String summary, String detail) {
-        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, summary, detail);
-        FacesContext.getCurrentInstance().addMessage(null, message);
-    }
+		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, summary, detail);
+		FacesContext.getCurrentInstance().addMessage(null, message);
+	}
 }

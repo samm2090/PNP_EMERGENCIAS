@@ -102,7 +102,7 @@ public class ParteManagedBean {
 			e.printStackTrace();
 		}
 
-		return "ultimaEmergencia";
+		return "ultimaEmergencia3";
 	}
 
 
