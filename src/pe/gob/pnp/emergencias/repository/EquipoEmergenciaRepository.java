@@ -28,4 +28,5 @@ public interface EquipoEmergenciaRepository extends CrudRepository<EquipoEmergen
 			+ " ORDER BY em.eemId desc")
 	public EquipoEmergencia obtenerEquipoEmergenciaId(@Param("recurso") int recurso);
 	
+	
 }

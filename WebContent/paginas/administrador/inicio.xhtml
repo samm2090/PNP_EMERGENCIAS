@@ -14,7 +14,8 @@
 			<div class="ui-g-12" style="margin-top:-20px">
 				<h1 style="font-size: 50px">Bienvenido</h1>
 			</div>
-			<p:graphicImage value="/resources/main/images/emer_logoOpaco.png"
+			
+				<p:graphicImage value="/resources/main/images/emer_logoOpaco.png"
 				height="300px" width="300px" style="margin-top:-20px"/>
 		</div>
 		<div class="ui-g-12">
@@ -25,10 +26,12 @@
 					<p:graphicImage value="/resources/main/images/operador.png"
 					height="80px" width="80px" style="margin-top:25%"/>
 				</div>
-				<div class="ui-g-6" style="height: 145px;background: #DD4613;border-left:2px solid white;color:white;text-align: center">
-					<h1 style="font-size: 40px">#{operadorManagedBean.operadores.size()}</h1>
-					<h3 style="font-size: 15px">OPERADORES</h3>
-				</div>
+				<p:commandLink action="#{operadorManagedBean.irPaginaOperador()}" style="color:white;">
+					<div class="ui-g-6" style="height: 145px;background: #DD4613;border-left:2px solid white;color:white;text-align: center">
+						<h1 style="font-size: 40px">#{operadorManagedBean.operadores.size()}</h1>
+							<h3 style="font-size: 15px">OPERADORES</h3>
+					</div>
+				</p:commandLink>
 				<div class="ui-g-12" style="height: 1px;background: #DD4613;">
 				</div>
 			</div>
@@ -39,10 +42,12 @@
 					<p:graphicImage value="/resources/main/images/policiaIcon.png"
 					height="80px" width="80px" style="margin-top: 25%;"/>
 				</div>
-				<div class="ui-g-6" style="height: 145px;background: #F9E508;border-left:3px solid white;color:white;text-align: center">
-					<h1 style="font-size: 40px">#{recursoManagedBean.recursos.size()}</h1>
-					<h3 style="font-size: 15px">RECURSOS</h3>
-				</div>
+				<p:commandLink action="#{recursoManagedBean.irPaginaRecurso()}" style="color:white;">
+					<div class="ui-g-6" style="height: 145px;background: #F9E508;border-left:3px solid white;color:white;text-align: center">
+						<h1 style="font-size: 40px">#{recursoManagedBean.recursos.size()}</h1>
+						<h3 style="font-size: 15px">RECURSOS</h3>
+					</div>
+				</p:commandLink>
 				<div class="ui-g-12" style="height: 1px;background: #F9E508;">
 				</div>
 			</div>
@@ -53,10 +58,12 @@
 					<p:graphicImage value="/resources/main/images/ComisariaIcon.png"
 					height="80px" width="80px" style="margin-top: 25%;"/>
 				</div>
-				<div class="ui-g-6" style="height: 145px;background: #5DF908;border-left:3px solid white;color:white;text-align: center">
-					<h1 style="font-size: 40px">#{comisariaManagedBean.comisarias.size()}</h1>
-					<h3 style="font-size: 15px">COMISARIAS</h3>
-				</div>
+				<p:commandLink action="#{comisariaManagedBean.irPaginaComisaria()}" style="color:white;">
+					<div class="ui-g-6" style="height: 145px;background: #5DF908;border-left:3px solid white;color:white;text-align: center">
+						<h1 style="font-size: 40px">#{comisariaManagedBean.comisarias.size()}</h1>
+						<h3 style="font-size: 15px">COMISARIAS</h3>
+					</div>
+				</p:commandLink>
 				<div class="ui-g-12" style="height: 1px;background: #5DF908;">
 				</div>
 			</div>

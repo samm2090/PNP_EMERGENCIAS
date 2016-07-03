@@ -283,4 +283,8 @@ public class RecursoManagedBean {
         RequestContext.getCurrentInstance().openDialog("verRecursos", options, null);
 	}
 	
+	public String irPaginaInicio()
+	{
+		return "paginas/policia/inicio";
+	}
 }

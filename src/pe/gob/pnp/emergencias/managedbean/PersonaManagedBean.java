@@ -275,5 +275,9 @@ public class PersonaManagedBean {
 		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, summary, detail);
 		FacesContext.getCurrentInstance().addMessage(null, message);
 	}
-
+	
+	public String irPaginaInicioAdministrador()
+	{
+		return "/paginas/administrador/inicio";
+	}
 }

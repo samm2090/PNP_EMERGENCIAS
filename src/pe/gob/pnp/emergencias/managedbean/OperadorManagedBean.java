@@ -188,4 +188,9 @@ public class OperadorManagedBean {
 	{
 		return "mantenimientoOperador";
 	}
+	
+	public String irPaginaInicio()
+	{
+		return "paginas/operador/inicio";
+	}
 }

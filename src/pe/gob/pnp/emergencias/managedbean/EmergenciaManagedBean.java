@@ -2,6 +2,7 @@ package pe.gob.pnp.emergencias.managedbean;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Random;
 
 import javax.faces.bean.ManagedBean;
@@ -163,7 +164,9 @@ public class EmergenciaManagedBean {
 		return "registroLlamada";
 	}
 	
-	
-	
+	public String irPaginaChart()
+	{
+		return "ejemploChart";
+	}
 	
 }

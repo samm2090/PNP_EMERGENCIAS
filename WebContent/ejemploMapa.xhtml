@@ -66,6 +66,7 @@
 		    <h:panelGrid columns="3" style="margin-bottom:10px" cellpadding="5">
 		        <p:outputLabel for="address" value="Address:" />
 		        <p:inputText id="address" />
+		        
 		        <p:commandButton value="Geocode" icon="ui-icon-search" onclick="geocode()" type="button" />
 		    </h:panelGrid>
 		 
@@ -90,7 +91,12 @@
 			        <h:inputHidden id="lat" value="#{addMarkersView.lat}" />
 			        <h:inputHidden id="lng" value="#{addMarkersView.lng}" />
 			    </h:form>
+			    
+			    
+			    
 			</p:dialog>
+		 
+		 
 		 
 	</h:form>
 	
