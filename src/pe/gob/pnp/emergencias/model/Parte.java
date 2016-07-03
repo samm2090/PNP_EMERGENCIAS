@@ -35,7 +35,7 @@ public class Parte implements Serializable {
 	// bi-directional many-to-one association to EstadoParte
 	@ManyToOne
 	@JoinColumn(name = "EPA_ID")
-	private EstadoParte estadoParte;
+	private EstadoParte estadoParte = new EstadoParte();
 
 	// bi-directional many-to-one association to Recurso
 	@ManyToOne

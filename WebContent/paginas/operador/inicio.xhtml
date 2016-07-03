@@ -1,0 +1,68 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/paginas/plantillas/plantilla-operador.xhtml">
+
+	<ui:define name="head">
+		<title>Inicio</title>
+	</ui:define>
+
+	<ui:define name="body">
+		<div class="ui-g-12" align="center">
+			<div class="ui-g-12" style="margin-top:-80px">
+				<h1 style="font-size: 50px">Bienvenido</h1>
+			</div>
+			<p:graphicImage value="/resources/main/images/emer_logoOpaco.png"
+				height="300px" width="300px" style="margin-top:-20px"/>
+		</div>
+		<div class="ui-g-12">
+			<div class="ui-g-4">
+				<div class="ui-g-12" style="height: 1px;background: #DD4613;">
+				</div>
+				<div class="ui-g-6" style="height: 145px;background: #DD4613" align="center">
+					<p:graphicImage value="/resources/main/images/alerta.png"
+					height="80px" width="80px" style="margin-top:25%"/>
+				</div>
+				<div class="ui-g-6" style="height: 145px;background: #DD4613;border-left:2px solid white;color:white;text-align: center">
+					<h1 style="font-size: 40px">#{llamadaManagedBean.llamadasFalsas().size()}</h1>
+					<h3 style="font-size: 15px">LLAMADAS <br/>
+												FALSAS</h3>
+				</div>
+				<div class="ui-g-12" style="height: 1px;background: #DD4613;">
+				</div>
+			</div>
+			<div class="ui-g-4" >
+				<div class="ui-g-12" style="height: 1px;background: #F9E508;">
+				</div>
+				<div class="ui-g-6" style="height: 145px;background: #F9E508;" align="center">
+					<p:graphicImage value="/resources/main/images/telefono.png"
+					height="80px" width="80px" style="margin-top: 25%;"/>
+				</div>
+				<div class="ui-g-6" style="height: 145px;background: #F9E508;border-left:3px solid white;color:white;text-align: center">
+					<h1 style="font-size: 40px">#{llamadaManagedBean.llamadasAtendidas().size()}</h1>
+					<h3 style="font-size: 15px">LLAMADAS<br/>
+												ATENDIDAS</h3>
+				</div>
+				<div class="ui-g-12" style="height: 1px;background: #F9E508;">
+				</div>
+			</div>
+			<div class="ui-g-4" >
+				<div class="ui-g-12" style="height: 1px;background: #5DF908;">
+				</div>
+				<div class="ui-g-6" style="height: 145px;background: #5DF908;" align="center">
+					<p:graphicImage value="/resources/main/images/cronometo.png"
+					height="80px" width="80px" style="margin-top: 25%;"/>
+				</div>
+				<div class="ui-g-6" style="height: 145px;background: #5DF908;border-left:3px solid white;color:white;text-align: center">
+					<h1 style="font-size: 40px">#{llamadaManagedBean.totalMinutos()}</h1>
+					<h3 style="font-size: 15px">TOTAL<br/>
+												MINUTOS</h3>
+				</div>
+				<div class="ui-g-12" style="height: 1px;background: #5DF908;">
+				</div>
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>

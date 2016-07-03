@@ -205,6 +205,54 @@ BEGIN TRAN
 	END CATCH
 GO
 
+
+/****** Propietario: Luigi Aguirre ******/
+/****** Objetivo: Este Store permite obtener la última emergencia de un recurso  ******/
+
+CREATE PROCEDURE [dbo].[sp_obtenerUltimaEmergencia]
+@RECURSO INT
+AS
+BEGIN
+	SELECT  T2.REC_ID
+			FROM EMERGENCIA T1
+				LEFT JOIN EQUIPO_EMERGENCIA T2 ON T1.EME_ID = T2.EME_ID
+				INNER JOIN RECURSO T3 ON T2.REC_ID = T3.REC_ID
+				INNER JOIN PERSONA T4 ON T3.PER_ID = T4.PER_ID
+			WHERE T2.REC_ID = @RECURSO AND T1.EME_ID NOT IN (SELECT EME_ID FROM PARTE) AND
+					T3.ESTADO_REGISTRO = 1
+
+END
+
+GO
+
+/****** Propietario: Luigi Aguirre ******/
+/****** Objetivo: Este Store permite registrar los partes de una emergencia  ******/
+
+CREATE PROCEDURE [dbo].[sp_registrarParte]
+@IDEMERGENCIA INT,
+@ESTPARTE INT,
+@RECURSO INT,
+@OBSERVACION NVARCHAR(500)
+AS
+BEGIN
+	DECLARE @HORASISTEMA TIME
+	SELECT @HORASISTEMA = SYSDATETIME()
+
+	INSERT INTO PARTE(EME_ID,EPA_ID,REC_ID,PAR_OBSERVACION,PAR_FECHA)
+	VALUES (@IDEMERGENCIA,@ESTPARTE,@RECURSO,@OBSERVACION,GETDATE())
+
+	UPDATE EMERGENCIA SET EME_HORA_FIN = @HORASISTEMA WHERE EME_ID = @IDEMERGENCIA
+
+	UPDATE RE
+		SET RE.EST_ID = 1
+		FROM RECURSO_ESTADO RE
+		INNER JOIN RECURSO RC ON RC.REC_ID = RE.REC_ID
+		INNER JOIN EQUIPO_EMERGENCIA EE ON RC.REC_ID = EE.REC_ID
+		INNER JOIN EMERGENCIA EM ON EE.EME_ID = EM.EME_ID
+	WHERE EE.EME_ID = @IDEMERGENCIA	
+
+END
+
 /****** Propietario: Sergio Muroy ******/
 /****** Objetivo: Registrar las llamads cuando estas son falsas
  *          ******/
@@ -262,6 +310,8 @@ BEGIN TRAN
 GO
 
 
+/****** Propietario: Maria Cristina de Loayza ******/
+/****** Objetivo: Este store permite realizar la actualizacion de los recursos en las tablas USUARIO, PERSONA y RECURSO ******/
 create procedure sp_editarRecurso
 @codRecurso int,
 @codPersona int,
@@ -303,9 +353,8 @@ begin
 		END CATCH
 end
 
-select * from PERSONA
-select * from recurso
-go
+/****** Propietario: Maria Cristina de Loayza ******/
+/****** Objetivo: Este store permite realizar la actualizacion de los operadores en las tablas USUARIO, PERSONA y RECURSO ******/
 
 create procedure sp_editarOperador
 @codOperador int,
@@ -343,5 +392,12 @@ begin
 			ROLLBACK TRAN
 		END CATCH
 end
+GO
 
+/****** Propietario: Maria Cristina de Loayza ******/
+/****** Objetivo: OBTENER LA CANTIDAD DE MINUTOS DE TODAS LAS LLAMADAS******/
+create procedure SP_MINUTOSLLAMADAS
+AS
+select sum(DATEDIFF(SECOND,LLA_HORA_INICIO,LLA_HORA_FIN)/60) from LLAMADA
 
+GO

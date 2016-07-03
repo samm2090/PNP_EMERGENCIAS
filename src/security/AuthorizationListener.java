@@ -9,7 +9,7 @@ import javax.faces.event.PhaseId;
 import javax.faces.event.PhaseListener;
 import javax.servlet.http.HttpSession;
 
-import pe.gob.pnp.emergencias.model.Usuario;
+import pe.gob.pnp.emergencias.model.Persona;
 
 public class AuthorizationListener implements PhaseListener {
 
@@ -26,22 +26,20 @@ public class AuthorizationListener implements PhaseListener {
 		if (session == null) {
 			if (!isLoginPage) {
 				try {
-					rootContext.redirect(rootContext.getRequestContextPath() + "/faces/login.xhtml");
+					rootContext.redirect(rootContext.getRequestContextPath() + "/paginas/login.xhtml");
 				} catch (IOException e) {
 
 					e.printStackTrace();
 				}
-
 			}
 		}
 
 		else {
-			Usuario currentUser = (Usuario) session.getAttribute("usuario");
+			Persona currentUser = (Persona) session.getAttribute("personaLogin");
 			if (!isLoginPage && (currentUser == null)) {
 				try {
-					rootContext.redirect(rootContext.getRequestContextPath() + "/faces/login.xhtml");
+					rootContext.redirect(rootContext.getRequestContextPath() + "/paginas/login.xhtml");
 				} catch (IOException e) {
-
 					e.printStackTrace();
 				}
 			}

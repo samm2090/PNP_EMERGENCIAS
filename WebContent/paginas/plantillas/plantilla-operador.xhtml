@@ -78,10 +78,11 @@
 		<p:menubar>
 			<p:menuitem value="Llamadas" icon="fa fa-fw fa-phone" />
 			<p:menuitem value="Log" icon="fa fa-fw fa-files-o" />
+			
 
 			<f:facet name="options">
-				<p:outputLabel value="#{usuarioManagedBean.userAutentic.usuNombre}" />
-				<p:commandButton ajax="false" action="#{usuarioManagedBean.cerrarSesion}" value="Cerrar Sesion" />
+				<p:outputLabel value="#{personaManagedBean.persona.perNombre} #{personaManagedBean.persona.perApellidoPaterno} #{personaManagedBean.persona.perApellidoMaterno}" />
+				<p:commandButton ajax="false" action="#{personaManagedBean.cerrarSesion}" value="Cerrar Sesion" />
 			</f:facet>
 		</p:menubar>
 			
