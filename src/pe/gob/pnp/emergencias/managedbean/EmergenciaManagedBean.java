@@ -68,16 +68,17 @@ public class EmergenciaManagedBean {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("SpringData");
 		EntityManager manager = factory.createEntityManager();
 		EntityTransaction tx = manager.getTransaction();
-	
+
 		try {
 			Date hoy = new Date();
 			Calendar ahora = Calendar.getInstance();
-			
+
 			emergencia.getLlamada().getCivil().setFechaRegistro(hoy);
 			emergencia.getLlamada().setLlaFecha(hoy);
 			emergencia.setEmeFecha(hoy);
 			emergencia.getLlamada().setLlaHoraFin(ahora.get(Calendar.HOUR_OF_DAY) + ":" + ahora.get(Calendar.MINUTE));
-			emergencia.getLlamada().getOperador().setOpeId(new Long(1));;
+			emergencia.getLlamada().getOperador().setOpeId(new Long(1));
+			;
 			tx.begin();
 
 			Query q = manager
@@ -105,8 +106,9 @@ public class EmergenciaManagedBean {
 			q.executeUpdate();
 
 			tx.commit();
-			
-			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("emergencia", emergencia);
+
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("emergencia",
+					emergenciaService.getEmergenciaRepository().ultimaEmergenciaInsertada().get(0));
 
 			emergencia = new Emergencia();
 
@@ -117,25 +119,25 @@ public class EmergenciaManagedBean {
 
 		return "registroEquipoEmergencia";
 	}
-	
-	public String registrarLlamadaFalsa(){
-		
+
+	public String registrarLlamadaFalsa() {
+
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("SpringData");
 		EntityManager manager = factory.createEntityManager();
 		EntityTransaction tx = manager.getTransaction();
-		
+
 		try {
 			Date hoy = new Date();
 			Calendar ahora = Calendar.getInstance();
-			
+
 			emergencia.getLlamada().getCivil().setFechaRegistro(hoy);
 			emergencia.getLlamada().setLlaFecha(hoy);
 			emergencia.getLlamada().setLlaHoraFin(ahora.get(Calendar.HOUR_OF_DAY) + ":" + ahora.get(Calendar.MINUTE));
-			emergencia.getLlamada().getOperador().setOpeId(new Long(1));;
+			emergencia.getLlamada().getOperador().setOpeId(new Long(1));
+			;
 			tx.begin();
 
-			Query q = manager
-					.createNativeQuery("EXEC USP_REGISTRAR_LLAMADA_FALSA ?,?,?,?,?,?,?,?,?,?,?,?,?")
+			Query q = manager.createNativeQuery("EXEC USP_REGISTRAR_LLAMADA_FALSA ?,?,?,?,?,?,?,?,?,?,?,?,?")
 					.setParameter(1, emergencia.getLlamada().getCivil().getCivDocumento())
 					.setParameter(2, emergencia.getLlamada().getCivil().getCivNombre())
 					.setParameter(3, emergencia.getLlamada().getCivil().getCivApellidoPaterno())
@@ -149,7 +151,7 @@ public class EmergenciaManagedBean {
 					.setParameter(11, emergencia.getLlamada().getOperador().getOpeId())
 					.setParameter(12, emergencia.getLlamada().getLlaHoraInicio())
 					.setParameter(13, emergencia.getLlamada().getLlaHoraFin());
-			
+
 			q.executeUpdate();
 
 			tx.commit();
@@ -162,8 +164,5 @@ public class EmergenciaManagedBean {
 		}
 		return "registroLlamada";
 	}
-	
-	
-	
-	
+
 }

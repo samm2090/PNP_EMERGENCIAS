@@ -233,7 +233,7 @@ public class PersonaManagedBean {
 				if (usuario.getRol().getRolId() == 2) {
 					FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuarioLogin", usuario);
 					addMessageInfo("Confirmación: ", "Usuario autenticado correctamente");
-					return "operador/registroLlamada?faces-redirect=true";
+					return "operador/inicio?faces-redirect=true";
 				} else if (usuario.getRol().getRolId() == 3) {
 					FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuarioLogin", usuario);
 					FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("equipoLogin",

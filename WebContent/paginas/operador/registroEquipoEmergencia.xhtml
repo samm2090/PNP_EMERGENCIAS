@@ -18,7 +18,7 @@
 
 		<h:form>
 			<div class="ui-g-12" align="center">
-				<p:panel header="Seleccionar Recursos" style="width:1100px">
+				<p:panel header="Seleccionar Recursos" style="width:1100px" id="panelEquipo">
 					<p:panelGrid columns="2">
 						<p:panel header="Disponibles" style="width:500px">
 							<p:dataTable id="dtDisponibles" var="recursoEstado"
@@ -38,7 +38,7 @@
 										value="#{recursoEstado.recurso.comisaria.comNombre}"></h:outputText>
 								</p:column>
 								<p:column headerText="Agregar">
-									<p:commandButton
+									<p:commandButton update="panelEquipo"
 										action="#{equipoEmergenciaManagedBean.agregarRecursoEquipo()}"
 										icon="fa fa-fw fa-arrow-circle-o-right" title="Icon Only" ajax="false">
 										<f:param name="recId" value="#{recursoEstado.recurso.recId}"></f:param>	
@@ -58,16 +58,17 @@
 								</p:column>
 								<p:column headerText="Grado">
 									<h:outputText
-										value="#{equipo.recurso.gradoRecurso}"></h:outputText>
+										value="#{equipo.recurso.gradoRecurso.greDescripcion}"></h:outputText>
 								</p:column>
 								<p:column headerText="Comisaria">
 									<h:outputText
 										value="#{equipo.recurso.comisaria.comNombre}"></h:outputText>
 								</p:column>
-								<p:column headerText="Agregar">
-									<p:commandButton
-										action="#{equipoEmergenciaManagedBean.agregarRecursoEquipo()}"
+								<p:column headerText="Remover">
+									<p:commandButton update="panelEquipo"
+										action="#{equipoEmergenciaManagedBean.quitarRecursoEquipo()}"
 										icon="fa fa-fw fa-arrow-circle-o-left" title="Icon Only" ajax="false">
+										<f:param name="recId" value="#{equipo.recurso.recId}"></f:param>	
 									</p:commandButton>
 								</p:column>
 							</p:dataTable>

@@ -80,8 +80,20 @@ public class EquipoEmergenciaManagedBean {
 	}
 
 	public List<RecursoEstado> getRecursosEstado() {
-		recursosEstado = Lists
-				.newArrayList(recursoEstadoService.getRecursoEstadoRepository().recursosDisponibles(new Long(1)));
+
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("SpringData");
+		EntityManager manager = factory.createEntityManager();
+
+		try {
+			Query q = manager.createNativeQuery("USP_RECURSOS_DISPONIBLES", RecursoEstado.class);
+
+			recursosEstado = q.getResultList();
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		}
+
 		return recursosEstado;
 	}
 
@@ -118,19 +130,27 @@ public class EquipoEmergenciaManagedBean {
 
 	public String quitarRecursoEquipo() {
 
-		// String recId = (String)
-		// FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap()
-		// .get("recId");
-		//
-		// try {
-		// equipoEmergencia.setEmergencia(emergencia);
-		// equipoEmergencia.getRecurso().setRecId(new Long(recId));
-		//
-		// equipoEmergenciaService.getEmergenciaRepository().save(equipoEmergencia);
-		//
-		// } catch (Exception e) {
-		// e.printStackTrace();
-		// }
+		String recId = (String) FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap()
+				.get("recId");
+
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("SpringData");
+		EntityManager manager = factory.createEntityManager();
+		EntityTransaction tx = manager.getTransaction();
+
+		try {
+			tx.begin();
+
+			Query q = manager.createNativeQuery("EXEC USP_QUITAR_RECURSO_EQUIPO ?,?").setParameter(1, recId)
+					.setParameter(2, emergencia.getEmeId());
+
+			q.executeUpdate();
+
+			tx.commit();
+
+		} catch (Exception e) {
+			tx.rollback();
+			e.printStackTrace();
+		}
 
 		return "registroEquipoEmergencia";
 	}
