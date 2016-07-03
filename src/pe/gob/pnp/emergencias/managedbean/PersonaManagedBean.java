@@ -239,7 +239,7 @@ public class PersonaManagedBean {
 					FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("equipoLogin",
 							equipoEmergencia);
 					addMessageInfo("Confirmación: ", "Usuario autenticado correctamente");
-					return "policia/ultimaEmergencia?faces-redirect=true";
+					return "policia/principalEmergenciaPorRecurso?faces-redirect=true";
 				} else {
 					FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuarioLogin", usuario);
 					FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("equipoLogin",
@@ -275,5 +275,9 @@ public class PersonaManagedBean {
 		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, summary, detail);
 		FacesContext.getCurrentInstance().addMessage(null, message);
 	}
-
+	
+	public String irPaginaInicioAdministrador()
+	{
+		return "/paginas/administrador/inicio";
+	}
 }

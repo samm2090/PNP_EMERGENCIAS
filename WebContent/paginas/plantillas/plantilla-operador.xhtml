@@ -76,8 +76,10 @@
 	
 	<div class="ui-g-12" style="color:white;width: 100%;margin-bottom: 20px;">
 		<div class="ui-g-2" >
-			<p:graphicImage value="/resources/main/images/emer_logo.png"
+			<p:commandLink action="#{operadorManagedBean.irPaginaInicio()}" style="color:white;">
+				<p:graphicImage value="/resources/main/images/emer_logo.png"
 				height="110px" width="110px" style="margin-left:10%"/>
+			</p:commandLink>
 		</div>
 		<div class="ui-g-10" style="">
 			<h:form>

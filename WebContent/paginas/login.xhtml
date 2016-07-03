@@ -11,8 +11,8 @@
 
 	<ui:define name="body">
 		<div align="center">
-			<p:graphicImage value="/resources/main/images/pnp/escudo_PNP.jpg"
-				height="150px" width="150px" />
+			<p:graphicImage value="/resources/main/images/emer_logo.png"
+				height="250px" width="250px" style="margin-top:10%" />
 			<H1>PNP - EMERGENCIAS</H1>
 		</div>
 		<div align="center">
@@ -32,11 +32,11 @@
 							required="true" />
 					</h:panelGrid>
 
-					<div align="center">
-						<f:facet name="footer">
+					<div align="right">
+						<f:facet name="footer" >
 							<p:commandButton value="Entrar" update="msgs"
 								action="#{personaManagedBean.autenticar}" type="submit"
-								icon="ui-icon-check"></p:commandButton>
+								icon="ui-icon-check" style="margin-left:40%;"></p:commandButton>
 						</f:facet>
 					</div>
 
