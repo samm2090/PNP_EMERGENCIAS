@@ -203,7 +203,7 @@ BEGIN TRAN
 	END CATCH
 GO
 
-alter procedure sp_editarRecurso
+create procedure sp_editarRecurso
 @codRecurso int,
 @codPersona int,
 @codUsuario INT,
@@ -244,10 +244,8 @@ begin
 		END CATCH
 end
 
-select * from PERSONA
-select * from recurso
 
-ALTER procedure sp_editarOperador
+create procedure sp_editarOperador
 @codOperador int,
 @codPersona int,
 @codUsuario INT,
@@ -283,5 +281,11 @@ begin
 			ROLLBACK TRAN
 		END CATCH
 end
+GO
 
+create procedure SP_MINUTOSLLAMADAS
+AS
+select sum(DATEDIFF(SECOND,LLA_HORA_INICIO,LLA_HORA_FIN)/60) from LLAMADA
+
+GO
 

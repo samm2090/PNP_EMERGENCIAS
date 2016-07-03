@@ -1,10 +1,16 @@
 package pe.gob.pnp.emergencias.managedbean;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 import pe.gob.pnp.emergencias.model.Civil;
 import pe.gob.pnp.emergencias.model.Llamada;
@@ -87,6 +93,29 @@ public class LlamadaManagedBean {
 	
 	public String falsaAlarma(){
 		return null;
+	}
+	
+	public List<Llamada> llamadasFalsas()
+	{
+		return llamadaService.getLlamadaRepository().llamadasEstado(false);
+	}
+	
+	public List<Llamada> llamadasAtendidas()
+	{
+		return llamadaService.getLlamadaRepository().llamadasEstado(true);
+	}
+	
+	public int totalMinutos()
+	{
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("SpringData");
+		EntityManager manager = factory.createEntityManager();
+		EntityTransaction tx = manager.getTransaction();
+		
+		Query q = manager.createNativeQuery("SP_MINUTOSLLAMADAS");
+		
+		int resultado = (int) q.getResultList().get(0);
+		
+		return resultado;
 	}
 
 }

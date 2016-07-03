@@ -127,6 +127,12 @@ public class ComisariaManagedBean {
 		return "mantenimientoComisaria";
 	}
 	
+	public String irPaginaComisaria()
+	{
+		return "mantenimientoComisaria";
+	}
+	
+	
 	
 
 }
