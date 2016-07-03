@@ -195,14 +195,23 @@
 					
 					
 				<p:dataTable id="dtoperadores" var="operador" value="#{operadorManagedBean.operadores}"
-									reflow="true" rows="10" paginator="true" resizableColumns="true" draggableColumns="true">
+									paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} 
+				 					{PageLinks} {NextPageLink} {LastPageLink} {Exporters}" 
+				 					reflow="true" rows="10" paginator="true" resizableColumns="true" draggableColumns="true">
 									
+					<f:facet name="{Exporters}">
+						<h:commandLink>
+							<p:graphicImage name="/demo/images/excel.png" width="24" />
+							<p:dataExporter type="xls" target="dtoperadores" fileName="operadores" />
+						</h:commandLink>
+					</f:facet>
 					<!-- <f:facet name="header">
 			            <p:outputPanel>
 			                <h:outputText value="Buscar:" />
 			                <p:inputText id="busqueda" onkeyup="PF('dtoperadors').filter()" style="width:150px" placeholder="Ingrese dato"/>
 			            </p:outputPanel>
 			        </f:facet> -->
+			        
 					<p:column headerText="Nombre">
 						<h:outputText value="#{operador.persona.perNombre}"></h:outputText>
 					</p:column>
@@ -218,7 +227,7 @@
 					<p:column headerText="Rol">
 						<h:outputText value="#{operador.persona.usuId.rol.rolDescripcion}"></h:outputText>
 					</p:column>
-					<p:column headerText=" ">
+					<p:column headerText=" " exportable="false">
 						<p:commandButton
 								action="#{operadorManagedBean.editar()}"
 								icon="ui-icon-pencil" title="Icon Only" ajax="false">

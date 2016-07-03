@@ -13,8 +13,6 @@
 
 		<h:form id="formRecurso">
 		
-			<p:commandButton value="View" icon="ui-icon-extlink" actionListener="#{recursoManagedBean.viewRecursos}" />
-		
 			<p:panel header="Datos del Recurso" id="panelDatos" class="ui-g-12">
 				<p:growl id="msgUser" sticky="true" showDetail="true" />
 					<p:panelGrid>
@@ -211,8 +209,17 @@
 					
 					
 				<p:dataTable id="dtRecursos" var="recurso" value="#{recursoManagedBean.recursos}"
-									reflow="true" rows="10" paginator="true" resizableColumns="true" draggableColumns="true">
-									
+									paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} 
+				 					{PageLinks} {NextPageLink} {LastPageLink} {Exporters}" 
+				 					reflow="true" rows="10" paginator="true" resizableColumns="true" draggableColumns="true">
+					
+					<f:facet name="{Exporters}">
+						<h:commandLink>
+							<p:graphicImage name="/demo/images/excel.png" width="24" />
+							<p:dataExporter type="xls" target="dtRecursos" fileName="Recursos" />
+						</h:commandLink>
+					</f:facet>
+					
 					<p:column headerText="Nombre">
 						<h:outputText value="#{recurso.persona.perNombre}"></h:outputText>
 					</p:column>
@@ -234,7 +241,7 @@
 					<p:column headerText="Comisaria">
 						<h:outputText value="#{recurso.comisaria.comNombre}"></h:outputText>
 					</p:column>
-					<p:column headerText=" ">
+					<p:column headerText=" " exportable="false">
 						<p:commandButton
 								action="#{recursoManagedBean.editar}"
 								icon="ui-icon-pencil" title="Icon Only" ajax="false">

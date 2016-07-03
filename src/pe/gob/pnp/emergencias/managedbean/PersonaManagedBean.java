@@ -239,7 +239,7 @@ public class PersonaManagedBean {
 					FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("equipoLogin",
 							equipoEmergencia);
 					addMessageInfo("Confirmación: ", "Usuario autenticado correctamente");
-					return "policia/ultimaEmergencia?faces-redirect=true";
+					return "policia/principalEmergenciaPorRecurso?faces-redirect=true";
 				} else {
 					FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuarioLogin", usuario);
 					FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("equipoLogin",

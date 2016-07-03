@@ -129,7 +129,7 @@ public class ComisariaManagedBean {
 	
 	public String irPaginaComisaria()
 	{
-		return "mantenimientoComisaria";
+		return "mantenimientoComisaria?faces-redirect=true";
 	}
 	
 	

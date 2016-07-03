@@ -39,6 +39,7 @@ public class EquipoEmergenciaManagedBean {
 			.get("emergencia");
 
 	List<EquipoEmergencia> equiposEmergencia = new ArrayList<EquipoEmergencia>();
+	List<EquipoEmergencia> equiposEmergenciaXRecurso = new ArrayList<EquipoEmergencia>();
 	List<RecursoEstado> recursosEstado = new ArrayList<RecursoEstado>();
 
 	public EquipoEmergencia getEquipoEmergencia() {
@@ -89,6 +90,29 @@ public class EquipoEmergenciaManagedBean {
 		this.recursosEstado = recursosEstado;
 	}
 
+	public Emergencia getEmergencia() {
+		return emergencia;
+	}
+
+	public void setEmergencia(Emergencia emergencia) {
+		this.emergencia = emergencia;
+	}
+
+	public List<EquipoEmergencia> getEquiposEmergenciaXRecurso() {
+		FacesContext context = FacesContext.getCurrentInstance();
+		@SuppressWarnings("rawtypes")
+		Map params = context.getExternalContext().getSessionMap();
+		EquipoEmergencia equipoEmergencia1 = (EquipoEmergencia) params.get("equipoLogin");
+		
+		equiposEmergenciaXRecurso = Lists.newArrayList(
+				equipoEmergenciaService.getEquipoEmergenciaRepository().equipoXEmergencia(equipoEmergencia1.getEmergencia().getEmeId()));
+		return equiposEmergenciaXRecurso;
+	}
+
+	public void setEquiposEmergenciaXRecurso(List<EquipoEmergencia> equiposEmergenciaXRecurso) {
+		this.equiposEmergenciaXRecurso = equiposEmergenciaXRecurso;
+	}
+
 	public String agregarRecursoEquipo() {
 
 		String recId = (String) FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap()
@@ -134,7 +158,7 @@ public class EquipoEmergenciaManagedBean {
 
 		return "registroEquipoEmergencia";
 	}
-	
+
 	public String obtenerUltimaEmergencia() {
 
 		FacesContext context = FacesContext.getCurrentInstance();
@@ -149,32 +173,41 @@ public class EquipoEmergenciaManagedBean {
 		try {
 			tx.begin();
 
-			Query q = manager.createNativeQuery("sp_obtenerUltimaEmergencia ?").setParameter(1,
-					equipoEmergencia1.getRecurso().getRecId());
-			int cant = q.getResultList().size();
-
-			if (cant > 0) {
-				int unaemergencia = (int) q.getResultList().get(0);
-				equipoEmergencia = equipoEmergenciaService.getEquipoEmergenciaRepository().obtenerEquipoEmergenciaId(unaemergencia);
-				return "ultimaEmergencia2?faces-redirect=true";
+			if (equipoEmergencia1 == null) {
+				return "emergenciaNoEncontrada?faces-redirect=true";
 			} else {
-				addMessageInfo("Confirmación","USTED NO TIENE EMERGENCIAS ASIGNADAS");
-				return "ultimaEmergencia3?faces-redirect=true";
+				Query q = manager.createNativeQuery("sp_obtenerUltimaEmergencia ?").setParameter(1,
+						equipoEmergencia1.getRecurso().getRecId());
+				int cant = q.getResultList().size();
+
+				if (cant > 0) {
+					int unaemergencia = (int) q.getResultList().get(0);
+					equipoEmergencia = equipoEmergenciaService.getEquipoEmergenciaRepository()
+							.obtenerEquipoEmergenciaId(unaemergencia);
+					return "emergenciaEncontrada?faces-redirect=true";
+				} else {
+					addMessageInfo("Confirmación", "USTED NO TIENE EMERGENCIAS ASIGNADAS");
+					return "emergenciaNoEncontrada?faces-redirect=true";
+				}
 			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "ultimaEmergencia2?faces-redirect=true";
+		return "emergenciaEncontrada?faces-redirect=true";
 	}
-	
+
+	public String irReporteEmergenciaPorRecurso() {
+		return "reporteEmergenciaPorRecurso?faces-redirect=true";
+	}
+
 	public void addMessageInfo(String summary, String detail) {
-        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, detail);
-        FacesContext.getCurrentInstance().addMessage(null, message);
-    }
-	
+		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, detail);
+		FacesContext.getCurrentInstance().addMessage(null, message);
+	}
+
 	public void addMessageError(String summary, String detail) {
-        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, summary, detail);
-        FacesContext.getCurrentInstance().addMessage(null, message);
-    }
+		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, summary, detail);
+		FacesContext.getCurrentInstance().addMessage(null, message);
+	}
 }

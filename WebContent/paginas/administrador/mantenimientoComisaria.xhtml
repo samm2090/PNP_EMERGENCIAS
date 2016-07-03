@@ -60,8 +60,17 @@
 					
 					
 				<p:dataTable id="dtComisaria" var="comisaria" value="#{comisariaManagedBean.comisarias}"
-									reflow="true" rows="10" paginator="true" resizableColumns="true" draggableColumns="true">
+							 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} 
+				 			{PageLinks} {NextPageLink} {LastPageLink} {Exporters}" 
+				 			reflow="true" rows="10" paginator="true" resizableColumns="true" draggableColumns="true">
 									
+					<f:facet name="{Exporters}">
+						<h:commandLink>
+							<p:graphicImage name="/demo/images/excel.png" width="24" />
+							<p:dataExporter type="xls" target="dtComisaria" fileName="comisarias" />
+						</h:commandLink>
+					</f:facet>					
+				
 					<p:column headerText="Nombre">
 						<h:outputText value="#{comisaria.comNombre}"></h:outputText>
 					</p:column>
@@ -71,7 +80,7 @@
 					<p:column headerText="Distrito">
 						<h:outputText value="#{comisaria.distrito.disDescripcion}"></h:outputText>
 					</p:column>
-					<p:column headerText=" ">
+					<p:column headerText=" " exportable="false">
 						<p:commandButton
 								action="#{comisariaManagedBean.editar}"
 								icon="ui-icon-pencil" title="Icon Only" ajax="false">
