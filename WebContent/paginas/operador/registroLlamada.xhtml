@@ -17,6 +17,18 @@
 		</p:steps>
 
 		<h:form>
+			<p:dialog header="¡Falsa Alarma!" widgetVar="dlgFalsaAlarma"
+				modal="true" height="200">
+				<h:panelGrid columns="2" cellpadding="3" cellspacing="1">
+					<p:outputLabel for="observacionLlamada"
+						value="Observación Llamada:" />
+					<p:inputTextarea id="observacionLlamada"
+						value="#{emergenciaManagedBean.emergencia.llamada.llaObservacion}"
+						rows="7" cols="30" />
+					<p:commandButton ajax="false" value="Registrar Llamada"
+						action="#{emergenciaManagedBean.registrarLlamadaFalsa()}" />
+				</h:panelGrid>
+			</p:dialog>
 			<div class="ui-g">
 				<div class="ui-g-2" align="right">
 					<p:commandButton value="Contestar Llamada" update="telefono"
@@ -49,9 +61,9 @@
 					</p:panel>
 
 					<div class="ui-lg" align="right" style="margin-top: 20px;">
-
 						<div class="ui-lg-3" style="margin-right: 75px;">
-							<p:commandButton value="¡Falsa Alarma!" />
+							<p:commandButton value="¡Falsa Alarma!" type="button"
+								onclick="PF('dlgFalsaAlarma').show();" />
 						</div>
 					</div>
 				</div>
