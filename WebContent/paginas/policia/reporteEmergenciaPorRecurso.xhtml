@@ -12,13 +12,14 @@
 	<ui:define name="body">
 
 		<h:form id="formRecurso">
-
+		
 			<p:panel header="Reporte de Emergencias Atendidas" id="panelDatos" class="ui-g-12">
 				<p:growl id="msgUser" sticky="true" showDetail="true" />
 				
 
 				<p:dataTable id="dtEmergencias" var="emergenciaxrecurso"
-				 	paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}" value="#{equipoEmergenciaManagedBean.equiposEmergenciaXRecurso}" 
+				 	paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} 
+				 	{PageLinks} {NextPageLink} {LastPageLink} {Exporters}" value="#{equipoEmergenciaManagedBean.equiposEmergenciaXRecurso}" 
 				 	reflow="true" rows="10" paginator="true" resizableColumns="true" draggableColumns="true">
 
 					<f:facet name="{Exporters}">
