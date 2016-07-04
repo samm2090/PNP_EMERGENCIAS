@@ -57,6 +57,11 @@
 
 				return false;
 			}
+
+			function habilitar() {
+				document.getElementById('btnFalsaAlarma').disabled = false;
+				document.getElementById('btnRegistrarEmergencia').disabled = false;
+			}
 		</script>
 	</ui:define>
 
@@ -115,15 +120,17 @@
 			<div class="ui-g">
 				<div class="ui-g-2" align="right">
 					<p:commandButton value="Contestar Llamada" update="telefono"
-						action="#{emergenciaManagedBean.contestarLlamada()}" ajax="true" />
+						icon="fa fa-fw fa-phone"
+						action="#{emergenciaManagedBean.contestarLlamada()}"
+						onclick="habilitar()" ajax="true" />
 				</div>
 				<div class="ui-g-4">
 					<p:panel header="Datos del denunciante" style="width:350px">
-						<h:panelGrid columns="2" cellpadding="3" cellspacing="5">
+						<p:panelGrid columns="2" cellpadding="3" cellspacing="5">
 							<p:outputLabel for="telefono" value="Telefono:" />
 							<p:inputText id="telefono"
 								value="#{emergenciaManagedBean.emergencia.llamada.llaTelefono}"
-								disabled="true" />
+								disabled="false" />
 
 							<p:outputLabel for="documento" value="Número Documento:" />
 							<p:inputText id="documento"
@@ -140,13 +147,14 @@
 							<p:outputLabel for="apellidoMaterno" value="Apellido Materno:" />
 							<p:inputText id="apellidoMaterno"
 								value="#{emergenciaManagedBean.emergencia.llamada.civil.civApellidoMaterno}" />
-						</h:panelGrid>
+						</p:panelGrid>
 					</p:panel>
 
 					<div class="ui-lg" align="right" style="margin-top: 20px;">
 						<div class="ui-lg-3" style="margin-right: 75px;">
-							<p:commandButton value="¡Falsa Alarma!" type="button"
-								onclick="PF('dlgFalsaAlarma').show();" />
+							<p:commandButton value="¡Falsa Alarma!" type="button" 
+								id="btnFalsaAlarma" onclick="PF('dlgFalsaAlarma').show();"
+								disabled="true" />
 						</div>
 					</div>
 				</div>
@@ -222,7 +230,9 @@
 						</p:panelGrid>
 						<div align="center">
 							<p:commandButton ajax="false" value="Registrar Emergencia"
-								action="#{emergenciaManagedBean.registrarEmergencia()}" />
+								id="btnRegistrarEmergencia"
+								action="#{emergenciaManagedBean.registrarEmergencia()}"
+								disabled="false" />
 						</div>
 					</p:panel>
 				</div>

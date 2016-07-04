@@ -4206,14 +4206,14 @@ GO
 
 
 Insert Into PARTE (EPA_ID,EME_ID,REC_ID,PAR_OBSERVACION,PAR_FECHA) Values (1, 1 , 1 , 'Emergencia' , '2016-7-16')
-Insert Into PARTE (EPA_ID,EME_ID,REC_ID,PAR_OBSERVACION,PAR_FECHA) Values (1, 2 , 2 , 'No urgente' , '2016-7-4')
+Insert Into PARTE (EPA_ID,EME_ID,REC_ID,PAR_OBSERVACION,PAR_FECHA) Values (2, 2 , 2 , 'No urgente' , '2016-7-4')
 Insert Into PARTE (EPA_ID,EME_ID,REC_ID,PAR_OBSERVACION,PAR_FECHA) Values (1, 3 , 3 , 'Necesita asistencia' , '2016-7-15')
-Insert Into PARTE (EPA_ID,EME_ID,REC_ID,PAR_OBSERVACION,PAR_FECHA) Values (1, 4 , 4 , 'Emergencia' , '2016-7-5')
+Insert Into PARTE (EPA_ID,EME_ID,REC_ID,PAR_OBSERVACION,PAR_FECHA) Values (2, 4 , 4 , 'Emergencia' , '2016-7-5')
 Insert Into PARTE (EPA_ID,EME_ID,REC_ID,PAR_OBSERVACION,PAR_FECHA) Values (1, 5 , 5 , 'No urgente' , '2016-7-18')
 Insert Into PARTE (EPA_ID,EME_ID,REC_ID,PAR_OBSERVACION,PAR_FECHA) Values (1, 6 , 6 , 'Necesita asistencia' , '2016-7-26')
 Insert Into PARTE (EPA_ID,EME_ID,REC_ID,PAR_OBSERVACION,PAR_FECHA) Values (1, 7 , 7 , 'Emergencia' , '2016-7-10')
 Insert Into PARTE (EPA_ID,EME_ID,REC_ID,PAR_OBSERVACION,PAR_FECHA) Values (1, 8 , 8 , 'No urgente' , '2016-7-24')
 Insert Into PARTE (EPA_ID,EME_ID,REC_ID,PAR_OBSERVACION,PAR_FECHA) Values (1, 9 , 2 , 'Necesita asistencia' , '2016-7-23')
-Insert Into PARTE (EPA_ID,EME_ID,REC_ID,PAR_OBSERVACION,PAR_FECHA) Values (1, 10 , 3 , 'Emergencia' , '2016-7-12')
+Insert Into PARTE (EPA_ID,EME_ID,REC_ID,PAR_OBSERVACION,PAR_FECHA) Values (3, 10 , 3 , 'Emergencia' , '2016-7-12')
 Insert Into PARTE (EPA_ID,EME_ID,REC_ID,PAR_OBSERVACION,PAR_FECHA) Values (1, 11, 4 , 'No urgente' , '2016-7-9')
 GO

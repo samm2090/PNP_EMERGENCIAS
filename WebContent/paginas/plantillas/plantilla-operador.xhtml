@@ -84,8 +84,8 @@
 		<div class="ui-g-10" style="">
 			<h:form>
 			<p:menubar>
-				<p:menuitem value="Llamadas" icon="fa fa-fw fa-phone" />
-				<p:menuitem value="Log" icon="fa fa-fw fa-files-o" />
+				<p:menuitem value="Llamadas" icon="fa fa-fw fa-phone" action="#{llamadaManagedBean.irPaginaLlamada()}"/>
+				<p:menuitem value="Log" icon="fa fa-fw fa-files-o" action="#{llamadaManagedBean.irPaginaLogLlamada()}"/>
 	
 				<f:facet name="options">
 					<p:outputLabel style="margin-right:10px;" value="#{personaManagedBean.persona.perNombre} #{personaManagedBean.persona.perApellidoPaterno}" />
