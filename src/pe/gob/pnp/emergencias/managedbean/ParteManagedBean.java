@@ -106,7 +106,7 @@ public class ParteManagedBean {
 			e.printStackTrace();
 		}
 
-		return "emergenciaNoEncontrada";
+		return "emergenciaNoEncontrada?faces-redirect=true";
 	}
 
 }

@@ -81,16 +81,16 @@
 				height="110px" width="110px" style="margin-left:10%"/>
 			</p:commandLink>
 		</div>
-		<div class="ui-g-10" style="">
+		<div class="ui-g-10">
 			<h:form>
 			<p:menubar>
-				<p:menuitem value="Llamadas" icon="fa fa-fw fa-phone" />
-				<p:menuitem value="Log" icon="fa fa-fw fa-files-o" />
 				<p:menuitem value="En Atención" icon="ui-icon-bullet" action="#{equipoEmergenciaManagedBean.obtenerUltimaEmergencia}" ></p:menuitem>
 				<p:menuitem value="Reporte Atención" icon="ui-icon-bullet" action="#{equipoEmergenciaManagedBean.irReporteEmergenciaPorRecurso}"></p:menuitem>
 	
 				<f:facet name="options">
-					<p:outputLabel value="Bienvenido" />
+					<p:outputLabel value="#{equipoEmergenciaManagedBean.equipoEmergencia.recurso.persona.perNombre}
+										  #{equipoEmergenciaManagedBean.equipoEmergencia.recurso.persona.perApellidoPaterno}
+										  #{equipoEmergenciaManagedBean.equipoEmergencia.recurso.persona.perApellidoMaterno}" />
 					<p:commandButton ajax="false" action="#{personaManagedBean.cerrarSesion}" value="Cerrar Sesion" />
 				</f:facet>
 			</p:menubar>	
