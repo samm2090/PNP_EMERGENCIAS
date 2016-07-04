@@ -1,6 +1,8 @@
 package pe.gob.pnp.emergencias.managedbean;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -31,6 +33,10 @@ public class ReporteEmergencia implements Serializable {
 	private LineChartModel animatedModel1;
 	private HorizontalBarChartModel animatedModel2;
 	private PieChartModel pieModel1;
+	private Date fechaInicio;
+	private Date fechaFin;
+	private Emergencia emergencia = new Emergencia();
+	private List<Emergencia> emergencias = new ArrayList<Emergencia>();
 
 	@ManagedProperty(value = "#{emergenciaService}")
 	private EmergenciaService emergenciaService;
@@ -38,6 +44,38 @@ public class ReporteEmergencia implements Serializable {
 	@PostConstruct
 	public void init() {
 		createAnimatedModels();
+	}
+
+	public Date getFechaInicio() {
+		return fechaInicio;
+	}
+
+	public List<Emergencia> getEmergencias() {
+		return emergencias;
+	}
+
+	public void setEmergencias(List<Emergencia> emergencias) {
+		this.emergencias = emergencias;
+	}
+
+	public void setFechaInicio(Date fechaInicio) {
+		this.fechaInicio = fechaInicio;
+	}
+
+	public Emergencia getEmergencia() {
+		return emergencia;
+	}
+
+	public void setEmergencia(Emergencia emergencia) {
+		this.emergencia = emergencia;
+	}
+
+	public Date getFechaFin() {
+		return fechaFin;
+	}
+
+	public void setFechaFin(Date fechaFin) {
+		this.fechaFin = fechaFin;
 	}
 
 	public PieChartModel getPieModel1() {
@@ -80,7 +118,7 @@ public class ReporteEmergencia implements Serializable {
 		yAxis = animatedModel2.getAxis(AxisType.Y);
 		yAxis.setMin(0);
 		yAxis.setMax(5);
-		
+
 		createPieModel1();
 	}
 
@@ -143,32 +181,43 @@ public class ReporteEmergencia implements Serializable {
 
 		return model;
 	}
-	
+
 	private void createPieModel1() {
-        pieModel1 = new PieChartModel();
-        
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory("SpringData");
+		pieModel1 = new PieChartModel();
+
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("SpringData");
 		EntityManager manager = factory.createEntityManager();
 
-        Query q = manager.createNativeQuery("sp_parteXEstadoFecha ?")
-				.setParameter(1, 1);
-        int cantidadAtendidos = q.getResultList().size();
-        
-        Query q1 = manager.createNativeQuery("sp_parteXEstadoFecha ?")
-				.setParameter(1, 2);
-        int cantidadFalsaAlarma = q1.getResultList().size();
-        
-        Query q3 = manager.createNativeQuery("sp_parteXEstadoFecha ?")
-				.setParameter(1, 3);
-        int cantidadFrustrados = q3.getResultList().size();
-        
-        pieModel1.set("Atendidos", cantidadAtendidos);
-        pieModel1.set("Falsa alarma", cantidadFalsaAlarma);
-        pieModel1.set("Frustrados", cantidadFrustrados);
-         
-        pieModel1.setTitle("Emergencias en el último mes");
-        pieModel1.setLegendPosition("w");
-    }
+		Query q = manager.createNativeQuery("sp_parteXEstadoFecha ?").setParameter(1, 1);
+		int cantidadAtendidos = q.getResultList().size();
 
+		Query q1 = manager.createNativeQuery("sp_parteXEstadoFecha ?").setParameter(1, 2);
+		int cantidadFalsaAlarma = q1.getResultList().size();
+
+		Query q3 = manager.createNativeQuery("sp_parteXEstadoFecha ?").setParameter(1, 3);
+		int cantidadFrustrados = q3.getResultList().size();
+
+		pieModel1.set("Atendidos", cantidadAtendidos);
+		pieModel1.set("Falsa alarma", cantidadFalsaAlarma);
+		pieModel1.set("Frustrados", cantidadFrustrados);
+
+		pieModel1.setTitle("Emergencias en el último mes");
+		pieModel1.setLegendPosition("w");
+	}
 	
+	public String buscarReporte()
+	{
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("SpringData");
+		EntityManager manager = factory.createEntityManager();
+
+		Query q = manager.createNativeQuery("sp_reporteEmergencia ?,?,?")
+				.setParameter(1, fechaInicio)
+				.setParameter(2, fechaFin)
+				.setParameter(3, emergencia.getDistrito().getDisId());
+		
+		emergencias = q.getResultList();
+		
+		return "reporteEmergencia";
+	}
+
 }
