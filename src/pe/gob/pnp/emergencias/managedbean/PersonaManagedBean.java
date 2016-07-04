@@ -221,10 +221,12 @@ public class PersonaManagedBean {
 
 		usuario = usuarioService.getUsuarioRepository().obtenerUsuarioLogged(persona.getUsuId().getUsuNombre(),
 				persona.getUsuId().getUsuClave());
-		equipoEmergencia = equipoEmergenciaService.getEquipoEmergenciaRepository()
-				.obtenerEquipoEmergenciaLogged(persona.getUsuId().getUsuNombre(), persona.getUsuId().getUsuClave());
 
 		if (usuario != null || equipoEmergencia != null) {
+			
+			persona = personaService.getPersonaRepository().personaXUsuario(usuario.getUsuId()).get(0);
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuarioPersona", persona);
+			
 			if (usuario.getRol().getRolId() == 1) {
 				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuarioLogin", usuario);
 				addMessageInfo("Confirmación: ", "Usuario autenticado correctamente");
@@ -235,6 +237,9 @@ public class PersonaManagedBean {
 					addMessageInfo("Confirmación: ", "Usuario autenticado correctamente");
 					return "operador/inicio?faces-redirect=true";
 				} else if (usuario.getRol().getRolId() == 3) {
+					equipoEmergencia = equipoEmergenciaService.getEquipoEmergenciaRepository()
+							.obtenerEquipoEmergenciaLogged(persona.getUsuId().getUsuNombre(),
+									persona.getUsuId().getUsuClave());
 					FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuarioLogin", usuario);
 					FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("equipoLogin",
 							equipoEmergencia);
@@ -242,15 +247,12 @@ public class PersonaManagedBean {
 					return "policia/inicio?faces-redirect=true";
 				} else {
 					FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuarioLogin", usuario);
-					FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("equipoLogin",
-							equipoEmergencia);
 					addMessageInfo("Confirmación: ", "Usuario autenticado correctamente");
-					return "jefePolicia/incio?faces-redirect=true";
+					return "jefePolicia/inicio?faces-redirect=true";
 				}
 			}
 		} else {
 			addMessageError("Error: ", "Usuario y/o contraseña ingresado son incorrectos");
-			persona = new Persona();
 			return "login";
 		}
 	}
@@ -275,9 +277,8 @@ public class PersonaManagedBean {
 		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, summary, detail);
 		FacesContext.getCurrentInstance().addMessage(null, message);
 	}
-	
-	public String irPaginaInicioAdministrador()
-	{
+
+	public String irPaginaInicioAdministrador() {
 		return "/paginas/administrador/inicio";
 	}
 }

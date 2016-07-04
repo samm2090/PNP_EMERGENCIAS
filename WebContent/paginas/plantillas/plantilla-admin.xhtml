@@ -15,7 +15,7 @@
 			href="#{request.contextPath}/resources/main/images/emer_logo.png" />
 	</f:facet>
 
-	
+
 	<h:outputStylesheet name="main/css/showcase.css" />
 	<h:outputStylesheet name="main/css/perfect-scrollbar.css" />
 	<h:outputStylesheet name="main/css/sh.css" />
@@ -24,7 +24,7 @@
 	<h:outputScript name="main/js/perfect-scrollbar.js" />
 	<h:outputScript name="main/js/showcase.js" />
 
-	<ui:insert name="head"/>
+	<ui:insert name="head" />
 
 
 	<script type="text/javascript">
@@ -77,42 +77,60 @@
 <h:body>
 
 	<div class="ui-g">
-	    <div class="ui-g-12 ui-md-2" >
-			<p:commandLink action="#{personaManagedBean.irPaginaInicioAdministrador()}" style="color:white;">
-	    		<p:graphicImage value="/resources/main/images/emer_logo.png"
-				height="150px" width="150px" style="margin-left:5%"/>
-	    	</p:commandLink>
-	    	<div style="height: 0px;"></div>
-	    	
-	    	
-			<h:form >
+		<div class="ui-g-12 ui-md-2">
+			<p:commandLink
+				action="#{personaManagedBean.irPaginaInicioAdministrador()}"
+				style="color:white;">
+				<p:graphicImage value="/resources/main/images/emer_logo.png"
+					height="150px" width="150px" style="margin-left:5%" />
+			</p:commandLink>
+			<div style="height: 0px;"></div>
+
+			<h:form>
 				<p:panelMenu style="width:100%;" class="ui-g-12 ui-md-2">
 					<p:submenu label="Mantenimientos">
-						<p:menuitem value="Operador" icon="ui-icon-bullet" action="#{operadorManagedBean.irPaginaOperador()}" >
+						<p:menuitem value="Operador" icon="ui-icon-bullet"
+							action="#{operadorManagedBean.irPaginaOperador()}">
 						</p:menuitem>
-						<p:menuitem value="Recurso" action="#{recursoManagedBean.irPaginaRecurso()}" icon="ui-icon-bullet">
+						<p:menuitem value="Recurso"
+							action="#{recursoManagedBean.irPaginaRecurso()}"
+							icon="ui-icon-bullet">
 						</p:menuitem>
-						<p:menuitem value="Comisaria" action="#{comisariaManagedBean.irPaginaComisaria()}" icon="ui-icon-bullet">
+						<p:menuitem value="Comisaria"
+							action="#{comisariaManagedBean.irPaginaComisaria()}"
+							icon="ui-icon-bullet">
 						</p:menuitem>
 					</p:submenu>
 				</p:panelMenu>
 			</h:form>
 		</div>
-	    <div class="ui-g-12 ui-md-10 ui-g-nopad" >
-	        <div class="ui-g-12" style="height:40px;background:#cb842e;color:white;width: 100%;margin-bottom: 20px;text-align: right;">
-	            Nombre
-	        </div>
-	        <div class="ui-g-12 ui-g-nopad" id="cuerpoAdmin">
-	            <ui:insert name="body" id="bodyAdmin"/>
-	        </div>
-	    </div>
-	    <div class="ui-g-12" style="height:50px;background:#cb842e;margin-top:20px;color:white;line-height: 37px;text-align: right;">
-	        Emergencias <p:graphicImage value="/resources/main/images/emer_logo.png"
-				height="20px" width="20px" style="margin-left:10px"/>
-	    </div>
-	</div>   
+		<div class="ui-g-12 ui-md-10 ui-g-nopad">
+			<h:form id="cerrarSesion">
+				<div class="ui-g-12"
+					style="height: 40px; background: #cb842e; color: white; width: 100%; margin-bottom: 20px; text-align: right;">
+					
+					<p:outputLabel style="margin-right:15px;" value="#{personaManagedBean.persona.perNombre} #{personaManagedBean.persona.perApellidoPaterno}"/>
+					
+					<p:commandButton ajax="false"
+						action="#{personaManagedBean.cerrarSesion}" value="Cerrar Sesion" />
 
-	
+				</div>
+			</h:form>
+
+			<div class="ui-g-12 ui-g-nopad" id="cuerpoAdmin">
+				<ui:insert name="body" id="bodyAdmin" />
+			</div>
+		</div>
+
+		<div class="ui-g-12"
+			style="height: 50px; background: #cb842e; margin-top: 20px; color: white; line-height: 37px; text-align: right;">
+			Emergencias
+			<p:graphicImage value="/resources/main/images/emer_logo.png"
+				height="20px" width="20px" style="margin-left:10px" />
+		</div>
+	</div>
+
+
 
 </h:body>
 </html>
