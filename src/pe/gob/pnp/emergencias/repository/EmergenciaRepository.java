@@ -15,5 +15,6 @@ public interface EmergenciaRepository extends CrudRepository<Emergencia, Long> {
 
 	@Query("select e from Emergencia e order by e.distrito.disId DESC")
 	public List<Emergencia> emergenciaOrdenadaxDistrito();
+	
 
 }

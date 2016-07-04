@@ -1,5 +1,7 @@
 package pe.gob.pnp.emergencias.managedbean;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import javax.faces.bean.ManagedBean;
@@ -11,6 +13,8 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
+
+import com.google.common.collect.Lists;
 
 import pe.gob.pnp.emergencias.model.Emergencia;
 import pe.gob.pnp.emergencias.model.EquipoEmergencia;
@@ -109,4 +113,9 @@ public class ParteManagedBean {
 		return "emergenciaNoEncontrada";
 	}
 
+	public ArrayList<Parte> partesExistosas()
+	{
+		return Lists.newArrayList(parteService.getParteRepository().partesExitosas(new Long(1)));
+	}
+	
 }
