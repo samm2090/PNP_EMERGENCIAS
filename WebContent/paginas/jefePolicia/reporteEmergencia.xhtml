@@ -10,9 +10,51 @@
 	</ui:define>
 
 	<ui:define name="body">
+		
+	
 		<div class="ui-g-12" align="center">
-			
+			<form>
+				<p:panel header="Reporte Emergencia" id="panelDatos" class="ui-g-12">
+				<p:growl id="msgUser" sticky="true" showDetail="true" />
+					<p:panelGrid>
+						<p:row>
+							<p:column>
+							<p:outputLabel value="Nombre: " />
+							</p:column>
+							<p:column>
+								<p:inputText id="txtNombre" value="#{comisariaManagedBean.comisaria.comNombre}" />
+							</p:column>
+							<p:column>
+								<p:outputLabel value="Direccion: " />
+							</p:column>
+							<p:column>
+								<p:inputText id="txtDireccion" value="#{comisariaManagedBean.comisaria.comDireccion}" />
+							</p:column>
+						</p:row>
+						
+						<p:row>
+							<p:column>
+								<p:outputLabel value="Distrito" />
+							</p:column>
+							<p:column>
+								<p:selectOneMenu id="cboTurno"
+								value="#{comisariaManagedBean.comisaria.distrito.disId}">
 
+								<f:selectItems value="#{distritoManagedBean.distritos}"
+									var="distrito" itemLabel="#{distrito.disDescripcion}"
+									itemValue="#{distrito.disId}" />
+								</p:selectOneMenu>
+							</p:column>
+							<p:column>
+								
+							</p:column>
+							<p:column>
+								
+							</p:column>
+						</p:row>
+
+					</p:panelGrid>
+			</form>
 		</div>
 		<div class="ui-g-12">
 			
