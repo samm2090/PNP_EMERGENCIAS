@@ -24,6 +24,8 @@ import org.primefaces.model.chart.PieChartModel;
 import com.google.common.collect.Lists;
 
 import pe.gob.pnp.emergencias.model.Emergencia;
+import pe.gob.pnp.emergencias.model.EquipoEmergencia;
+import pe.gob.pnp.emergencias.model.Llamada;
 import pe.gob.pnp.emergencias.service.EmergenciaService;
 
 @ManagedBean
@@ -37,6 +39,10 @@ public class ReporteEmergencia implements Serializable {
 	private Date fechaFin;
 	private Emergencia emergencia = new Emergencia();
 	private List<Emergencia> emergencias = new ArrayList<Emergencia>();
+	private EquipoEmergencia equipoEmergencia = new EquipoEmergencia();
+	private List<EquipoEmergencia> equiposEmergencia = new ArrayList<EquipoEmergencia>();
+	private Llamada llamada = new Llamada();
+	private List<Llamada> llamadas = new ArrayList<Llamada>();
 
 	@ManagedProperty(value = "#{emergenciaService}")
 	private EmergenciaService emergenciaService;
@@ -44,6 +50,22 @@ public class ReporteEmergencia implements Serializable {
 	@PostConstruct
 	public void init() {
 		createAnimatedModels();
+	}
+
+	public List<EquipoEmergencia> getEquiposEmergencia() {
+		return equiposEmergencia;
+	}
+
+	public void setEquiposEmergencia(List<EquipoEmergencia> equiposEmergencia) {
+		this.equiposEmergencia = equiposEmergencia;
+	}
+
+	public EquipoEmergencia getEquipoEmergencia() {
+		return equipoEmergencia;
+	}
+
+	public void setEquipoEmergencia(EquipoEmergencia equipoEmergencia) {
+		this.equipoEmergencia = equipoEmergencia;
 	}
 
 	public Date getFechaInicio() {
@@ -100,6 +122,22 @@ public class ReporteEmergencia implements Serializable {
 
 	public HorizontalBarChartModel getAnimatedModel2() {
 		return animatedModel2;
+	}
+
+	public Llamada getLlamada() {
+		return llamada;
+	}
+
+	public void setLlamada(Llamada llamada) {
+		this.llamada = llamada;
+	}
+
+	public List<Llamada> getLlamadas() {
+		return llamadas;
+	}
+
+	public void setLlamadas(List<Llamada> llamadas) {
+		this.llamadas = llamadas;
 	}
 
 	private void createAnimatedModels() {
@@ -204,20 +242,59 @@ public class ReporteEmergencia implements Serializable {
 		pieModel1.setTitle("Emergencias en el último mes");
 		pieModel1.setLegendPosition("w");
 	}
+
+	public String buscarReporteEmergencias() {
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("SpringData");
+		EntityManager manager = factory.createEntityManager();
+
+		Query q = manager.createNativeQuery("sp_reporteEmergencia ?,?,?").setParameter(1, fechaInicio)
+				.setParameter(2, fechaFin).setParameter(3, emergencia.getDistrito().getDisId());
+
+		emergencias = q.getResultList();
+
+		return "reporteEmergencia";
+	}
+
+	public String buscarReporteNivelPeligrosidad() {
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("SpringData");
+		EntityManager manager = factory.createEntityManager();
+
+		Query q = manager.createNativeQuery("sp_reporteEmergencia ?,?,?",Emergencia.class)
+				.setParameter(1, fechaInicio)
+				.setParameter(2, fechaFin).setParameter(3, emergencia.getDistrito().getDisId());
+
+		emergencias = q.getResultList();
+
+		return "reporteEmergencia";
+	}
+
+	public String buscarReporteRecursos() {
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("SpringData");
+		EntityManager manager = factory.createEntityManager();
+
+		Query q = manager.createNativeQuery("sp_reporteRecurso ?,?,?",EquipoEmergencia.class)
+				.setParameter(1, equipoEmergencia.getRecurso().getComisaria().getComId())
+				.setParameter(2, fechaInicio)
+				.setParameter(3, fechaFin);
+		
+		equiposEmergencia = q.getResultList();
+		
+		return "reporteRecurso"; 
+		
+	}
 	
-	public String buscarReporte()
+	public String buscarReporteLlamada()
 	{
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("SpringData");
 		EntityManager manager = factory.createEntityManager();
 
-		Query q = manager.createNativeQuery("sp_reporteEmergencia ?,?,?")
-				.setParameter(1, fechaInicio)
-				.setParameter(2, fechaFin)
-				.setParameter(3, emergencia.getDistrito().getDisId());
+		Query q = manager.createNativeQuery("sp_reporteLlamadas ?,?,?",Llamada.class)
+				.setParameter(1, llamada.isLlaEstado())
+				.setParameter(2, fechaInicio)
+				.setParameter(3, fechaFin);
 		
-		emergencias = q.getResultList();
-		
-		return "reporteEmergencia";
+		llamadas = q.getResultList();
+		return "reporteLlamada";
 	}
 
 }

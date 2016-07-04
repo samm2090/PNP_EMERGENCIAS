@@ -270,5 +270,10 @@ public class RecursoManagedBean {
 	{
 		return "inicio?faces-redirect=true";
 	}
+	
+	public String irPaginaReporteRecurso()
+	{
+		return "reporteRecurso?faces-redirect=true";
+	}
 
 }

@@ -6,13 +6,13 @@
 	template="/paginas/plantillas/plantilla-jefe.xhtml">
 
 	<ui:define name="head">
-		<title>Reporte Emergencias</title>
+		<title>Reporte Nivel Peligrosidad</title>
 	</ui:define>
 
 	<ui:define name="body">
 		
 	<h:form>
-		<h1 style="text-align: center">Reporte Emergencias</h1>
+		<h1 style="text-align: center">Reporte Nivel Peligrosidad</h1>
 		<div class="ui-g-12" align="center">
 
 				<p:growl id="msgUser" sticky="true" showDetail="true" />
@@ -37,7 +37,7 @@
 					
 					<div align="right">
 						<p:commandButton value="Buscar"
-								action="#{reporteEmergencia.buscarReporteEmergencias()}" style="margin-top:10px;margin-bottom:20px"
+								action="#{reporteEmergencia.buscarReporteNivelPeligrosidad()}" style="margin-top:10px;margin-bottom:20px"
 								icon="ui-icon-disk" ajax="msgUser"/>
 					</div>
 			
