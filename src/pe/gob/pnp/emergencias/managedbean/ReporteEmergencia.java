@@ -247,8 +247,10 @@ public class ReporteEmergencia implements Serializable {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("SpringData");
 		EntityManager manager = factory.createEntityManager();
 
-		Query q = manager.createNativeQuery("sp_reporteEmergencia ?,?,?").setParameter(1, fechaInicio)
-				.setParameter(2, fechaFin).setParameter(3, emergencia.getDistrito().getDisId());
+		Query q = manager.createNativeQuery("sp_reporteEmergencia ?,?,?",Emergencia.class)
+				.setParameter(1, fechaInicio)
+				.setParameter(2, fechaFin)
+				.setParameter(3, emergencia.getDistrito().getDisId());
 
 		emergencias = q.getResultList();
 
