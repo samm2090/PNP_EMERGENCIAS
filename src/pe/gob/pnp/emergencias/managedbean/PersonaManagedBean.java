@@ -228,7 +228,7 @@ public class PersonaManagedBean {
 			if (usuario.getRol().getRolId() == 1) {
 				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuarioLogin", usuario);
 				addMessageInfo("Confirmación: ", "Usuario autenticado correctamente");
-				return "operador/registroLlamada?faces-redirect=true";
+				return "administrador/inicio?faces-redirect=true";
 			} else {
 				if (usuario.getRol().getRolId() == 2) {
 					FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuarioLogin", usuario);
@@ -245,7 +245,7 @@ public class PersonaManagedBean {
 					FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("equipoLogin",
 							equipoEmergencia);
 					addMessageInfo("Confirmación: ", "Usuario autenticado correctamente");
-					return "operador/registroLlamada?faces-redirect=true";
+					return "jefePolicia/incio?faces-redirect=true";
 				}
 			}
 		} else {
