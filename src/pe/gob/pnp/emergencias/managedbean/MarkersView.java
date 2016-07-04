@@ -41,9 +41,18 @@ public class MarkersView implements Serializable {
 	@PostConstruct
 	public void init() {
 		simpleModel = new DefaultMapModel();
+		todosModel = new DefaultMapModel();
 		marcarLugarEmergencia();
 		centrarLugarEmergencia();
-		marcarTodos();
+
+	}
+
+	public EmergenciaService getEmergenciaService() {
+		return emergenciaService;
+	}
+
+	public void setEmergenciaService(EmergenciaService emergenciaService) {
+		this.emergenciaService = emergenciaService;
 	}
 
 	public MapModel getTodosModel() {
@@ -96,23 +105,21 @@ public class MarkersView implements Serializable {
 		centerGeoMap = latitudCenter + "," + longitudCenter;
 	}
 
-	public void marcarTodos()
-	{
-		BigDecimal latitud,longitud;
+	public void marcarTodos() {
+		BigDecimal latitud, longitud;
 		ArrayList<Emergencia> lista = Lists.newArrayList(emergenciaService.getEmergenciaRepository().findAll());
-		for(int i=0;i<lista.size();i++)
-		{
+		for (int i = 0; i < lista.size(); i++) {
 			latitud = new BigDecimal(lista.get(i).getLatitud().toString());
 			double lat = latitud.doubleValue();
 			longitud = new BigDecimal(lista.get(i).getLongitud().toString());
 			double longi = longitud.doubleValue();
-			
+
 			LatLng coord3 = new LatLng(lat, longi);
 
-			todosModel.addOverlay(new Marker(coord3, lista.get(i).getEmeObservacion()));		
-		
+			todosModel.addOverlay(new Marker(coord3, lista.get(i).getEmeObservacion()));
+
 		}
-		
+
 	}
 
 }
