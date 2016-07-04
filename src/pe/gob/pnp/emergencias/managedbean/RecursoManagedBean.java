@@ -268,7 +268,7 @@ public class RecursoManagedBean {
 	
 	public String irPaginaInicio()
 	{
-		return "paginas/policia/inicio";
+		return "inicio?faces-redirect=true";
 	}
 
 }

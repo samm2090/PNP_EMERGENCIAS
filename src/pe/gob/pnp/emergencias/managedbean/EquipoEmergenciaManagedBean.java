@@ -73,7 +73,9 @@ public class EquipoEmergenciaManagedBean {
 	public List<EquipoEmergencia> getEquiposEmergencia() {
 		equiposEmergencia = Lists.newArrayList(
 				equipoEmergenciaService.getEquipoEmergenciaRepository().equipoXEmergencia(emergencia.getEmeId()));
+
 		return equiposEmergencia;
+
 	}
 
 	public void setEquiposEmergencia(List<EquipoEmergencia> equiposEmergencia) {
@@ -115,9 +117,9 @@ public class EquipoEmergenciaManagedBean {
 		@SuppressWarnings("rawtypes")
 		Map params = context.getExternalContext().getSessionMap();
 		EquipoEmergencia equipoEmergencia1 = (EquipoEmergencia) params.get("equipoLogin");
-		
-		equiposEmergenciaXRecurso = Lists.newArrayList(
-				equipoEmergenciaService.getEquipoEmergenciaRepository().equipoXEmergencia(equipoEmergencia1.getEmergencia().getEmeId()));
+
+		equiposEmergenciaXRecurso = Lists.newArrayList(equipoEmergenciaService.getEquipoEmergenciaRepository()
+				.equipoXEmergencia(equipoEmergencia1.getEmergencia().getEmeId()));
 		return equiposEmergenciaXRecurso;
 	}
 
@@ -218,7 +220,17 @@ public class EquipoEmergenciaManagedBean {
 	}
 
 	public String irReporteEmergenciaPorRecurso() {
-		return "reporteEmergenciaPorRecurso?faces-redirect=true";
+		FacesContext context = FacesContext.getCurrentInstance();
+		@SuppressWarnings("rawtypes")
+		Map params = context.getExternalContext().getSessionMap();
+		EquipoEmergencia equipoEmergencia1 = (EquipoEmergencia) params.get("equipoLogin");
+		
+		if (equipoEmergencia1 == null){
+			return "inicio?faces-redirect=true";
+		}else{
+			return "reporteEmergenciaPorRecurso?faces-redirect=true";
+		}
+		
 	}
 
 	public void addMessageInfo(String summary, String detail) {
