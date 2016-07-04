@@ -75,6 +75,7 @@ public class ComisariaManagedBean {
 					"Se registro la comisaria "+ comisaria.getComNombre()+" exitosamente"));
 		}
 		
+		comisaria = new Comisaria();
 		
 		return "mantenimientoComisaria";
 	}
@@ -89,7 +90,6 @@ public class ComisariaManagedBean {
 				.getComisariaRepository()
 				.findOne(new Long(id));
 		
-		comisaria = new Comisaria();
 		return "editarComisaria";
 	}
 	
@@ -116,13 +116,15 @@ public class ComisariaManagedBean {
 		if(aux==null)
 		{
 			context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Success",
-					"No se pudo registrar la comisaria"));
+					"No se pudo editar la comisaria"));
 		}
 		else
 		{
 			context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Success",
 					"Se actualizo correctamente la comisaria " + comisaria.getComNombre()));
 		}
+		
+		comisaria = new Comisaria();
 		
 		return "mantenimientoComisaria";
 	}

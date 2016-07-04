@@ -6,7 +6,7 @@
 	template="/paginas/plantillas/plantilla-operador.xhtml">
 
 	<ui:define name="head">
-		<title>Registro Llamada</title>
+		<title>Editar Equipo Emergencia</title>
 	</ui:define>
 
 	<ui:define name="body">
@@ -18,7 +18,7 @@
 
 		<h:form>
 			<div class="ui-g-12" align="center">
-				<p:panel header="Seleccionar Recursos" style="width:1400px"
+				<p:panel header="Editar Equipo" style="width:1400px"
 					id="panelEquipo">
 					<p:panelGrid columns="2">
 						<p:panel header="Disponibles" style="width:500px">
@@ -49,7 +49,7 @@
 							</p:dataTable>
 						</p:panel>
 
-						<p:panel header="Seleccionados" style="width:500px">
+						<p:panel header="En Emergencia" style="width:500px">
 							<p:dataTable id="dtSeleccionados" var="equipo"
 								value="#{equipoEmergenciaManagedBean.equiposEmergencia}"
 								reflow="true" resizableColumns="true" draggableColumns="true">
@@ -80,9 +80,9 @@
 			</div>
 
 			<div align="center">
-				<p:commandButton ajax="false" value="Enviar Equipo"
+				<p:commandButton ajax="false" value="Editar Equipo"
 					id="btnRegistrarEmergencia"
-					action="#{equipoEmergenciaManagedBean.enviarEquipo()}" disabled="false" />
+					action="#{llamadaManagedBean.irPaginaLlamada()}" disabled="false" />
 			</div>
 		</h:form>
 

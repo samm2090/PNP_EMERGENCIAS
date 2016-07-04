@@ -14,7 +14,7 @@ public interface EquipoEmergenciaRepository extends CrudRepository<EquipoEmergen
 	
 	@Query("select ee from EquipoEmergencia ee where ee.emergencia.emeId = ?1")
 	public List<EquipoEmergencia> equipoXEmergencia(Long emeId);
-
+	
 	@Query(" SELECT em FROM EquipoEmergencia em "
 			+ "INNER JOIN em.recurso re "
 			+ "INNER JOIN re.persona pe "

@@ -50,7 +50,7 @@ public class GeoCodeView {
         }
     }
     
-    public void addMarker() {
+	public void addMarker() {
         Marker marker = new Marker(new LatLng(lat, lng), title);
         emptyModel.addOverlay(marker);
           

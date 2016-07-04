@@ -3,19 +3,20 @@ package pe.gob.pnp.emergencias.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import pe.gob.pnp.emergencias.repository.OperadoRepository;
+import pe.gob.pnp.emergencias.repository.OperadorRepository;
 
 
 @Component
 public class OperadorService {
+	
 	@Autowired
-	private OperadoRepository operadorRepository;
+	private OperadorRepository operadorRepository;
 
-	public OperadoRepository getOperadorRepository() {
+	public OperadorRepository getOperadorRepository() {
 		return operadorRepository;
 	}
 
-	public void setOperadorRepository(OperadoRepository operadorRepository) {
+	public void setOperadorRepository(OperadorRepository operadorRepository) {
 		this.operadorRepository = operadorRepository;
-	}	
+	}
 }

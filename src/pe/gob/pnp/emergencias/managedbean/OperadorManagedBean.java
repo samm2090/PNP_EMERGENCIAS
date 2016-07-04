@@ -1,6 +1,7 @@
 package pe.gob.pnp.emergencias.managedbean;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -17,18 +18,28 @@ import javax.persistence.Query;
 
 import com.google.common.collect.Lists;
 
+import pe.gob.pnp.emergencias.model.Comisaria;
 import pe.gob.pnp.emergencias.model.Operador;
 import pe.gob.pnp.emergencias.service.OperadorService;
 
 @ManagedBean
 @SessionScoped
 public class OperadorManagedBean {
+	
 	@ManagedProperty(value = "#{operadorService}")
 	private OperadorService operadorService;
 	
 	private Operador operador = new Operador();
 	private List<Operador> operadores = new ArrayList<Operador>();
+	
+	public OperadorService getOperadorService() {
+		return operadorService;
+	}
 
+	public void setOperadorService(OperadorService operadorService) {
+		this.operadorService = operadorService;
+	}
+		
 	public Operador getOperador() {
 		return operador;
 	}
@@ -38,7 +49,15 @@ public class OperadorManagedBean {
 	}
 
 	public List<Operador> getOperadores() {
-		operadores = Lists.newArrayList(operadorService.getOperadorRepository().findAll());
+		Iterable<Operador> it = operadorService.getOperadorRepository().findAll();
+		Iterator<Operador> iterator = it.iterator();
+	
+		operadores.clear();
+		
+		while(iterator.hasNext()){
+			operadores.add(iterator.next());
+		}
+		
 		return operadores;
 	}
 
@@ -46,14 +65,6 @@ public class OperadorManagedBean {
 		this.operadores = operadores;
 	}
 
-	public OperadorService getOperadorService() {
-		return operadorService;
-	}
-
-	public void setOperadorService(OperadorService operadorService) {
-		this.operadorService = operadorService;
-	}
-	
 	public String registrar()
 	{
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("SpringData");
@@ -81,6 +92,9 @@ public class OperadorManagedBean {
 
 			int resultado = q.executeUpdate();
 			tx.commit();
+			manager.clear();
+			manager.close();
+			factory.close();
 			
 			FacesContext context = FacesContext.getCurrentInstance();
 			context.addMessage(null, new FacesMessage("Success",
@@ -124,6 +138,9 @@ public class OperadorManagedBean {
 
 			int resultado = q.executeUpdate();
 			tx.commit();
+			manager.clear();
+			manager.close();
+			factory.close();
 			
 			FacesContext context = FacesContext.getCurrentInstance();
 			if(resultado == 0)
@@ -138,14 +155,13 @@ public class OperadorManagedBean {
 					"Se actualizo correctamente el operador " + operador.getPersona().getPerNombre()+" "+operador.getPersona().getPerApellidoPaterno()));
 			}
 			
-
+			
 		} catch (Exception e) {
 			tx.rollback();
 			e.printStackTrace();
 		}
 		
 		operador = new Operador();
-		operadores = Lists.newArrayList(operadorService.getOperadorRepository().findAll());
 		
 		return "mantenimientoOperador?faces-redirect=true";
 	}

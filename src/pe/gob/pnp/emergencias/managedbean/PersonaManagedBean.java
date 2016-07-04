@@ -219,8 +219,8 @@ public class PersonaManagedBean {
 
 	public String autenticar() {
 
-		usuario = usuarioService.getUsuarioRepository().obtenerUsuarioLogged(persona.getUsuId().getUsuNombre(),
-				persona.getUsuId().getUsuClave());
+		usuario = usuarioService.getUsuarioRepository().obtenerUsuarioLogged(usuario.getUsuNombre(),
+				usuario.getUsuClave());
 		
 		equipoEmergencia = equipoEmergenciaService.getEquipoEmergenciaRepository().obtenerEquipoEmergenciaLogged(
 				persona.getUsuId().getUsuNombre(),persona.getUsuId().getUsuClave());
@@ -237,6 +237,10 @@ public class PersonaManagedBean {
 			} else {
 				if (usuario.getRol().getRolId() == 2) {
 					FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuarioLogin", usuario);
+					operador = operadorService.getOperadorRepository().operadorXPersona(persona.getPerId()).get(0);
+					
+					FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("operadorSesion", operador);
+					
 					addMessageInfo("Confirmación: ", "Usuario autenticado correctamente");
 					return "operador/inicio?faces-redirect=true";
 				} else if (usuario.getRol().getRolId() == 3) {

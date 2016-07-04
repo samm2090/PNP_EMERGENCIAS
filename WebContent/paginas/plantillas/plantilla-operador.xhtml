@@ -86,7 +86,8 @@
 			<p:menubar>
 				<p:menuitem value="Llamadas" icon="fa fa-fw fa-phone" action="#{llamadaManagedBean.irPaginaLlamada()}"/>
 				<p:menuitem value="Log" icon="fa fa-fw fa-files-o" action="#{llamadaManagedBean.irPaginaLogLlamada()}"/>
-	
+				<p:menuitem value="Emergencias en Curso" icon="fa fa-fw fa-exclamation-triangle" action="#{llamadaManagedBean.irPaginaEmergenciasEnCurso()}"/>
+				
 				<f:facet name="options">
 					<p:outputLabel style="margin-right:10px;" value="#{personaManagedBean.persona.perNombre} #{personaManagedBean.persona.perApellidoPaterno}" />
 					<p:outputLabel value="#{usuarioManagedBean.userAutentic.usuNombre}" />

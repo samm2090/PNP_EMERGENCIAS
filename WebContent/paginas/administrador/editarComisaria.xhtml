@@ -38,7 +38,7 @@
 								<p:selectOneMenu id="cboTurno"
 								value="#{comisariaManagedBean.comisaria.distrito.disId}">
 
-								<f:selectItems value="#{distritoManagedBean.distritos}"
+								<f:selectItems value="#{distritoManagedBean.distritosLima}"
 									var="distrito" itemLabel="#{distrito.disDescripcion}"
 									itemValue="#{distrito.disId}" />
 								</p:selectOneMenu>
@@ -53,8 +53,8 @@
 
 					</p:panelGrid>
 					<div align="right">
-						<p:commandButton value="Registrar"
-								action="#{comisariaManagedBean.registrar()}" style="margin-top:10px;margin-bottom:20px"
+						<p:commandButton value="Editar"
+								action="#{comisariaManagedBean.editarEditar()}" style="margin-top:10px;margin-bottom:20px"
 								icon="ui-icon-disk" ajax="msgUser,panelDatos"/>
 					</div>
 

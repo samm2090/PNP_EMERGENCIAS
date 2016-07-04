@@ -98,5 +98,10 @@ public class LlamadaManagedBean {
 
 		return "logLlamada?faces-redirect=true";
 	}
+	
+	public String irPaginaEmergenciasEnCurso() {
+
+		return "emergenciasEnCurso?faces-redirect=true";
+	}
 
 }

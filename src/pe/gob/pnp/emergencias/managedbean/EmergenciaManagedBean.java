@@ -1,7 +1,9 @@
 package pe.gob.pnp.emergencias.managedbean;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
 
 import javax.faces.bean.ManagedBean;
@@ -15,6 +17,7 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 
 import pe.gob.pnp.emergencias.model.Emergencia;
+import pe.gob.pnp.emergencias.model.Operador;
 import pe.gob.pnp.emergencias.service.EmergenciaService;
 
 @ManagedBean
@@ -24,7 +27,11 @@ public class EmergenciaManagedBean {
 	private EmergenciaService emergenciaService;
 
 	private Emergencia emergencia = new Emergencia();
-
+	
+	private List<Emergencia> emergencias = new ArrayList<Emergencia>();
+	
+	private String disabled = "true";
+	
 	public Emergencia getEmergencia() {
 		return emergencia;
 	}
@@ -39,6 +46,22 @@ public class EmergenciaManagedBean {
 
 	public void setEmergenciaService(EmergenciaService emergenciaService) {
 		this.emergenciaService = emergenciaService;
+	}
+
+	public List<Emergencia> getEmergencias() {
+		return emergencias;
+	}
+
+	public void setEmergencias(List<Emergencia> emergencias) {
+		this.emergencias = emergencias;
+	}
+	
+	public String getDisabled() {
+		return disabled;
+	}
+
+	public void setDisabled(String disabled) {
+		this.disabled = disabled;
 	}
 
 	public String contestarLlamada() {
@@ -59,9 +82,21 @@ public class EmergenciaManagedBean {
 		}
 
 		emergencia.getLlamada().setLlaHoraInicio(ahora.get(Calendar.HOUR_OF_DAY) + ":" + ahora.get(Calendar.MINUTE));
-
+		setDisabled("false");	
+		
 		return "registroLlamada";
 	}
+	
+	public List<Emergencia> emergenciasActivas(){
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("SpringData");
+		EntityManager manager = factory.createEntityManager();
+
+		Query q = manager.createNativeQuery("USP_EMERGENCIAS_ACTIVAS",Emergencia.class);
+
+		emergencias = q.getResultList();
+		
+		return emergencias;
+	} 
 
 	public String registrarEmergencia() {
 
@@ -77,8 +112,10 @@ public class EmergenciaManagedBean {
 			emergencia.getLlamada().setLlaFecha(hoy);
 			emergencia.setEmeFecha(hoy);
 			emergencia.getLlamada().setLlaHoraFin(ahora.get(Calendar.HOUR_OF_DAY) + ":" + ahora.get(Calendar.MINUTE));
-			emergencia.getLlamada().getOperador().setOpeId(new Long(1));
-			;
+			Operador operador = (Operador) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("operadorSesion");
+			emergencia.getLlamada().setOperador(operador);
+			emergencia.setEmeHoraInicio(ahora.get(Calendar.HOUR_OF_DAY) + ":" + ahora.get(Calendar.MINUTE));
+			
 			tx.begin();
 
 			Query q = manager
@@ -165,19 +202,17 @@ public class EmergenciaManagedBean {
 		return "registroLlamada";
 	}
 	
-	public String irPaginaChart()
-	{
+
+	public String irPaginaChart() {
 		return "ejemploChart";
 	}
-	
-	public String irPaginaReporteEmergencia()
-	{
+
+	public String irPaginaReporteEmergencia() {
 		return "reporteEmergencia?faces-redirect=true";
 	}
-	
-	public String irPaginaReporteNivelEmergencia()
-	{
+
+	public String irPaginaReporteNivelEmergencia() {
 		return "reporteNivelEmergencia?faces-redirect=true";
 	}
-	
+
 }

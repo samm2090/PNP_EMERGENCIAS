@@ -38,7 +38,7 @@
 								<p:selectOneMenu id="cboTurno"
 								value="#{comisariaManagedBean.comisaria.distrito.disId}">
 
-								<f:selectItems value="#{distritoManagedBean.distritos}"
+								<f:selectItems value="#{distritoManagedBean.distritosLima}"
 									var="distrito" itemLabel="#{distrito.disDescripcion}"
 									itemValue="#{distrito.disId}" />
 								</p:selectOneMenu>
@@ -82,12 +82,12 @@
 					</p:column>
 					<p:column headerText=" " exportable="false">
 						<p:commandButton
-								action="#{comisariaManagedBean.editar}"
+								action="#{comisariaManagedBean.editar()}"
 								icon="ui-icon-pencil" title="Icon Only" ajax="false">
 							<f:param name="comisariaID" value="#{comisaria.comId}"></f:param>	
 						</p:commandButton>
 						<p:commandButton
-								action="#{comisariaManagedBean.eliminar}"
+								action="#{comisariaManagedBean.eliminar()}"
 								icon="ui-icon-trash" title="Icon Only" ajax="true" update="dtComisaria">
 							<f:param name="comisariaID" value="#{comisaria.comId}"></f:param>	
 						</p:commandButton>

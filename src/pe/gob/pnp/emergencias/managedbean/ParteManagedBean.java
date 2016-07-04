@@ -1,7 +1,6 @@
 package pe.gob.pnp.emergencias.managedbean;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 import javax.faces.bean.ManagedBean;

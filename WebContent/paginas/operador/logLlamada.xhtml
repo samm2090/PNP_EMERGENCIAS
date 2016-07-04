@@ -1,4 +1,5 @@
-	<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
@@ -11,6 +12,58 @@
 
 	<ui:define name="body">
 
+		<h:form id="form_llamada">
+
+			<p:panel header="Log de llamadas" id="panelDatos"
+				class="ui-g-12">
+
+				<p:dataTable id="dtLlamadas" var="llamadaAtendidas"
+					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} 
+				 	{PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+					value="#{llamadaManagedBean.llamadasAtendidas()}"
+					reflow="true" rows="10" paginator="true" resizableColumns="true"
+					draggableColumns="true">
+
+					<f:facet name="{Exporters}">
+						<h:commandLink>
+							<p:graphicImage name="/demo/images/excel.png" width="24" />
+							<p:dataExporter type="xls" target="dtLlamadas"
+								fileName="llamadas" />
+						</h:commandLink>
+					</f:facet>
+
+					<p:column headerText="Id" width="5" id="idLlamada"
+						style="text-align:center">
+						<h:outputText value="#{llamadaAtendidas.llaId}"></h:outputText>
+					</p:column>
+					<p:column headerText="Teléfono" width="40">
+						<h:outputText value="#{llamadaAtendidas.llaTelefono}"></h:outputText>
+					</p:column>
+					<p:column headerText="Observación" width="60">
+						<h:outputText
+							value="#{llamadaAtendidas.llaObservacion}"></h:outputText>
+					</p:column>
+					<p:column headerText="Tipo Terminal" width="40"
+						style="text-align:center">
+						<h:outputText value="#{llamadaAtendidas.tipoTerminal.tteDescripcion}">
+							<f:convertDateTime type="date" pattern="dd/MM/yyyy" />
+						</h:outputText>
+					</p:column>
+					<p:column headerText="Denunciante" width="40">
+						<h:outputText
+							value="#{llamadaAtendidas.civil.civNombre} #{llamadaAtendidas.civil.civApellidoPaterno}"></h:outputText>
+					</p:column>
+					<p:column headerText="Hora Inicio" width="40">
+						<h:outputText
+							value="#{llamadaAtendidas.llaHoraInicio}"></h:outputText>
+					</p:column>
+					<p:column headerText="Hora Fin" width="30" style="text-align:left">
+						<h:outputText
+							value="#{llamadaAtendidas.llaHoraFin}"></h:outputText>
+					</p:column>
+				</p:dataTable>
+			</p:panel>
+		</h:form>
 
 	</ui:define>
 </ui:composition>

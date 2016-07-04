@@ -35,7 +35,7 @@ public class Comisaria implements Serializable {
 	private boolean estadoRegistro;
 
 	// bi-directional many-to-one association to Distrito
-	@ManyToOne(cascade =CascadeType.PERSIST)
+	@ManyToOne
 	@JoinColumn(name = "DIS_ID")
 	private Distrito distrito=new Distrito();
 

@@ -42,25 +42,13 @@
 			}
 
 			function markerAddComplete() {
-				var title = document.getElementById('title');
-				currentMarker.setTitle(title.value);
-				title.value = "";
-
-				currentMarker = null;
 				PF('dlg').hide();
 			}
 
 			function cancel() {
 				PF('dlg').hide();
-				currentMarker.setMap(null);
-				currentMarker = null;
 
 				return false;
-			}
-
-			function habilitar() {
-				document.getElementById('btnFalsaAlarma').disabled = false;
-				document.getElementById('btnRegistrarEmergencia').disabled = false;
 			}
 		</script>
 	</ui:define>
@@ -90,7 +78,6 @@
 				width="600">
 				<p:gmap id="geoMap" center="#{geoCodeView.centerGeoMap}" zoom="15"
 					type="ROADMAP" style="width:100%;height:400px"
-					model="#{addMarkersView.geoModel}"
 					listener="#{geoCodeView.onGeocode}"
 					onPointClick="handlePointClick(event);" widgetVar="geoMap">
 					<p:ajax event="geocode" listener="#{geoCodeView.onGeocode}"
@@ -101,12 +88,10 @@
 
 			<p:dialog widgetVar="dlg" showEffect="fade">
 				<h:panelGrid columns="2">
-					<!-- <h:outputLabel for="title" value="Title:" />
-			            <p:inputText id="title" value="#{addMarkersView.title}" /> -->
 
 					<f:facet name="footer">
 						<p:commandButton value="Marcar"
-							actionListener="#{addMarkersView.addMarker}"
+							actionListener="#{geoCodeView.addMarker()}"
 							oncomplete="markerAddComplete()" />
 						<p:commandButton value="Cancelar" onclick="return cancel()" />
 					</f:facet>
@@ -119,10 +104,10 @@
 
 			<div class="ui-g">
 				<div class="ui-g-2" align="right">
-					<p:commandButton value="Contestar Llamada" update="telefono"
+					<p:commandButton value="Contestar Llamada"
+						update="telefono,btnFalsaAlarma,btnRegistrarEmergencia"
 						icon="fa fa-fw fa-phone"
-						action="#{emergenciaManagedBean.contestarLlamada()}"
-						onclick="habilitar()" ajax="true" />
+						action="#{emergenciaManagedBean.contestarLlamada()}" ajax="true" />
 				</div>
 				<div class="ui-g-4">
 					<p:panel header="Datos del denunciante" style="width:350px">
@@ -130,7 +115,7 @@
 							<p:outputLabel for="telefono" value="Telefono:" />
 							<p:inputText id="telefono"
 								value="#{emergenciaManagedBean.emergencia.llamada.llaTelefono}"
-								disabled="false" />
+								disabled="true" />
 
 							<p:outputLabel for="documento" value="Número Documento:" />
 							<p:inputText id="documento"
@@ -152,9 +137,9 @@
 
 					<div class="ui-lg" align="right" style="margin-top: 20px;">
 						<div class="ui-lg-3" style="margin-right: 75px;">
-							<p:commandButton value="¡Falsa Alarma!" type="button" 
+							<p:commandButton value="¡Falsa Alarma!" type="button"
 								id="btnFalsaAlarma" onclick="PF('dlgFalsaAlarma').show();"
-								disabled="true" />
+								disabled="#{emergenciaManagedBean.disabled}" />
 						</div>
 					</div>
 				</div>
@@ -232,7 +217,7 @@
 							<p:commandButton ajax="false" value="Registrar Emergencia"
 								id="btnRegistrarEmergencia"
 								action="#{emergenciaManagedBean.registrarEmergencia()}"
-								disabled="false" />
+								disabled="#{emergenciaManagedBean.disabled}" />
 						</div>
 					</p:panel>
 				</div>

@@ -9,200 +9,214 @@
 		<title>Mantenimiento Operador</title>
 	</ui:define>
 
-	<ui:define name="body" >
-	<!--  <div style="width:960px; margin:0 auto;">-->
+	<ui:define name="body">
+		<!--  <div style="width:960px; margin:0 auto;">-->
 		<h:form id="formOperador">
 			<p:panel header="Datos del operador" id="panelDatos" class="ui-g-12">
 				<p:growl id="msgUser" sticky="true" showDetail="true" />
-					<p:panelGrid>
-						<p:row>
-							<p:column>
-								<p:outputLabel value="Nombre: " />
-							</p:column>
-							<p:column>
-								<p:inputText id="txtNombre" value="#{operadorManagedBean.operador.persona.perNombre}" />
-							</p:column>
-							<p:column>
-								
-							</p:column>
-							<p:column>
-								
-							</p:column>
-						</p:row>
-						
-						<p:row>
-							<p:column>
-								<p:outputLabel value="Apellido Paterno" />
-							</p:column>
-							<p:column>
-								<p:inputText id="txtApellidoPaterno" value="#{operadorManagedBean.operador.persona.perApellidoPaterno}" />
-							</p:column>
-							<p:column>
-								<p:outputLabel  value="Turno: " />
-							</p:column>
-							<p:column>
-								<p:selectOneMenu id="cboTurno"
+				<p:panelGrid>
+					<p:row>
+						<p:column>
+							<p:outputLabel value="Nombre: " />
+						</p:column>
+						<p:column>
+							<p:inputText id="txtNombre"
+								value="#{operadorManagedBean.operador.persona.perNombre}" />
+						</p:column>
+						<p:column>
+
+						</p:column>
+						<p:column>
+
+						</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column>
+							<p:outputLabel value="Apellido Paterno" />
+						</p:column>
+						<p:column>
+							<p:inputText id="txtApellidoPaterno"
+								value="#{operadorManagedBean.operador.persona.perApellidoPaterno}" />
+						</p:column>
+						<p:column>
+							<p:outputLabel value="Turno: " />
+						</p:column>
+						<p:column>
+							<p:selectOneMenu id="cboTurno"
 								value="#{operadorManagedBean.operador.turno.turId}">
 
-								<f:selectItems value="#{turnoManagedBean.turnos}"
-									var="turno" itemLabel="#{turno.turDescripcion}"
-									itemValue="#{turno.turId}" />
-								</p:selectOneMenu>
-							</p:column>
-						</p:row>
-						
-						<p:row>
-							<p:column>
-								<p:outputLabel value="Apellido Materno" />
-							</p:column>
-							<p:column>
-								<p:inputText id="txtApellidoMaterno" value="#{operadorManagedBean.operador.persona.perApellidoMaterno}" />
-							</p:column>
-							<p:column>
-								
-							</p:column>
-							<p:column>
-								
-							</p:column>
-						</p:row>
-						
-						<p:row>
-							<p:column>
-								<p:outputLabel value="Fecha Nacimiento:" />
-							</p:column>
-							<p:column>
-								<p:calendar id="txtFechaNac" value="#{operadorManagedBean.operador.persona.perFechaNacimiento}" 
-								locale="de" navigator="true" pattern="yyyy/MM/dd"/>
-							</p:column>
-							<p:column>
-								<p:outputLabel value="Rol:" />
-							</p:column>
-							<p:column>
-								<p:selectOneMenu id="cboRol"
+								<f:selectItems value="#{turnoManagedBean.turnos}" var="turno"
+									itemLabel="#{turno.turDescripcion}" itemValue="#{turno.turId}" />
+							</p:selectOneMenu>
+						</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column>
+							<p:outputLabel value="Apellido Materno" />
+						</p:column>
+						<p:column>
+							<p:inputText id="txtApellidoMaterno"
+								value="#{operadorManagedBean.operador.persona.perApellidoMaterno}" />
+						</p:column>
+						<p:column>
+
+						</p:column>
+						<p:column>
+
+						</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column>
+							<p:outputLabel value="Fecha Nacimiento:" />
+						</p:column>
+						<p:column>
+							<p:calendar id="txtFechaNac" yearRange="c-70:c"
+								value="#{operadorManagedBean.operador.persona.perFechaNacimiento}"
+								locale="de" navigator="true" pattern="yyyy/MM/dd" />
+						</p:column>
+						<p:column>
+							<p:outputLabel value="Rol:" />
+						</p:column>
+						<p:column>
+							<p:selectOneMenu id="cboRol"
 								value="#{operadorManagedBean.operador.persona.usuId.rol.rolId}">
 
-								<f:selectItems value="#{rolManagedBean.roles}"
-									var="rol" itemLabel="#{rol.rolDescripcion}"
-									itemValue="#{rol.rolId}" />
-								</p:selectOneMenu>
-							</p:column>
-						</p:row>
-						
-						<p:row>
-							<p:column>
-								<p:outputLabel value="DNI" />
-							</p:column>
-							<p:column>
-								<p:inputText id="txtDNI" value="#{operadorManagedBean.operador.persona.perDni}" />
-							</p:column>
-							<p:column>
-								
-							</p:column>
-							<p:column>
-								
-							</p:column>
-						</p:row>
-						
-						<p:row>
-							<p:column>
-								<p:outputLabel value="Direccion:" />
-							</p:column>
-							<p:column>
-								<p:inputText id="txtDireccion" value="#{operadorManagedBean.operador.persona.perDireccion}" />
-							</p:column>
-							<p:column>
-								
-							</p:column>
-							<p:column>
-								
-							</p:column>
-						</p:row>
-						
-						<p:row>
-							<p:column>
-								<p:outputLabel value="Correo: " />
-							</p:column>
-							<p:column>
-								<p:inputText id="txtCorreo" value="#{operadorManagedBean.operador.persona.perCorreo}" />
-							</p:column>
-							<p:column>
-								
-							</p:column>
-							<p:column>
-								
-							</p:column>
-						</p:row>
-						
-						<p:row>
-							<p:column>
-								<p:outputLabel value="Telefono:" />
-							</p:column>
-							<p:column>
-								<p:inputText id="txtTelefono" value="#{operadorManagedBean.operador.persona.perTelefono}" />
-							</p:column>
-							<p:column>
-								
-							</p:column>
-							<p:column>
-								
-							</p:column>
-						</p:row>
-						
-						<p:row>
-							<p:column>
-								<p:outputLabel value="Genero:" />
-							</p:column>
-							<p:column>
-								<p:selectOneMenu id="cboGenero" value="#{operadorManagedBean.operador.persona.perGenero}" style="width:125px">
-						            <f:selectItem itemLabel="Mujer" itemValue="F" />
-						            <f:selectItem itemLabel="Hombre" itemValue="M" />
-						        </p:selectOneMenu>
-							</p:column>
-							<p:column>
-								
-							</p:column>
-							<p:column>
-								
-							</p:column>
-						</p:row>
-						
-						<p:row>
-							<p:column>
-								<p:outputLabel value="Estado Civil:" />
-							</p:column>
-							<p:column>
-								<p:selectOneMenu id="cboEstadoCivil" value="#{operadorManagedBean.operador.persona.perEstadoCivil}" style="width:125px">
-						            <f:selectItem itemLabel="Soltero" itemValue="Soltero" />
-						            <f:selectItem itemLabel="Casado" itemValue="Casado" />
-						            <f:selectItem itemLabel="Divorciado" itemValue="Divorciado" />
-						            <f:selectItem itemLabel="Viudo" itemValue="Viudo" />
-						        </p:selectOneMenu>
-							</p:column>
-							<p:column>
-								
-							</p:column>
-							<p:column>
-								
-							</p:column>
-						</p:row>
-						
-					</p:panelGrid>
-					<div align="right">
-						<p:commandButton value="Registrar"
-								action="#{operadorManagedBean.registrar()}" style="margin-top:10px;margin-bottom:20px"
-								icon="ui-icon-disk" ajax="msgUser,panelDatos"/>
-					</div>
-					
-					
-				<p:dataTable id="dtoperadores" var="operador" value="#{operadorManagedBean.operadores}"
-									paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} 
-				 					{PageLinks} {NextPageLink} {LastPageLink} {Exporters}" 
-				 					reflow="true" rows="10" paginator="true" resizableColumns="true" draggableColumns="true">
-									
+								<f:selectItems value="#{rolManagedBean.roles}" var="rol"
+									itemLabel="#{rol.rolDescripcion}" itemValue="#{rol.rolId}" />
+							</p:selectOneMenu>
+						</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column>
+							<p:outputLabel value="DNI" />
+						</p:column>
+						<p:column>
+							<p:inputText id="txtDNI"
+								value="#{operadorManagedBean.operador.persona.perDni}" />
+						</p:column>
+						<p:column>
+
+						</p:column>
+						<p:column>
+
+						</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column>
+							<p:outputLabel value="Direccion:" />
+						</p:column>
+						<p:column>
+							<p:inputText id="txtDireccion"
+								value="#{operadorManagedBean.operador.persona.perDireccion}" />
+						</p:column>
+						<p:column>
+
+						</p:column>
+						<p:column>
+
+						</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column>
+							<p:outputLabel value="Correo: " />
+						</p:column>
+						<p:column>
+							<p:inputText id="txtCorreo"
+								value="#{operadorManagedBean.operador.persona.perCorreo}" />
+						</p:column>
+						<p:column>
+
+						</p:column>
+						<p:column>
+
+						</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column>
+							<p:outputLabel value="Telefono:" />
+						</p:column>
+						<p:column>
+							<p:inputText id="txtTelefono"
+								value="#{operadorManagedBean.operador.persona.perTelefono}" />
+						</p:column>
+						<p:column>
+
+						</p:column>
+						<p:column>
+
+						</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column>
+							<p:outputLabel value="Genero:" />
+						</p:column>
+						<p:column>
+							<p:selectOneMenu id="cboGenero"
+								value="#{operadorManagedBean.operador.persona.perGenero}"
+								style="width:125px">
+								<f:selectItem itemLabel="Mujer" itemValue="F" />
+								<f:selectItem itemLabel="Hombre" itemValue="M" />
+							</p:selectOneMenu>
+						</p:column>
+						<p:column>
+
+						</p:column>
+						<p:column>
+
+						</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column>
+							<p:outputLabel value="Estado Civil:" />
+						</p:column>
+						<p:column>
+							<p:selectOneMenu id="cboEstadoCivil"
+								value="#{operadorManagedBean.operador.persona.perEstadoCivil}"
+								style="width:125px">
+								<f:selectItem itemLabel="Soltero" itemValue="Soltero" />
+								<f:selectItem itemLabel="Casado" itemValue="Casado" />
+								<f:selectItem itemLabel="Divorciado" itemValue="Divorciado" />
+								<f:selectItem itemLabel="Viudo" itemValue="Viudo" />
+							</p:selectOneMenu>
+						</p:column>
+						<p:column>
+
+						</p:column>
+						<p:column>
+
+						</p:column>
+					</p:row>
+
+				</p:panelGrid>
+				<div align="right">
+					<p:commandButton value="Registrar"
+						action="#{operadorManagedBean.registrar()}"
+						style="margin-top:10px;margin-bottom:20px" icon="ui-icon-disk"
+						ajax="msgUser,panelDatos" />
+				</div>
+
+
+				<p:dataTable id="dtoperadores" var="operador"
+					value="#{operadorManagedBean.operadores}"
+					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} 
+				 					{PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+					reflow="true" rows="10" paginator="true" resizableColumns="true"
+					draggableColumns="true">
+
 					<f:facet name="{Exporters}">
 						<h:commandLink>
 							<p:graphicImage name="/demo/images/excel.png" width="24" />
-							<p:dataExporter type="xls" target="dtoperadores" fileName="operadores" />
+							<p:dataExporter type="xls" target="dtoperadores"
+								fileName="operadores" />
 						</h:commandLink>
 					</f:facet>
 					<!-- <f:facet name="header">
@@ -211,7 +225,7 @@
 			                <p:inputText id="busqueda" onkeyup="PF('dtoperadors').filter()" style="width:150px" placeholder="Ingrese dato"/>
 			            </p:outputPanel>
 			        </f:facet> -->
-			        
+
 					<p:column headerText="Nombre">
 						<h:outputText value="#{operador.persona.perNombre}"></h:outputText>
 					</p:column>
@@ -228,21 +242,20 @@
 						<h:outputText value="#{operador.persona.usuId.rol.rolDescripcion}"></h:outputText>
 					</p:column>
 					<p:column headerText=" " exportable="false">
-						<p:commandButton
-								action="#{operadorManagedBean.editar()}"
-								icon="ui-icon-pencil" title="Icon Only" ajax="false">
-							<f:param name="operadorID" value="#{operador.opeId}"></f:param>	
+						<p:commandButton action="#{operadorManagedBean.editar()}"
+							icon="ui-icon-pencil" title="Icon Only" ajax="false">
+							<f:param name="operadorID" value="#{operador.opeId}"></f:param>
 						</p:commandButton>
-						<p:commandButton
-								action="#{operadorManagedBean.eliminar()}"
-								icon="ui-icon-trash" title="Icon Only" ajax="true" update="dtoperadores">
-							<f:param name="operadorID" value="#{operador.opeId}"></f:param>	
+						<p:commandButton action="#{operadorManagedBean.eliminar()}"
+							icon="ui-icon-trash" title="Icon Only" ajax="true"
+							update="dtoperadores">
+							<f:param name="operadorID" value="#{operador.opeId}"></f:param>
 						</p:commandButton>
 					</p:column>
-					
+
 				</p:dataTable>
 			</p:panel>
 		</h:form>
-	<!-- </div> -->
+		<!-- </div> -->
 	</ui:define>
 </ui:composition>
