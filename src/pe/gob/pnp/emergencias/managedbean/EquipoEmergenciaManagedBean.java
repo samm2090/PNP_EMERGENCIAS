@@ -37,11 +37,10 @@ public class EquipoEmergenciaManagedBean {
 
 	@ManagedProperty(value = "#{recursoEstadoService}")
 	private RecursoEstadoService recursoEstadoService;
+	
+	private Emergencia emergencia= new Emergencia();
 
 	private EquipoEmergencia equipoEmergencia = new EquipoEmergencia();
-
-	Emergencia emergencia = (Emergencia) FacesContext.getCurrentInstance().getExternalContext().getSessionMap()
-			.get("emergencia");
 
 	List<EquipoEmergencia> equiposEmergencia = new ArrayList<EquipoEmergencia>();
 	List<EquipoEmergencia> equiposEmergenciaXRecurso = new ArrayList<EquipoEmergencia>();
@@ -84,6 +83,8 @@ public class EquipoEmergenciaManagedBean {
 	}
 
 	public List<EquipoEmergencia> getEquiposEmergencia() {
+		emergencia = (Emergencia) FacesContext.getCurrentInstance().getExternalContext().getSessionMap()
+				.get("emergencia");
 		equiposEmergencia = Lists.newArrayList(
 				equipoEmergenciaService.getEquipoEmergenciaRepository().equipoXEmergencia(emergencia.getEmeId()));
 

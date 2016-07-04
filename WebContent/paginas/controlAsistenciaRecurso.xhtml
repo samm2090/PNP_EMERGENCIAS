@@ -28,7 +28,7 @@
 
 					<div align="right">
 						<f:facet name="footer">
-							<p:commandButton value="Asistencia" update="msgs,control"
+							<p:commandButton value="Asistencia" update="msgs,control,panelDatos"
 								action="#{recursoManagedBean.registrarAsistencia}" type="submit"
 								ajax="true"
 								icon="ui-icon-check"></p:commandButton>
@@ -37,6 +37,46 @@
 				</p:panel>
 			</h:form>
 		</div>
+		<h:form id="form_asistencia">
+
+			<p:panel header="Personas registradas" id="panelDatos"
+				class="ui-g-12">
+
+				<p:dataTable id="dtRecursos" var="recurso"
+					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} 
+				 	{PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+					value="#{equipoEmergenciaManagedBean.recursosEstado}"
+					reflow="true" rows="10" paginator="true" resizableColumns="true"
+					draggableColumns="true">
+
+					<f:facet name="{Exporters}">
+						<h:commandLink>
+							<p:graphicImage name="/demo/images/excel.png" width="24" />
+							<p:dataExporter type="xls" target="dtRecursos"
+								fileName="AsistenciaRecursos" />
+						</h:commandLink>
+					</f:facet>
+
+					<p:column headerText="Id" width="5" id="idRecurso"
+						style="text-align:center">
+						<h:outputText value="#{recurso.recurso.recId}"></h:outputText>
+					</p:column>
+					<p:column headerText="Recurso" width="40">
+						<h:outputText value="#{recurso.recurso.persona.perNombre} #{recurso.recurso.persona.perApellidoPaterno}"></h:outputText>
+					</p:column>
+					<p:column headerText="Grado" width="60">
+						<h:outputText
+							value="#{recurso.recurso.gradoRecurso.greDescripcion}"></h:outputText>
+					</p:column>
+					<p:column headerText="Fecha" width="40"
+						style="text-align:center">
+						<h:outputText value="#{recurso.reeFecha}">
+							<f:convertDateTime type="time" pattern="h:mm a" timeZone="GMT-5"/>
+						</h:outputText>
+					</p:column>
+				</p:dataTable>
+			</p:panel>
+		</h:form>
 	</ui:define>
 
 </ui:composition>
