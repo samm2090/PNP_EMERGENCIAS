@@ -1,6 +1,7 @@
 package pe.gob.pnp.emergencias.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -14,6 +15,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import pe.gob.pnp.emergencias.service.ParteService;
 
 @Entity
 @Table(name = "PARTE")
@@ -88,5 +91,7 @@ public class Parte implements Serializable {
 	public void setRecurso(Recurso recurso) {
 		this.recurso = recurso;
 	}
+	
+
 
 }

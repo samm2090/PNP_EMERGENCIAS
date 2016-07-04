@@ -1,0 +1,82 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/paginas/plantillas/plantilla-jefe.xhtml">
+
+	<ui:define name="head">
+		<title>Reporte Llamadas</title>
+	</ui:define>
+
+	<ui:define name="body">
+		
+	<h:form>
+		<h1 style="text-align: center">Reporte Llamadas</h1>
+		<div class="ui-g-12" align="center">
+
+				<p:growl id="msgUser" sticky="true" showDetail="true" />
+					<p:panelGrid columns="4" layout="grid" id="panelReporte" style="width:70%">
+						
+						<p:outputLabel value="Fecha inicio: " />
+						<p:calendar id="fechainicio" value="#{reporteEmergencia.fechaInicio}" pattern="yyyy-MM-dd" effect="fold" />
+						
+						<p:outputLabel value="Fecha fin: " />
+						<p:calendar id="fechafin" value="#{reporteEmergencia.fechaFin}" pattern="yyyy-MM-dd" effect="fold" />
+						
+						<p:outputLabel value="Estado" />
+						<p:selectOneMenu id="cboEstado"
+						value="#{reporteEmergencia.llamada.llaEstado}">
+
+							<f:selectItem 
+							itemLabel="Llamada falsa"
+							itemValue="0" />
+							
+							<f:selectItem 
+							itemLabel="Procesada"
+							itemValue="1" />
+						</p:selectOneMenu>
+
+					</p:panelGrid>
+					
+					<div align="right">
+						<p:commandButton value="Buscar"
+								action="#{reporteEmergencia.buscarReporteLlamada()}" style="margin-top:10px;margin-bottom:20px"
+								icon="ui-icon-disk" ajax="msgUser"/>
+					</div>
+			
+		</div>
+		<div class="ui-g-12">
+			<p:dataTable id="dtEmergencias" var="llamada" value="#{reporteEmergencia.llamadas}"
+							 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} 
+				 			{PageLinks} {NextPageLink} {LastPageLink} {Exporters}" 
+				 			reflow="true" rows="10" paginator="true" resizableColumns="true" draggableColumns="true">
+									
+					<f:facet name="{Exporters}">
+						<h:commandLink>
+							<p:graphicImage name="/demo/images/excel.png" width="24" />
+							<p:dataExporter type="xls" target="dtEmergencias" fileName="reporte Llamadas" />
+						</h:commandLink>
+					</f:facet>					
+					<p:column headerText="Realizado por">
+						<h:outputText value="#{llamada.civil.civNombre} #{llamada.civil.civApellidoPaterno}"></h:outputText>
+					</p:column>
+					<p:column headerText="Hora Inicio">
+						<h:outputText value="#{llamada.llaHoraInicio}"></h:outputText>
+					</p:column>
+					<p:column headerText="Hora Fin">
+						<h:outputText value="#{llamada.llaHoraFin}"></h:outputText>
+					</p:column>
+					<p:column headerText="Numero">
+						<h:outputText value="#{llamada.llaTelefono}"></h:outputText>
+					</p:column>
+					<p:column headerText="Tipo Termimal">
+						<h:outputText value="#{llamada.tipoTerminal.tteDescripcion}"></h:outputText>
+					</p:column>
+					
+				</p:dataTable>
+			
+		</div>
+		</h:form>
+	</ui:define>
+</ui:composition>

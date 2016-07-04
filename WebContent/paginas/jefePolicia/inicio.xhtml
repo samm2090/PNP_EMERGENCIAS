@@ -1,0 +1,29 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/paginas/plantillas/plantilla-jefe.xhtml">
+
+	<ui:define name="head">
+		<title>Inicio</title>
+	</ui:define>
+
+	<ui:define name="body">
+		<div class="ui-g-12" align="center">
+			<div class="ui-g-12" style="margin-top:-20px">
+				<h1 style="font-size: 50px">Bienvenido</h1>
+			</div>
+
+		</div>
+		<div class="ui-g-12">
+			<div class="ui-g-6">
+				<p:chart type="bar" model="#{reporteEmergencia.animatedModel2}" style="width:100%;height:400px" />
+			</div>
+			<div class="ui-g-6" >
+				<p:chart type="pie" model="#{reporteEmergencia.pieModel1}" style="width:100%;height:400px" />
+			</div>
+
+		</div>
+	</ui:define>
+</ui:composition>

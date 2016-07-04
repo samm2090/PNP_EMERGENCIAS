@@ -425,3 +425,42 @@ SELECT *
 FROM RECURSO_ESTADO
 WHERE REE_FECHA IN (SELECT MAX(REE_FECHA) FROM RECURSO_ESTADO GROUP BY REC_ID) AND EST_ID =1
 GO
+
+
+create procedure sp_parteXEstadoFecha 
+@estado int
+as
+select * from parte where EPA_ID =@estado and MONTH(PAR_FECHA)=MONTH(GETDATE()) and YEAR(PAR_FECHA)= YEAR(GETDATE())
+go
+
+create procedure sp_reporteEmergencia
+@fechaInicio date,
+@fechaFin date,
+@distrito int
+as
+begin
+	select * from EMERGENCIA where EME_FECHA between @fechaInicio and @fechaFin and DIS_ID = @distrito
+end
+go
+
+create procedure sp_reporteRecurso
+@comisaria int,
+@fechaInicio date,
+@fechaFin date
+as
+begin
+	select eq.* from EQUIPO_EMERGENCIA eq inner join EMERGENCIA e on e.EME_ID = eq.EME_ID
+											inner join RECURSO r on r.REC_ID = eq.REC_ID
+				where e.EME_FECHA between @fechaInicio and @fechaFin and r.COM_ID=@comisaria
+end
+go
+
+create procedure sp_reporteLlamadas 1,'2016-04-01','2016-07-01'
+@tipo int,
+@fechaInicio date,
+@feachaFin date
+as
+begin
+	select * from LLAMADA where LLA_ESTADO=@tipo and LLA_FECHA between @fechaInicio and @feachaFin
+end
+go
