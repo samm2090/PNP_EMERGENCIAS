@@ -160,6 +160,8 @@ public class EmergenciaManagedBean {
 					emergenciaService.getEmergenciaRepository().ultimaEmergenciaInsertada().get(0));
 
 			emergencia = new Emergencia();
+			setDisabled("true");
+			setHidden("false");
 
 		} catch (Exception e) {
 			tx.rollback();
@@ -206,6 +208,8 @@ public class EmergenciaManagedBean {
 			tx.commit();
 
 			emergencia = new Emergencia();
+			setDisabled("true");
+			setHidden("false");
 
 		} catch (Exception e) {
 			tx.rollback();
