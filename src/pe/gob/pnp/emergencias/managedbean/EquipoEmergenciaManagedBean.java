@@ -33,7 +33,7 @@ public class EquipoEmergenciaManagedBean {
 	@ManagedProperty(value = "#{recursoEstadoService}")
 	private RecursoEstadoService recursoEstadoService;
 
-	EquipoEmergencia equipoEmergencia = new EquipoEmergencia();
+	private EquipoEmergencia equipoEmergencia = new EquipoEmergencia();
 
 	Emergencia emergencia = (Emergencia) FacesContext.getCurrentInstance().getExternalContext().getSessionMap()
 			.get("emergencia");

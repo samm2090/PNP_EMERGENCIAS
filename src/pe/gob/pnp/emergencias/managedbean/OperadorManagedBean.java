@@ -98,7 +98,6 @@ public class OperadorManagedBean {
 	
 	public String guardarEditar()
 	{
-				
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("SpringData");
 		EntityManager manager = factory.createEntityManager();
 		EntityTransaction tx = manager.getTransaction();
@@ -146,9 +145,9 @@ public class OperadorManagedBean {
 		}
 		
 		operador = new Operador();
-		this.setOperadores(Lists.newArrayList(operadorService.getOperadorRepository().findAll()));
+		operadores = Lists.newArrayList(operadorService.getOperadorRepository().findAll());
 		
-		return "mantenimientoOperador";
+		return "mantenimientoOperador?faces-redirect=true";
 	}
 	
 	public String editar()

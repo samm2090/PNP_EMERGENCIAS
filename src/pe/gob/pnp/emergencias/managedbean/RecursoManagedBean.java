@@ -200,7 +200,7 @@ public class RecursoManagedBean {
 			tx.rollback();
 			e.printStackTrace();
 		}
-		return "/paginas/administrador/mantenimientoRecurso";
+		return "mantenimientoRecurso";
 	}
 
 	public String guardarEditar() {
@@ -232,22 +232,23 @@ public class RecursoManagedBean {
 			int resultado = q.executeUpdate();
 			tx.commit();
 
-			recurso = new Recurso();
+		
 
 			FacesContext context = FacesContext.getCurrentInstance();
 			if (resultado == 0) {
 				context.addMessage(null,
 						new FacesMessage(FacesMessage.SEVERITY_ERROR, "Success", "No se pudo registrar el recurso"));
 			} else {
-				context.addMessage(null, new FacesMessage("Success", "Se guardï¿½ correctamente el recurso "
+				context.addMessage(null, new FacesMessage("Success", "Se guardó correctamente el recurso "
 						+ recurso.getPersona().getPerNombre() + " " + recurso.getPersona().getPerApellidoPaterno()));
 			}
 		} catch (Exception e) {
 			tx.rollback();
 			e.printStackTrace();
 		}
+		recurso = new Recurso();
 
-		return "mantenimientoRecurso";
+		return "mantenimientoRecurso?faces-redirect=true";
 	}
 
 	public String irPaginaRecurso() {
