@@ -31,14 +31,14 @@ public class EquipoEmergenciaManagedBean {
 
 	@ManagedProperty(value = "#{equipoEmergenciaService}")
 	private EquipoEmergenciaService equipoEmergenciaService;
-	
+
 	@ManagedProperty(value = "#{emergenciaService}")
 	private EmergenciaService emergenciaService;
 
 	@ManagedProperty(value = "#{recursoEstadoService}")
 	private RecursoEstadoService recursoEstadoService;
-	
-	private Emergencia emergencia= new Emergencia();
+
+	private Emergencia emergencia = new Emergencia();
 
 	private EquipoEmergencia equipoEmergencia = new EquipoEmergencia();
 
@@ -69,7 +69,7 @@ public class EquipoEmergenciaManagedBean {
 	public void setRecursoEstadoService(RecursoEstadoService recursoEstadoService) {
 		this.recursoEstadoService = recursoEstadoService;
 	}
-	
+
 	public EmergenciaService getEmergenciaService() {
 		return emergenciaService;
 	}
@@ -223,17 +223,17 @@ public class EquipoEmergenciaManagedBean {
 
 	}
 
-	public String editarRecursoEquipo(){
-		
+	public String editarRecursoEquipo() {
+
 		String emeId = (String) FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap()
 				.get("emeId");
-		
+
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("emergencia");
-		FacesContext.getCurrentInstance().getExternalContext().
-		getSessionMap().put("emergencia",emergenciaService.getEmergenciaRepository().findOne(new Long(emeId)));
-		
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("emergencia",
+				emergenciaService.getEmergenciaRepository().findOne(new Long(emeId)));
+
 		return "editarEquipoRecurso";
-		
+
 	}
 
 	public String obtenerUltimaEmergencia() {
@@ -261,6 +261,11 @@ public class EquipoEmergenciaManagedBean {
 					int unaemergencia = (int) q.getResultList().get(0);
 					equipoEmergencia = equipoEmergenciaService.getEquipoEmergenciaRepository()
 							.obtenerEquipoEmergenciaId(unaemergencia);
+					FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("emergencia");
+					FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("emergencia",
+							emergenciaService.getEmergenciaRepository()
+									.findOne(equipoEmergencia1.getEmergencia().getEmeId()));
+
 					return "emergenciaEncontrada?faces-redirect=true";
 				} else {
 					addMessageInfo("Confirmación", "USTED NO TIENE EMERGENCIAS ASIGNADAS");

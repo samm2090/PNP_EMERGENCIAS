@@ -23,12 +23,12 @@
 					<h:panelGrid columns="2" cellpadding="3">
 						<p:outputLabel value="Usuario:" />
 						<p:inputText id="usuario"
-							value="#{personaManagedBean.usuario.usuNombre}"
+							value="#{personaManagedBean.persona.usuId.usuNombre}"
 							required="true" />
 
 						<p:outputLabel value="Contraseña:" />
 						<p:password id="clave"
-							value="#{personaManagedBean.usuario.usuClave}"
+							value="#{personaManagedBean.persona.usuId.usuClave}"
 							required="true" />
 					</h:panelGrid>
 

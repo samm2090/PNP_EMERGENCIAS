@@ -219,8 +219,8 @@ public class PersonaManagedBean {
 
 	public String autenticar() {
 
-		usuario = usuarioService.getUsuarioRepository().obtenerUsuarioLogged(usuario.getUsuNombre(),
-				usuario.getUsuClave());
+		usuario = usuarioService.getUsuarioRepository().obtenerUsuarioLogged(persona.getUsuId().getUsuNombre(),
+				persona.getUsuId().getUsuClave());
 		
 		equipoEmergencia = equipoEmergenciaService.getEquipoEmergenciaRepository().obtenerEquipoEmergenciaLogged(
 				persona.getUsuId().getUsuNombre(),persona.getUsuId().getUsuClave());

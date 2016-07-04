@@ -7,63 +7,73 @@
 
 	<ui:define name="head">
 		<title>Login</title>
-		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJXqqF2pp5DLzQesnl45jrBSE6aSiz7hc"></script>
+		<script type="text/javascript"
+			src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJXqqF2pp5DLzQesnl45jrBSE6aSiz7hc"></script>
 	</ui:define>
 
 	<ui:define name="body">
-		
+
 		<div align="center">
 			<h:form>
 				<p:growl id="msgs" sticky="true" showDetail="true" />
-				<p:panel header="Datos de la Emergencia Asignada" style="width:400px;margin-top:-60px">
+				<p:panel header="Datos de la Emergencia Asignada"
+					style="width:400px;margin-top:-60px">
 
 					<h:panelGrid columns="2" cellpadding="3">
 						<f:facet name="header">
-								<p:gmap center="#{markersView.centerGeoMap}" zoom="17" type="ROADMAP" style="width:100%;height:400px" model="#{markersView.simpleModel}" />
-							</f:facet>
+							<p:gmap center="#{markersView.centerGeoMap}" zoom="17"
+								type="ROADMAP" style="width:100%;height:400px"
+								model="#{markersView.simpleModel}" />
+						</f:facet>
 
-							<h:outputText value="Dirección:" />
-							<h:outputText value="#{equipoEmergenciaManagedBean.equipoEmergencia.emergencia.emeDir}" readonly="true"></h:outputText>
+						<h:outputText value="Dirección:" />
+						<h:outputText
+							value="#{equipoEmergenciaManagedBean.equipoEmergencia.emergencia.emeDir}"
+							readonly="true"></h:outputText>
 
-							<h:outputText value="Observaciones:" />
-							<p:inputTextarea value="#{equipoEmergenciaManagedBean.equipoEmergencia.emergencia.emeObservacion}" readonly="true"></p:inputTextarea>
+						<h:outputText value="Observaciones:" />
+						<p:inputTextarea
+							value="#{equipoEmergenciaManagedBean.equipoEmergencia.emergencia.emeObservacion}"
+							readonly="true"></p:inputTextarea>
 
-							<h:outputText value="Fecha Emergencia:" />
-							<h:outputText value="#{equipoEmergenciaManagedBean.equipoEmergencia.emergencia.emeFecha}" readonly="true">
-								<f:convertDateTime pattern="dd-MM-yyyy" />
-							</h:outputText>
-							
-							<h:outputLabel for="nivelEmergencia" value="Nivel Emergencia:" />
-							<p:selectOneMenu id="nivelEmergencia" disabled="true"
-								value="#{equipoEmergenciaManagedBean.equipoEmergencia.emergencia.nivelEmergencia.nemId}">
+						<h:outputText value="Fecha Emergencia:" />
+						<h:outputText
+							value="#{equipoEmergenciaManagedBean.equipoEmergencia.emergencia.emeFecha}"
+							readonly="true">
+							<f:convertDateTime pattern="dd-MM-yyyy" />
+						</h:outputText>
 
-								<f:selectItems
-									value="#{nivelEmergenciaManagedBean.nivelesEmergencia}" var="x"
-									itemLabel="#{x.nemDescripcion}" itemValue="#{x.nemId}" />
-							</p:selectOneMenu>
-							
-							<p:outputLabel for="tipoEmergencia" value="Tipo Emergencia:" />
-							<p:selectOneMenu id="tipoEmergencia" disabled="true"
-								value="#{equipoEmergenciaManagedBean.equipoEmergencia.emergencia.tipoEmergencia.temId}">
+						<h:outputLabel for="nivelEmergencia" value="Nivel Emergencia:" />
+						<p:selectOneMenu id="nivelEmergencia" disabled="true"
+							value="#{equipoEmergenciaManagedBean.equipoEmergencia.emergencia.nivelEmergencia.nemId}">
 
-								<f:selectItems value="#{tipoEmergenciaManagedBean.tiposEmergencia}"
-									var="te" itemLabel="#{te.temDescripcion}"
-									itemValue="#{te.temId}" />
-							</p:selectOneMenu>
-							
-							<h:outputText value="Observaciones Parte:" />
-							<p:inputTextarea
-								value="#{parteManagedBean.parte.parObservacion}" required="true">
-							</p:inputTextarea>
-						
-							<p:outputLabel for="estadoParte" value="Estado Parte:" />
-							<p:selectOneMenu id="estadoParte"
-								value="#{parteManagedBean.estadoParte.epaId}">
-	
-								<f:selectItems value="#{estadoParteManagedBean.estadoPartes}"
-									var="ep" itemLabel="#{ep.epaDescripcion}"
-									itemValue="#{ep.epaId}" />
-							</p:selectOneMenu>
+							<f:selectItems
+								value="#{nivelEmergenciaManagedBean.nivelesEmergencia}" var="x"
+								itemLabel="#{x.nemDescripcion}" itemValue="#{x.nemId}" />
+						</p:selectOneMenu>
+
+						<p:outputLabel for="tipoEmergencia" value="Tipo Emergencia:" />
+						<p:selectOneMenu id="tipoEmergencia" disabled="true"
+							value="#{equipoEmergenciaManagedBean.equipoEmergencia.emergencia.tipoEmergencia.temId}">
+
+							<f:selectItems
+								value="#{tipoEmergenciaManagedBean.tiposEmergencia}" var="te"
+								itemLabel="#{te.temDescripcion}" itemValue="#{te.temId}" />
+						</p:selectOneMenu>
+
+						<h:outputText value="Observaciones Parte:" />
+						<p:inputTextarea value="#{parteManagedBean.parte.parObservacion}"
+							required="true">
+						</p:inputTextarea>
+
+						<p:outputLabel for="estadoParte" value="Estado Parte:" />
+						<p:selectOneMenu id="estadoParte"
+							value="#{parteManagedBean.estadoParte.epaId}">
+
+							<f:selectItems value="#{estadoParteManagedBean.estadoPartes}"
+								var="ep" itemLabel="#{ep.epaDescripcion}"
+								itemValue="#{ep.epaId}" />
+						</p:selectOneMenu>
 					</h:panelGrid>
 
 					<div align="center">
@@ -73,6 +83,32 @@
 						</f:facet>
 					</div>
 
+				</p:panel>
+
+				<br />
+				<br />
+				<br />
+				<br />
+				<p:panel header="Equipo" style="width:400px;margin-top:-60px">
+					<h:panelGrid>
+						<p:dataTable id="dtSeleccionados" var="equipo"
+							value="#{equipoEmergenciaManagedBean.equiposEmergencia}"
+							reflow="true" resizableColumns="true" draggableColumns="true">
+
+							<p:column headerText="Nombre">
+								<h:outputText
+									value="#{equipo.recurso.persona.perNombre} #{equipo.recurso.persona.perApellidoPaterno}"></h:outputText>
+							</p:column>
+							<p:column headerText="Grado">
+								<h:outputText
+									value="#{equipo.recurso.gradoRecurso.greDescripcion}"></h:outputText>
+							</p:column>
+							<p:column headerText="Comisaria">
+								<h:outputText value="#{equipo.recurso.comisaria.comNombre}"></h:outputText>
+							</p:column>
+						</p:dataTable>
+
+					</h:panelGrid>
 				</p:panel>
 			</h:form>
 		</div>
