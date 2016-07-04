@@ -61,6 +61,27 @@
 		</p:steps>
 
 		<h:form id="form_emergencia" prependId="false">
+
+			<h:panelGroup id="llamadaEntrante" >
+				<h:panelGroup rendered="#{emergenciaManagedBean.disabled}" 
+					style="display:block">
+					<marquee>
+						<H4 style="color: red;">¡Llamada entrante! ----- ¡Llamada entrante! -----
+							¡Llamada entrante!</H4>
+					</marquee>
+				</h:panelGroup>
+
+				<h:panelGroup rendered="#{emergenciaManagedBean.hidden}"
+					style="display:block">
+					<marquee>
+						<H4 style="color: green;">
+							<p:outputLabel
+								value="Atendiendo al numero #{emergenciaManagedBean.emergencia.llamada.llaTelefono}" />
+						</H4>
+					</marquee>
+				</h:panelGroup>
+			</h:panelGroup>
+			
 			<p:dialog header="¡Falsa Alarma!" widgetVar="dlgFalsaAlarma"
 				modal="true" height="200">
 				<h:panelGrid columns="2" cellpadding="3" cellspacing="1">
@@ -105,7 +126,7 @@
 			<div class="ui-g">
 				<div class="ui-g-2" align="right">
 					<p:commandButton value="Contestar Llamada"
-						update="telefono,btnFalsaAlarma,btnRegistrarEmergencia"
+						update="telefono,btnFalsaAlarma,btnRegistrarEmergencia,llamadaEntrante"
 						icon="fa fa-fw fa-phone"
 						action="#{emergenciaManagedBean.contestarLlamada()}" ajax="true" />
 				</div>

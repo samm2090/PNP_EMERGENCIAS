@@ -17,6 +17,7 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 
 import pe.gob.pnp.emergencias.model.Emergencia;
+import pe.gob.pnp.emergencias.model.Llamada;
 import pe.gob.pnp.emergencias.model.Operador;
 import pe.gob.pnp.emergencias.service.EmergenciaService;
 
@@ -31,6 +32,8 @@ public class EmergenciaManagedBean {
 	private List<Emergencia> emergencias = new ArrayList<Emergencia>();
 	
 	private String disabled = "true";
+	
+	private String hidden = "false";
 	
 	public Emergencia getEmergencia() {
 		return emergencia;
@@ -63,6 +66,14 @@ public class EmergenciaManagedBean {
 	public void setDisabled(String disabled) {
 		this.disabled = disabled;
 	}
+	
+	public String getHidden() {
+		return hidden;
+	}
+
+	public void setHidden(String hidden) {
+		this.hidden = hidden;
+	}
 
 	public String contestarLlamada() {
 
@@ -83,6 +94,7 @@ public class EmergenciaManagedBean {
 
 		emergencia.getLlamada().setLlaHoraInicio(ahora.get(Calendar.HOUR_OF_DAY) + ":" + ahora.get(Calendar.MINUTE));
 		setDisabled("false");	
+		setHidden("true");
 		
 		return "registroLlamada";
 	}
@@ -205,6 +217,13 @@ public class EmergenciaManagedBean {
 
 	public String irPaginaChart() {
 		return "ejemploChart";
+	}
+	
+	public String irPaginaLlamada() {
+		
+		emergencia = new Emergencia();
+
+		return "registroLlamada?faces-redirect=true";
 	}
 
 	public String irPaginaReporteEmergencia() {

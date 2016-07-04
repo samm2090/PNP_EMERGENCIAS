@@ -16,9 +16,6 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
-import com.google.common.collect.Lists;
-
-import pe.gob.pnp.emergencias.model.Comisaria;
 import pe.gob.pnp.emergencias.model.Operador;
 import pe.gob.pnp.emergencias.service.OperadorService;
 

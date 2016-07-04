@@ -15,8 +15,9 @@
 				height="150px" width="150px" />
 			<H1>PNP - EMERGENCIAS</H1>
 		</div>
-		<div align="center">
-			<h:form>
+		<h:form>
+			<div align="center">
+
 				<p:growl id="msgs" sticky="true" showDetail="true" />
 				<p:panel header="Control Asistencia" style="width:400px">
 
@@ -28,25 +29,25 @@
 
 					<div align="right">
 						<f:facet name="footer">
-							<p:commandButton value="Asistencia" update="msgs,control,panelDatos"
+							<p:commandButton value="Asistencia"
+								update="msgs,control,panelDatos"
 								action="#{recursoManagedBean.registrarAsistencia}" type="submit"
-								ajax="true"
-								icon="ui-icon-check"></p:commandButton>
+								ajax="true" icon="ui-icon-check"></p:commandButton>
 						</f:facet>
 					</div>
 				</p:panel>
-			</h:form>
-		</div>
-		<h:form id="form_asistencia">
+			</div>
 
+			<br />
+			<br />
 			<p:panel header="Personas registradas" id="panelDatos"
 				class="ui-g-12">
 
 				<p:dataTable id="dtRecursos" var="recurso"
 					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} 
 				 	{PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
-					value="#{equipoEmergenciaManagedBean.recursosEstado}"
-					reflow="true" rows="10" paginator="true" resizableColumns="true"
+					value="#{equipoEmergenciaManagedBean.recursosEstado}" reflow="true"
+					rows="10" paginator="true" resizableColumns="true"
 					draggableColumns="true">
 
 					<f:facet name="{Exporters}">
@@ -62,16 +63,15 @@
 						<h:outputText value="#{recurso.recurso.recId}"></h:outputText>
 					</p:column>
 					<p:column headerText="Recurso" width="40">
-						<h:outputText value="#{recurso.recurso.persona.perNombre} #{recurso.recurso.persona.perApellidoPaterno}"></h:outputText>
+						<h:outputText
+							value="#{recurso.recurso.persona.perNombre} #{recurso.recurso.persona.perApellidoPaterno}"></h:outputText>
 					</p:column>
 					<p:column headerText="Grado" width="60">
 						<h:outputText
 							value="#{recurso.recurso.gradoRecurso.greDescripcion}"></h:outputText>
 					</p:column>
-					<p:column headerText="Fecha" width="40"
-						style="text-align:center">
-						<h:outputText value="#{recurso.reeFecha}">
-							<f:convertDateTime type="time" pattern="h:mm a" timeZone="GMT-5"/>
+					<p:column headerText="DNI" width="40" style="text-align:center">
+						<h:outputText value="#{recurso.recurso.persona.perDni}">
 						</h:outputText>
 					</p:column>
 				</p:dataTable>

@@ -90,6 +90,8 @@ public class LlamadaManagedBean {
 	}
 
 	public String irPaginaLlamada() {
+		
+		llamada = new Llamada();
 
 		return "registroLlamada?faces-redirect=true";
 	}
