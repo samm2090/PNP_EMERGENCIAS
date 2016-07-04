@@ -91,10 +91,18 @@
 				<p:panelMenu style="width:100%;" class="ui-g-12 ui-md-2">
 					<p:submenu label="Reportes">
 						<p:menuitem value="Emergencia" icon="ui-icon-bullet"
-							action="#{operadorManagedBean.irPaginaOperador()}">
+							action="#{emergenciaManagedBean.irPaginaReporteEmergencia()}">
 						</p:menuitem>
 						<p:menuitem value="Nivel de peligrosidad"
-							action="#{recursoManagedBean.irPaginaRecurso()}"
+							action="#{emergenciaManagedBean.irPaginaReporteNivelEmergencia()}"
+							icon="ui-icon-bullet">
+						</p:menuitem>
+						<p:menuitem value="Desempeño recursos"
+							action="#{recursoManagedBean.irPaginaReporteRecurso()}"
+							icon="ui-icon-bullet">
+						</p:menuitem>
+						<p:menuitem value="Llamadas"
+							action="#{llamadaManagedBean.irPaginaReporteLlamada()}"
 							icon="ui-icon-bullet">
 						</p:menuitem>
 					</p:submenu>

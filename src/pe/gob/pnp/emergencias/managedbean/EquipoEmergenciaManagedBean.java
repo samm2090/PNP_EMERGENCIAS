@@ -119,7 +119,7 @@ public class EquipoEmergenciaManagedBean {
 		EquipoEmergencia equipoEmergencia1 = (EquipoEmergencia) params.get("equipoLogin");
 
 		equiposEmergenciaXRecurso = Lists.newArrayList(equipoEmergenciaService.getEquipoEmergenciaRepository()
-				.equipoXEmergencia(equipoEmergencia1.getEmergencia().getEmeId()));
+				.equipoXEmergenciaRecurso(equipoEmergencia1.getRecurso().getRecId()));
 		return equiposEmergenciaXRecurso;
 	}
 

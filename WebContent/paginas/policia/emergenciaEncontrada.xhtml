@@ -7,22 +7,19 @@
 
 	<ui:define name="head">
 		<title>Login</title>
+		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJXqqF2pp5DLzQesnl45jrBSE6aSiz7hc"></script>
 	</ui:define>
 
 	<ui:define name="body">
-		<div align="center">
-			<p:graphicImage value="/resources/main/images/pnp/escudo_PNP.jpg"
-				height="150px" width="150px" />
-			<H1>PNP - EMERGENCIAS</H1>
-		</div>
+		
 		<div align="center">
 			<h:form>
 				<p:growl id="msgs" sticky="true" showDetail="true" />
-				<p:panel header="Datos de la Emergencia Asignada" style="width:400px">
+				<p:panel header="Datos de la Emergencia Asignada" style="width:400px;margin-top:-60px">
 
 					<h:panelGrid columns="2" cellpadding="3">
 						<f:facet name="header">
-							
+								<p:gmap center="#{markersView.centerGeoMap}" zoom="17" type="ROADMAP" style="width:100%;height:400px" model="#{markersView.simpleModel}" />
 							</f:facet>
 
 							<h:outputText value="Dirección:" />
@@ -56,7 +53,7 @@
 							
 							<h:outputText value="Observaciones Parte:" />
 							<p:inputTextarea
-								value="#{parteManagedBean.parte.parObservacion}">
+								value="#{parteManagedBean.parte.parObservacion}" required="true">
 							</p:inputTextarea>
 						
 							<p:outputLabel for="estadoParte" value="Estado Parte:" />

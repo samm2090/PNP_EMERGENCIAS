@@ -6,13 +6,13 @@
 	template="/paginas/plantillas/plantilla-jefe.xhtml">
 
 	<ui:define name="head">
-		<title>Reporte Emergencias</title>
+		<title>Reporte Llamadas</title>
 	</ui:define>
 
 	<ui:define name="body">
 		
 	<h:form>
-		<h1 style="text-align: center">Reporte Emergencias</h1>
+		<h1 style="text-align: center">Reporte Llamadas</h1>
 		<div class="ui-g-12" align="center">
 
 				<p:growl id="msgUser" sticky="true" showDetail="true" />
@@ -24,26 +24,30 @@
 						<p:outputLabel value="Fecha fin: " />
 						<p:calendar id="fechafin" value="#{reporteEmergencia.fechaFin}" pattern="yyyy-MM-dd" effect="fold" />
 						
-						<p:outputLabel value="Distrito:" />
-						<p:selectOneMenu id="cboTurno"
-						value="#{reporteEmergencia.emergencia.distrito.disId}">
+						<p:outputLabel value="Estado" />
+						<p:selectOneMenu id="cboEstado"
+						value="#{reporteEmergencia.llamada.llaEstado}">
 
-							<f:selectItems value="#{distritoManagedBean.distritosLima}"
-							var="distrito" itemLabel="#{distrito.disDescripcion}"
-							itemValue="#{distrito.disId}" />
+							<f:selectItem 
+							itemLabel="Llamada falsa"
+							itemValue="0" />
+							
+							<f:selectItem 
+							itemLabel="Procesada"
+							itemValue="1" />
 						</p:selectOneMenu>
 
 					</p:panelGrid>
 					
 					<div align="right">
 						<p:commandButton value="Buscar"
-								action="#{reporteEmergencia.buscarReporteEmergencias()}" style="margin-top:10px;margin-bottom:20px"
+								action="#{reporteEmergencia.buscarReporteLlamada()}" style="margin-top:10px;margin-bottom:20px"
 								icon="ui-icon-disk" ajax="msgUser"/>
 					</div>
 			
 		</div>
 		<div class="ui-g-12">
-			<p:dataTable id="dtEmergencias" var="emergencia" value="#{reporteEmergencia.emergencias}"
+			<p:dataTable id="dtEmergencias" var="llamada" value="#{reporteEmergencia.llamadas}"
 							 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} 
 				 			{PageLinks} {NextPageLink} {LastPageLink} {Exporters}" 
 				 			reflow="true" rows="10" paginator="true" resizableColumns="true" draggableColumns="true">
@@ -51,26 +55,23 @@
 					<f:facet name="{Exporters}">
 						<h:commandLink>
 							<p:graphicImage name="/demo/images/excel.png" width="24" />
-							<p:dataExporter type="xls" target="dtComisaria" fileName="comisarias" />
+							<p:dataExporter type="xls" target="dtEmergencias" fileName="reporte Llamadas" />
 						</h:commandLink>
 					</f:facet>					
-					<p:column headerText="Tipo Emergencia">
-						<h:outputText value="#{emergencia.tipoEmergencia.temDescripcion}"></h:outputText>
-					</p:column>
-					<p:column headerText="Nivel Emergencia">
-						<h:outputText value="#{emergencia.nivelEmergencia.nemDescripcion}"></h:outputText>
-					</p:column>
-					<p:column headerText="Registrado por">
-						<h:outputText value="#{emergencia.llamada.operador.persona.perApellidoPaterno}"></h:outputText>
-					</p:column>
-					<p:column headerText="Direccion">
-						<h:outputText value="#{emergencia.emeDir}"></h:outputText>
+					<p:column headerText="Realizado por">
+						<h:outputText value="#{llamada.civil.civNombre} #{llamada.civil.civApellidoPaterno}"></h:outputText>
 					</p:column>
 					<p:column headerText="Hora Inicio">
-						<h:outputText value="#{emergencia.emeHoraInicio}"></h:outputText>
+						<h:outputText value="#{llamada.llaHoraInicio}"></h:outputText>
 					</p:column>
 					<p:column headerText="Hora Fin">
-						<h:outputText value="#{emergencia.emeHoraFin}"></h:outputText>
+						<h:outputText value="#{llamada.llaHoraFin}"></h:outputText>
+					</p:column>
+					<p:column headerText="Numero">
+						<h:outputText value="#{llamada.llaTelefono}"></h:outputText>
+					</p:column>
+					<p:column headerText="Tipo Termimal">
+						<h:outputText value="#{llamada.tipoTerminal.tteDescripcion}"></h:outputText>
 					</p:column>
 					
 				</p:dataTable>

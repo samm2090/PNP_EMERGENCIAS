@@ -83,6 +83,11 @@ public class LlamadaManagedBean {
 
 		return resultado;
 	}
+	
+	public String irPaginaReporteLlamada()
+	{
+		return "reporteLlamadas?faces-redirect=true";
+	}
 
 	public String irPaginaLlamada() {
 
