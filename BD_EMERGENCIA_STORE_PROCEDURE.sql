@@ -455,7 +455,7 @@ begin
 end
 go
 
-create procedure sp_reporteLlamadas 1,'2016-04-01','2016-07-01'
+create procedure sp_reporteLlamadas
 @tipo int,
 @fechaInicio date,
 @feachaFin date
