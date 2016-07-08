@@ -16,14 +16,14 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
-import com.google.common.collect.Lists;
-
 import pe.gob.pnp.emergencias.model.Emergencia;
 import pe.gob.pnp.emergencias.model.EquipoEmergencia;
 import pe.gob.pnp.emergencias.model.RecursoEstado;
 import pe.gob.pnp.emergencias.service.EmergenciaService;
 import pe.gob.pnp.emergencias.service.EquipoEmergenciaService;
 import pe.gob.pnp.emergencias.service.RecursoEstadoService;
+
+import com.google.common.collect.Lists;
 
 @ManagedBean
 @SessionScoped
@@ -258,9 +258,22 @@ public class EquipoEmergenciaManagedBean {
 				int cant = q.getResultList().size();
 
 				if (cant > 0) {
-					int unaemergencia = (int) q.getResultList().get(0);
-					equipoEmergencia = equipoEmergenciaService.getEquipoEmergenciaRepository()
-							.obtenerEquipoEmergenciaId(unaemergencia);
+//					int unaemergencia = (Integer) q.getResultList().get(0);
+//					Query x = manager.createNativeQuery("SELECT TOP 1 * FROM EQUIPO_EMERGENCIA AS EME "
+//									+ " INNER JOIN RECURSO AS RE ON EME.REC_ID = RE.REC_ID "
+//									+ " INNER JOIN PERSONA AS PE ON PE.PER_ID = RE.PER_ID "
+//									+ " INNER JOIN USUARIO AS USU ON USU.USU_ID  = PE.USU_ID "
+//									+ " WHERE EME.REC_ID = ?1 "
+//									+ " ORDER BY EME.EME_ID DESC ", EquipoEmergencia.class);
+//							x.setParameter(1, unaemergencia);
+//					
+//					equipoEmergencia =  (EquipoEmergencia) x.getResultList().get(0);
+//					
+					
+					equipoEmergencia = equipoEmergencia1;
+//					equipoEmergencia = equipoEmergenciaService.getEquipoEmergenciaRepository()
+//							.obtenerEquipoEmergenciaId(unaemergencia);
+					
 					FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("emergencia");
 					FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("emergencia",
 							emergenciaService.getEmergenciaRepository()

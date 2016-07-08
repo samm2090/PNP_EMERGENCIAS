@@ -20,8 +20,9 @@ public interface EquipoEmergenciaRepository extends CrudRepository<EquipoEmergen
 			+ "INNER JOIN re.persona pe "
 			+ "INNER JOIN pe.usuId usu "
 		+ " WHERE usu.usuNombre like :usuario and "
-			  + "usu.usuClave like :contrasena ")
-	public EquipoEmergencia obtenerEquipoEmergenciaLogged(@Param("usuario") String usuario, @Param("contrasena") String contrasena);
+			  + "usu.usuClave like :contrasena "
+			  + " ORDER BY em.emergencia.emeId DESC")
+	public List<EquipoEmergencia> obtenerEquipoEmergenciaLogged(@Param("usuario") String usuario, @Param("contrasena") String contrasena);
 	
 	@Query(" SELECT em FROM EquipoEmergencia em "
 			+ " WHERE em.recurso.recId =:recurso "

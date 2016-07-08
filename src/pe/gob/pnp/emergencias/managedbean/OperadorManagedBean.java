@@ -46,7 +46,14 @@ public class OperadorManagedBean {
 	}
 
 	public List<Operador> getOperadores() {
-		Iterable<Operador> it = operadorService.getOperadorRepository().findAll();
+		
+//		EntityManagerFactory factory = Persistence.createEntityManagerFactory("SpringData");
+//		EntityManager manager = factory.createEntityManager();
+//		
+//		manager.
+		
+		
+		Iterable<Operador> it = operadorService.getOperadorRepository().findAll2();
 		Iterator<Operador> iterator = it.iterator();
 	
 		operadores.clear();
@@ -135,6 +142,8 @@ public class OperadorManagedBean {
 
 			int resultado = q.executeUpdate();
 			tx.commit();
+			
+			//manager.flush();
 			manager.clear();
 			manager.close();
 			factory.close();
@@ -157,7 +166,8 @@ public class OperadorManagedBean {
 			tx.rollback();
 			e.printStackTrace();
 		}
-		
+		//manager.clear();
+				
 		operador = new Operador();
 		
 		return "mantenimientoOperador?faces-redirect=true";

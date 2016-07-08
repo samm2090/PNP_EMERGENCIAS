@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import pe.gob.pnp.emergencias.model.Operador;
 
@@ -13,5 +14,9 @@ public interface OperadorRepository extends CrudRepository<Operador, Long>{
 	
 	@Query("select o from Operador o where o.persona.perId = ?1")
 	List<Operador> operadorXPersona(Long codigo);
+
+
+	@Query("select o from Operador o")
+	Iterable<Operador> findAll2();
 
 }
