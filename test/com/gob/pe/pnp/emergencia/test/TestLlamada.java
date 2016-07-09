@@ -1,13 +1,18 @@
 package com.gob.pe.pnp.emergencia.test;
 
+import static org.junit.Assert.assertEquals;
+
 import java.util.Random;
 
 import org.junit.Test;
 
+import com.gob.pe.pnp.emergencia.mock.CorreoElectronico;
+
+
 public class TestLlamada {
 
 	@Test
-	public void test() {
+	public void testValidarNumeroAleatorio() {
 		Random random = new Random();
 
 		int terminalAleatorio = random.nextInt((2 - 1) + 1) + 1;
@@ -22,6 +27,20 @@ public class TestLlamada {
 		}
 		
 		System.out.println(numero);
+	}	
+	
+	@Test
+	public void testValidarCorreoElectronico() {
+		
+		CorreoElectronico correo = new CorreoElectronico();
+		assertEquals(correo.validarMail("antonny93@gmail.com"),"Valido");
+		
 	}
-
+	
+	
+	
+	
+	
+	
+	
 }
